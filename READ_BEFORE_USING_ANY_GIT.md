@@ -1,64 +1,63 @@
 # Testudo AI — Git Branching Guide
 
-This guide explains how we’ll collaborate efficiently as a large team using Git branching best practices.  
-Our goals are:  
-- Keep things simple and organized  
-- Encourage fast iteration and teamwork  
-- Maintain stable code in our main branch  
+This document explains how the Testudo AI team will collaborate using a simple, consistent Git branching strategy. Following this guide ensures smooth teamwork, clean code integration, and minimal merge conflicts.
 
 ---
 
 ## Branch Overview
 
-We use two main branches for the whole project:
+We use two main branches for the entire project:
 
 | Branch | Purpose |
 |:-------|:---------|
-| `main` | Always contains stable, production-ready code |
-| `dev`  | Integrates all new features before merging to `main` |
+| `main` | Contains stable, production-ready code |
+| `dev`  | Used for integrating new features before merging to `main` |
 
-Subteams will create short-lived feature branches off `dev` to work on specific tools or modules.
+Each subteam will create short-lived feature branches from `dev` for their specific tools or modules.
 
 ---
 
 ## Workflow Overview
 
-Here’s the basic flow for all development work:
+The general flow of work is:
 
 ```
 (feature branches) --> dev --> main
 ```
 
-Subteams branch from `dev`, work on their feature, merge back when complete.  
-The core team handles merging `dev` → `main` after full testing.
+Subteams branch from `dev`, work on their features, and merge back when complete.  
+The core team merges `dev` into `main` once testing is complete.
 
 ---
 
 ## Example: Creating and Working on a Feature Branch
 
-Let’s say your subteam is developing the Transit Tool.
+If your subteam is developing the Transit Tool:
 
 ### 1. Create a Branch
-Always branch off the latest `dev`:
+Always start from the latest `dev` branch:
+
 ```bash
 git checkout dev
 git pull origin dev
 git checkout -b feature/transit-tool
 ```
 
-This creates a new branch named `feature/transit-tool`.
+This creates a new branch for your subteam’s work.
 
 ---
 
 ### 2. Make Changes and Commit Often
-Write your code, test it locally, and commit frequently:
+As you write code and test locally, commit frequently:
+
 ```bash
 git add .
 git commit -m "Add basic transit data fetcher"
 git push origin feature/transit-tool
 ```
 
-Keep your branch up to date with `dev`:
+To stay up to date with others’ work:
+
 ```bash
 git pull origin dev
 git merge dev
@@ -67,26 +66,27 @@ git merge dev
 ---
 
 ### 3. Open a Pull Request (PR)
-When your feature works and is tested, open a PR to merge:
+When your feature is working and tested, open a **PR** to merge your branch into `dev`:
+
 ```
 feature/transit-tool → dev
 ```
 
-- Include a clear title and description of what your branch adds or fixes.  
-- Ask another member to review your code.  
-
-Once approved, merge into `dev`.
+- Write a clear PR title and description.  
+- Request a review from your subteam lead or another member.  
+- Once approved, merge into `dev`.
 
 ---
 
 ### 4. Integration and Release
-After all teams have tested their modules:
-1. Core team merges `dev` → `main`.
-2. Everyone pulls the latest `main`:
-   ```bash
-   git checkout main
-   git pull origin main
-   ```
+After all subteams’ modules are tested and verified:
+1. The core team merges `dev` into `main`.
+2. Everyone pulls the latest stable version:
+
+```bash
+git checkout main
+git pull origin main
+```
 
 ---
 
@@ -98,17 +98,17 @@ After all teams have tested their modules:
 | Fix | `fix/<name>` | `fix/schedule-display` |
 | Experimental (optional) | `exp/<name>` | `exp/voice-test` |
 
-Keep branch names lowercase and descriptive.
+Branch names should be lowercase, short, and descriptive.
 
 ---
 
 ## Best Practices
 
-- Commit often — smaller commits are easier to debug and review.  
-- Merge often — avoid letting branches get stale.  
-- Write clear commit messages (e.g., “Add dining hall API integration”).  
-- Review each other’s PRs for quality and shared learning.  
-- Never push directly to `main` — all work flows through `dev`.  
+- Commit often. Small, frequent commits make collaboration smoother.  
+- Merge often. Avoid long-lived branches that are hard to reconcile later.  
+- Write clear commit messages. Example: `Add endpoint for dining menu data`.  
+- Review PRs carefully. Reviews are part of how we learn and maintain quality.  
+- Never push directly to `main`. Always go through `dev` and feature branches.
 
 ---
 
@@ -135,7 +135,7 @@ feature/scheduling-api   feature/dining-tool
 
 ## Summary
 
-- Work happens on feature branches from `dev`.  
-- Merge early, merge often.  
-- Core team ensures `main` stays stable.  
-- Communicate — your subteam lead coordinates merges and reviews.
+- Work happens on feature branches created from `dev`.  
+- Merge early and often to avoid large, messy updates.  
+- The core team keeps `main` stable.  
+- Communicate regularly with your subteam to coordinate merges and reviews.
