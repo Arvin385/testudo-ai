@@ -118,16 +118,19 @@ Branch names should be lowercase, short, and descriptive.
           ┌─────────────┐
           │   main      │  ← stable production code
           └─────▲───────┘
-                │
+                │                                                  <--- branch
          ┌──────┴───────┐
          │     dev       │  ← integration branch
          └───▲────▲──────┘
-             │    │
+             │    │                                                <---- branch
    ┌─────────┘    └─────────┐
    │                        │
-feature/scheduling-api   feature/dining-tool
-   │                        │
-   └──────────────→ dev ←────┘
+scheduling-api          dining-tool      
+   │                      |    |                                   <---- branch
+feature_name         feature1  feature2
+   |                    |        |                                 <---- merge
+scheduling-api          dining-tool
+   └──────────────→ dev ←────┘                                     <---- merge            
             merge & test
 ```
 
