@@ -1,7 +1,7 @@
 def find_bus_route(start_lat, start_lon, dest_lat, dest_lon):
     """
     Find the best bus route + direction based on cached_data.json,
-    minimizing total travel time including walking to/from stops.
+    minimizing total travel time, including walking to/from stops.
 
     Uses per-stop "time" (seconds) stored in cached_data.json for bus segments,
     sums segments between boarding and alighting (wrap-around for loops),
