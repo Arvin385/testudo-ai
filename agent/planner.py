@@ -36,7 +36,14 @@ def query_gemini(prompt_text: str) -> str:
     return text_output
 
 
-def plan(user_query):
+load_dotenv()
+
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+MODEL_NAME = "gemini-2.5-flash"
+
+client = genai.Client(api_key=GEMINI_API_KEY)
+
+def query_gemini(prompt_text: str) -> str:
     """
     Generate a JSON plan from Gemini API.
     """
