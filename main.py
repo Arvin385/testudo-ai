@@ -28,7 +28,7 @@ def similar(a,b):
  return SequenceMatcher(None, a,b).ratio()
 
 
-THRESHOLD = 0.80
+THRESHOLD = 0.8
 
 
 for event in data["value"]:
