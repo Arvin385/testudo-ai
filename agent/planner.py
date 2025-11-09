@@ -59,7 +59,7 @@ def plan(user_query: str) -> tuple[dict, str]:
     try:
         plan_data = json.loads(cleaned_output)
     except json.JSONDecodeError as e:
-        raise ValueError(f"Gemini did not return valid JSON: {e}\nOutput: {gemini_output}")
+        raise ValueError(f"Gemini did not return valid JSON: {e}\nOutput: {cleaned_output}")
 
     # ✅ Support both single-step and multi-step formats
     if isinstance(plan_data, dict) and "tool" in plan_data:
