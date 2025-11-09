@@ -25,7 +25,7 @@ def query_gemini(prompt_text: str) -> str:
     return text_output
 
 
-def plan(user_query: str) -> dict:
+def plan(user_query: str) -> tuple[dict, str]:
     """
     Generate a JSON plan from Gemini API.
     """
@@ -34,6 +34,7 @@ def plan(user_query: str) -> dict:
         [f"- {t['spec']['name']}: {t['spec']['description']}" for t in tool_registry.values()]
     )
 
+    # System prompt for gemini
     prompt = (
         f"You are an AI agent planner. "
         f"The user gave the query: '{user_query}'.\n"
@@ -44,12 +45,9 @@ def plan(user_query: str) -> dict:
         f"If the user asks for multiple actions, include multiple steps in the plan in logical order."
         f"all required parameters."
         f"Make sure parameter names exactly match the tool specifications (for example, 'a' and 'b' for add_numbers).\n"
-
     )
 
     gemini_output = query_gemini(prompt)
-
-    print("Gemini raw output:", gemini_output)
 
     # --- Simple cleanup ---
     cleaned_output = gemini_output.strip()
@@ -71,5 +69,5 @@ def plan(user_query: str) -> dict:
     if not isinstance(plan_data, dict) or "plan" not in plan_data:
         raise ValueError(f"Gemini returned invalid plan format: {plan_data}")
 
-    return plan_data
+    return plan_data, prompt + "\n\n YOUR SUGGESTED PLAN: \n" + gemini_output
 

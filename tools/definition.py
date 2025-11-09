@@ -1,10 +1,8 @@
 # TOOL_SPEC is required; JSON description for the LLM to understand the tool
-TOOL_SPEC = {
-    "name": "definition",
-    "description": "Looks up the definition of a given word from a predefined dictionary.",
-    "parameters": ["word"]  # required parameter
-}
+from tools.tooling import Tool
+from tools.tooling import tool
 
+@tool
 def definition(word):
     """
     Looks up the definition of a word from a predefined dictionary.
@@ -26,3 +24,6 @@ def definition(word):
             return {"status": "error", "error_message": f"No definition found for '{word}'."}
     except Exception as e:
         return {"status": "error", "error_message": str(e)}
+
+
+TOOL_SPEC = definition.tool_spec()
