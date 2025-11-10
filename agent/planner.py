@@ -1,35 +1,47 @@
+# planner.py
+
 import os
 import json
 from tools import tool_registry
-from dotenv import load_dotenv
 from google import genai
+from pydantic import BaseModel, Field
+from typing import Dict
+from dotenv import load_dotenv
 
 load_dotenv()
-
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 MODEL_NAME = "gemini-2.5-flash"
-
 client = genai.Client(api_key=GEMINI_API_KEY)
 
-def query_gemini(prompt_text: str) -> str:
+
+class JSONPlan(BaseModel):
+    tool: str = Field(description="Name of tool to execute.")
+    params: Dict[str,str]
+
+
+def _call_gemini_raw(prompt_text: str) -> str:
     """
-    Send a prompt to Gemini API and return the text output.
+    send the prompt to Gemini and return raw text
     """
     response = client.models.generate_content(
         model=MODEL_NAME,
-        contents=prompt_text
+        contents=prompt_text,
+        config={
+            "response_mime_type": "application/json",
+            "response_json_schema": JSONPlan.model_json_schema(),
+        }
     )
+    return response.text.strip()
 
-    # The SDK returns a structured object
-    text_output = response.text.strip()
-    return text_output
 
 
 def plan(user_query: str) -> tuple[dict, str]:
     """
-    Generate a JSON plan from Gemini API.
+    build prompt using EXACT SAME TEXT you had before
+    call Gemini
+    parse output
+    return dict
     """
-    # Build a prompt describing available tools
     tool_descriptions = "\n".join(
         [f"- {t['spec']['name']}: {t['spec']['description']}" for t in tool_registry.values()]
     )
@@ -47,15 +59,14 @@ def plan(user_query: str) -> tuple[dict, str]:
         f"Make sure parameter names exactly match the tool specifications (for example, 'a' and 'b' for add_numbers).\n"
     )
 
-    gemini_output = query_gemini(prompt)
+    gemini_output = _call_gemini_raw(prompt)
 
     # --- Simple cleanup ---
     cleaned_output = gemini_output.strip()
     if cleaned_output.startswith("```"):
-        cleaned_output = cleaned_output.split("```")[1]  # take text between fences
+        cleaned_output = cleaned_output.split("```")[1]
     cleaned_output = cleaned_output.replace("json", "", 1).strip()
 
-    # Safely parse JSON output
     try:
         plan_data = json.loads(cleaned_output)
     except json.JSONDecodeError as e:
