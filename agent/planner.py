@@ -49,11 +49,11 @@ def plan(user_query: str):
         f"You are an AI agent planner. "
         f"The user gave the query: '{user_query}'.\n"
         f"Available tools:\n{tool_descriptions}\n"
-        f"Return a JSON object with keys 'tool' and 'params'. "
-        f"'tool' must be one of the available tool names, and 'params' must contain "
-        f"all required parameters. 'params' must be outputted as a dictionary with the key as the required parameters "
-        f"and the value as the the value of the corresponding parameter.  If that parameter is not provided by the output, "
-        f"don't include it in the created dictionary."
+        f"Return a JSON object with a key 'plan'. "
+        f"'plan' must be a list of one or more steps. Each step is an object with keys 'tool' and 'params'. "
+        f"'tool' must be one of the available tool names, and 'params' must contain all required parameters. "
+        f"If the user asks for multiple actions, include multiple steps in the plan in logical order."
+        f"all required parameters."
         f"Make sure parameter names exactly match the tool specifications (for example, 'a' and 'b' for add_numbers).\n"
     )
 
@@ -71,7 +71,12 @@ def plan(user_query: str):
     except json.JSONDecodeError as e:
         raise ValueError(f"Gemini did not return valid JSON: {e}\nOutput: {gemini_output}")
 
-    if not isinstance(plan_data, dict) or "tool" not in plan_data or "params" not in plan_data:
+    # ✅ Support both single-step and multi-step formats
+    if isinstance(plan_data, dict) and "tool" in plan_data:
+        # old format → wrap in plan list
+        plan_data = {"plan": [plan_data]}
+
+    if not isinstance(plan_data, dict) or "plan" not in plan_data:
         raise ValueError(f"Gemini returned invalid plan format: {plan_data}")
 
     return plan_data
