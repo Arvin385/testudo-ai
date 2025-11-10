@@ -34,7 +34,8 @@ def _call_gemini_raw(prompt_text: str) -> str:
     return response.text.strip()
 
 
-def plan(user_query: str):
+
+def plan(user_query: str) -> tuple[dict, str]:
     """
     build prompt using EXACT SAME TEXT you had before
     call Gemini
@@ -45,6 +46,7 @@ def plan(user_query: str):
         [f"- {t['spec']['name']}: {t['spec']['description']}" for t in tool_registry.values()]
     )
 
+    # System prompt for gemini
     prompt = (
         f"You are an AI agent planner. "
         f"The user gave the query: '{user_query}'.\n"
@@ -59,8 +61,7 @@ def plan(user_query: str):
 
     gemini_output = _call_gemini_raw(prompt)
 
-    print("Gemini raw output:", gemini_output)
-
+    # --- Simple cleanup ---
     cleaned_output = gemini_output.strip()
     if cleaned_output.startswith("```"):
         cleaned_output = cleaned_output.split("```")[1]
@@ -79,5 +80,5 @@ def plan(user_query: str):
     if not isinstance(plan_data, dict) or "plan" not in plan_data:
         raise ValueError(f"Gemini returned invalid plan format: {plan_data}")
 
-    return plan_data
+    return plan_data, prompt + "\n\n YOUR SUGGESTED PLAN: \n" + gemini_output
 
