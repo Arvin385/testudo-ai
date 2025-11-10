@@ -12,7 +12,7 @@ def run_agent(user_input: dict):
     plan_data, agent_chat = plan(user_query)
     result = execute(plan_data)
     agent_output = explain(agent_chat, result)
-    return agent_output
+    return result, agent_output
 
 if __name__ == "__main__":
     #import uvicorn

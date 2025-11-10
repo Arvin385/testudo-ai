@@ -33,7 +33,18 @@ def _call_gemini_raw(prompt_text: str) -> str:
     )
     return response.text.strip()
 
+def query_gemini(prompt_text: str) -> str:
+    """
+    Send a prompt to Gemini API and return the text output.
+    """
+    response = client.models.generate_content(
+        model=MODEL_NAME,
+        contents=prompt_text
+    )
 
+    # The SDK returns a structured object
+    text_output = response.text.strip()
+    return text_output
 
 def plan(user_query: str) -> tuple[dict, str]:
     """
