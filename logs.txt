@@ -1,0 +1,9 @@
+User prompt: add 1 and 2 
+LLM output: {
+  "tool": "add_numbers",
+  "params": {
+    "a": "1",
+    "b": "2"
+  }
+}
+---

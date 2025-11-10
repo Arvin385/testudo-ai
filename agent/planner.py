@@ -7,9 +7,10 @@ from google import genai
 from pydantic import BaseModel, Field
 from typing import Dict
 from dotenv import load_dotenv
+from pathlib import Path
 
 load_dotenv()
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_API_KEY = os.getenv("AIzaSyB81EdQKm2usXlAlmeAvR-IXE-6XHakZ5E")
 MODEL_NAME = "gemini-2.5-flash"
 client = genai.Client(api_key=GEMINI_API_KEY)
 
@@ -45,6 +46,8 @@ def query_gemini(prompt_text: str) -> str:
     # The SDK returns a structured object
     text_output = response.text.strip()
     return text_output
+#This function will create a txt that will log the input prompt and output. This file could serve as a basic idea for memory.
+
 
 def plan(user_query: str) -> tuple[dict, str]:
     """
@@ -53,6 +56,7 @@ def plan(user_query: str) -> tuple[dict, str]:
     parse output
     return dict
     """
+    
     tool_descriptions = "\n".join(
         [f"- {t['spec']['name']}: {t['spec']['description']}" for t in tool_registry.values()]
     )
@@ -69,7 +73,13 @@ def plan(user_query: str) -> tuple[dict, str]:
         f"all required parameters."
         f"Make sure parameter names exactly match the tool specifications (for example, 'a' and 'b' for add_numbers).\n"
     )
-
+    
+    cached = check_cache(user_query)
+    if cached:
+        # cached is the raw LLM output json string
+        plan_data = json.loads(cached)
+        return plan_data, "cached result"
+    
     gemini_output = _call_gemini_raw(prompt)
 
     # --- Simple cleanup ---
@@ -90,6 +100,28 @@ def plan(user_query: str) -> tuple[dict, str]:
 
     if not isinstance(plan_data, dict) or "plan" not in plan_data:
         raise ValueError(f"Gemini returned invalid plan format: {plan_data}")
-
+    
+    logger(user_query, gemini_output)
     return plan_data, prompt + "\n\n YOUR SUGGESTED PLAN: \n" + gemini_output
 
+def check_cache(q: str):
+    file = Path("logs.txt")
+    if not file.exists():
+        return None
+    
+    text = file.read_text()
+    # simplest: each block separated by --- 
+    blocks = text.split("---")
+    for block in blocks:
+        if q in block:
+            # extract output following "LLM output:"
+            parts = block.split("LLM output:")
+            if len(parts) == 2:
+                output = parts[1].strip()
+                return output
+    return None
+
+def logger(user_prompt, llm_output):
+    file = Path("logs.txt")
+    with file.open("a") as f:   # append, not write, so you don’t overwrite history
+        f.write(f"User prompt: {user_prompt}\nLLM output: {llm_output}\n---\n")
