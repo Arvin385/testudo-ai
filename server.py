@@ -33,4 +33,9 @@ if __name__ == "__main__":
 
         "query" : input()
     }
-    print(run_agent(user_input))
+    output = run_agent(user_input)
+    print("============JSON DATA============")
+    print(output[0])
+    print("=================================")
+    print()
+    print(output[1])

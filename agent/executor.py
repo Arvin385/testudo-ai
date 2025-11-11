@@ -15,14 +15,17 @@ def execute(plan):
 
     
     for step in steps:
+        print(f"Attempting plan: {str(step)}")
         tool_name = step.get("tool")
         params = step.get("params", {})
 
         if tool_name not in tool_registry:
             all_results.append({
-                "status": "error",
-                "error_message": f"Unknown tool {tool_name}"
-            })
+                "tool" : tool_name,
+                "result" : {
+                    "status": "error",
+                    "error_message": f"Unknown tool {tool_name}"
+            }})
             continue
         
         tool_func = tool_registry[tool_name]["func"]
@@ -33,9 +36,11 @@ def execute(plan):
         missing = [p for p in new_reqs if p not in params]
         if missing:
             all_results.append({
+                "tool" : tool_name,
+                "result" : {
                 "status": "error",
                 "error_message": f"Missing parameters: {missing}"
-            })
+            }})
             continue
 
         # Execute tool and capture result
