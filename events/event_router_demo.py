@@ -577,7 +577,6 @@ Sanity Check Examples:
         result["_original"] = query  # Store original for display
         print_results(result)
 
-
 if __name__ == "__main__":
     import sys
     
