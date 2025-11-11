@@ -12,9 +12,6 @@ MODEL_NAME = "gemini-2.5-flash"
 
 client = genai.Client(api_key=GEMINI_API_KEY)
 
-def explain(agent_chat: str, result: list):
-    agent_chat = agent_chat + "\n\nRESULTS: \n"
-    for res in result:
-        agent_chat += "\n" + str(res)
+def explain(agent_chat: str):
     agent_chat += "\n\n" + "Given the above output, tell the user the result of their query. "
     return query_gemini(agent_chat)
