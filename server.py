@@ -18,8 +18,10 @@ def run_agent(user_input: dict):
         else:
             agent_chat += "\n When running the commands, you ran into the below errors. Please make new requests to the tools accordingly:\n\n"
             for err in errors:
-                agent_chat += f"Error on tool {err[0]}: {err[1]}\n"
-    print(f"MY ERRORS: {errors}")
+                err_msg = f"Error on tool {err[0]}: {err[1]}"
+                agent_chat += err_msg
+                print(err_msg)
+            
     agent_output = explain(agent_chat, result)
     return result, agent_output
 
