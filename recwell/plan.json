@@ -1,0 +1,38 @@
+{
+  "standard_plan": {
+    "frequency": 5,
+    "split": ["Push", "Pull", "Legs", "Push", "Pull"],
+    "schedule": {
+      "Push": {
+        "exercises": [
+          "Bench Press",
+          "Overhead Shoulder Press",
+          "Incline Dumbbell Press",
+          "Tricep Dips",
+          "Lateral Raises",
+          "Push-Ups"
+        ]
+      },
+      "Pull": {
+        "exercises": [
+          "Pull-Ups",
+          "Barbell Rows",
+          "Lat Pulldowns",
+          "Face Pulls",
+          "Bicep Curls",
+          "Hammer Curls"
+        ]
+      },
+      "Legs": {
+        "exercises": [
+          "Back Squats",
+          "Deadlifts",
+          "Lunges",
+          "Leg Press",
+          "Hamstring Curls",
+          "Calf Raises"
+        ]
+      }
+    }
+  }
+}
