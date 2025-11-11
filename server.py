@@ -10,10 +10,16 @@ app = FastAPI()
 def run_agent(user_input: dict):
     user_query = user_input.get("query", "")
     errors: list[tuple[str, dict]] = [("1", {"1" : "1"})]
-    
-    plan_data, agent_chat = plan(user_query)
-    result, errors = execute(plan_data)        
-    
+    while True:
+        plan_data, agent_chat = plan(user_query)
+        result, errors = execute(plan_data)
+        if (len(errors) <= 0): 
+            break
+        else:
+            agent_chat += "\n When running the commands, you ran into the below errors. Please make new requests to the tools accordingly:\n\n"
+            for err in errors:
+                agent_chat += f"Error on tool {err[0]}: {err[1]}\n"
+    print(f"MY ERRORS: {errors}")
     agent_output = explain(agent_chat, result)
     return result, agent_output
 
