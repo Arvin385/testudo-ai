@@ -7,6 +7,7 @@ from google import genai
 from pydantic import BaseModel, Field
 from typing import Dict
 from dotenv import load_dotenv
+from pathlib import Path
 
 load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
@@ -26,10 +27,6 @@ def _call_gemini_raw(prompt_text: str) -> str:
     response = client.models.generate_content(
         model=MODEL_NAME,
         contents=prompt_text,
-        config={
-            "response_mime_type": "application/json",
-            "response_json_schema": JSONPlan.model_json_schema(),
-        }
     )
     return response.text.strip()
 
@@ -45,6 +42,8 @@ def query_gemini(prompt_text: str) -> str:
     # The SDK returns a structured object
     text_output = response.text.strip()
     return text_output
+#This function will create a txt that will log the input prompt and output. This file could serve as a basic idea for memory.
+
 
 def plan(user_query: str) -> tuple[dict, str]:
     """
@@ -53,6 +52,7 @@ def plan(user_query: str) -> tuple[dict, str]:
     parse output
     return dict
     """
+    
     tool_descriptions = "\n".join(
         [f"- {t['spec']['name']}: {t['spec']['description']}" for t in tool_registry.values()]
     )
@@ -69,7 +69,13 @@ def plan(user_query: str) -> tuple[dict, str]:
         f"all required parameters."
         f"Make sure parameter names exactly match the tool specifications (for example, 'a' and 'b' for add_numbers).\n"
     )
-
+    
+    cached = check_cache(user_query)
+    if cached:
+        # cached is the raw LLM output json string
+        plan_data = json.loads(cached)
+        return plan_data, "cached result"
+    
     gemini_output = _call_gemini_raw(prompt)
 
     # --- Simple cleanup ---
@@ -90,6 +96,31 @@ def plan(user_query: str) -> tuple[dict, str]:
 
     if not isinstance(plan_data, dict) or "plan" not in plan_data:
         raise ValueError(f"Gemini returned invalid plan format: {plan_data}")
-
+    
+    logger(user_query, gemini_output)
     return plan_data, prompt + "\n\n YOUR SUGGESTED PLAN: \n" + gemini_output
 
+def check_cache(q: str):
+    file = Path("logs.txt")
+    if not file.exists():
+        return None
+    
+    normalized_q = " ".join(q.strip().lower().split())
+    text = file.read_text()
+    # simplest: each block separated by --- 
+    blocks = text.split("---")
+    for block in blocks:
+        lines = block.strip().splitlines()
+        for line in lines:
+            if line.lower().startswith("user prompt:"):
+                prompt_text = " ".join(line.replace("user prompt:", "").strip().lower().split())
+                if prompt_text == normalized_q:
+                    parts = block.split("LLM output:")
+                    if len(parts) == 2:
+                        return parts[1].strip()
+    return None
+
+def logger(user_prompt, llm_output):
+    file = Path("logs.txt")
+    with file.open("a") as f:   # append, not write, so you don’t overwrite history
+        f.write(f"User prompt: {user_prompt}\nLLM output: {llm_output}\n---\n")

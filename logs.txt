@@ -1,0 +1,126 @@
+User prompt: add 1 and 2 
+LLM output: {
+  "tool": "add_numbers",
+  "params": {
+    "a": "1",
+    "b": "2"
+  }
+}
+---
+User prompt: add 1 and 2 and define algorithm
+LLM output: {"tool":"add_numbers","params":{"a":"1","b":"2"}}
+---
+User prompt: add 1 and 4 and define algorithm
+LLM output: {"tool":"add_numbers","params":{"a":"1","b":"4" } }
+---
+User prompt: add 1 and 3 and define algorithm
+LLM output: {"tool":"add_numbers","params":{"a":"1","b":"3"}}
+---
+User prompt: add 1 and 3 and define data
+LLM output: {"tool": "add_numbers", "params": {"a": "1", "b": "3"}}
+---
+User prompt: add 1 and 3 and define data
+LLM output: ```json
+{
+  "plan": [
+    {
+      "tool": "add_numbers",
+      "params": {
+        "a": 1,
+        "b": 3
+      }
+    },
+    {
+      "tool": "definition",
+      "params": {
+        "word": "data"
+      }
+    }
+  ]
+}
+```
+---
+User prompt: add 1 and 3 and define data
+LLM output: ```json
+{
+  "plan": [
+    {
+      "tool": "add_numbers",
+      "params": {
+        "a": 1,
+        "b": 3
+      }
+    },
+    {
+      "tool": "definition",
+      "params": {
+        "word": "data"
+      }
+    }
+  ]
+}
+```
+---
+User prompt: add 1 and 9 and define algorithm
+LLM output: ```json
+{
+  "plan": [
+    {
+      "tool": "add_numbers",
+      "params": {
+        "a": 1,
+        "b": 9
+      }
+    },
+    {
+      "tool": "definition",
+      "params": {
+        "word": "algorithm"
+      }
+    }
+  ]
+}
+```
+---
+User prompt: add 1 and 9 and define algorithm
+LLM output: ```json
+{
+  "plan": [
+    {
+      "tool": "add_numbers",
+      "params": {
+        "a": 1,
+        "b": 9
+      }
+    },
+    {
+      "tool": "definition",
+      "params": {
+        "word": "algorithm"
+      }
+    }
+  ]
+}
+```
+---
+User prompt: add 1 and 10 and define algorithm
+LLM output: ```json
+{
+  "plan": [
+    {
+      "tool": "add_numbers",
+      "params": {
+        "a": 1,
+        "b": 10
+      }
+    },
+    {
+      "tool": "definition",
+      "params": {
+        "word": "algorithm"
+      }
+    }
+  ]
+}
+```
+---
