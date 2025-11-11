@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 
 load_dotenv()
-GEMINI_API_KEY = os.getenv("GEMINI_API_KE")
+GEMINI_API_KEY = os.getenv("AIzaSyB81EdQKm2usXlAlmeAvR-IXE-6XHakZ5E")
 MODEL_NAME = "gemini-2.5-flash"
 client = genai.Client(api_key=GEMINI_API_KEY)
 
@@ -27,10 +27,6 @@ def _call_gemini_raw(prompt_text: str) -> str:
     response = client.models.generate_content(
         model=MODEL_NAME,
         contents=prompt_text,
-        config={
-            "response_mime_type": "application/json",
-            "response_json_schema": JSONPlan.model_json_schema(),
-        }
     )
     return response.text.strip()
 
@@ -109,16 +105,19 @@ def check_cache(q: str):
     if not file.exists():
         return None
     
+    normalized_q = " ".join(q.strip().lower().split())
     text = file.read_text()
     # simplest: each block separated by --- 
     blocks = text.split("---")
     for block in blocks:
-        if q in block:
-            # extract output following "LLM output:"
-            parts = block.split("LLM output:")
-            if len(parts) == 2:
-                output = parts[1].strip()
-                return output
+        lines = block.strip().splitlines()
+        for line in lines:
+            if line.lower().startswith("user prompt:"):
+                prompt_text = " ".join(line.replace("user prompt:", "").strip().lower().split())
+                if prompt_text == normalized_q:
+                    parts = block.split("LLM output:")
+                    if len(parts) == 2:
+                        return parts[1].strip()
     return None
 
 def logger(user_prompt, llm_output):
