@@ -9,8 +9,11 @@ app = FastAPI()
 @app.post("/run")
 def run_agent(user_input: dict):
     user_query = user_input.get("query", "")
+    errors: list[tuple[str, dict]] = [("1", {"1" : "1"})]
+    
     plan_data, agent_chat = plan(user_query)
-    result = execute(plan_data)
+    result, errors = execute(plan_data)        
+    
     agent_output = explain(agent_chat, result)
     return result, agent_output
 

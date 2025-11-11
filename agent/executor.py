@@ -9,7 +9,9 @@ def execute(plan):
     # Handle both single-step and multi-step formats
     steps = plan.get("plan", [plan])
     # Array to store error/success outputs
-    all_results = []
+    all_results: list[dict] = []
+    # Array to store how well/badly it does
+    all_failures: list[tuple[dict, dict]] = []
 
     
     for step in steps:
@@ -21,6 +23,7 @@ def execute(plan):
                 "status": "error",
                 "error_message": f"Unknown tool {tool_name}"
             })
+            all_failures.append((tool_name, all_results[-1]))
             continue
         
         tool_func = tool_registry[tool_name]["func"]
@@ -34,6 +37,7 @@ def execute(plan):
                 "status": "error",
                 "error_message": f"Missing parameters: {missing}"
             })
+            all_failures.append((tool_name, all_results[-1]))
             continue
 
         # Execute tool and capture result
@@ -41,6 +45,7 @@ def execute(plan):
             result = tool_func(**params)
         except Exception as e:
             result = {"status": "error", "error_message": str(e)}
+            all_failures.append((tool_name, result))
 
         all_results.append({
             "tool": tool_name,
