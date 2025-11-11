@@ -74,10 +74,10 @@ def plan(user_query: str, gemini_output: str = None) -> tuple[dict, str]:
 
     # --- Simple cleanup ---
     cleaned_output = gemini_output.strip()
-    if cleaned_output.startswith("```"):
-        cleaned_output = cleaned_output.split("```")[1]
+    if "```" in cleaned_output:
+        cleaned_output = cleaned_output.split("```")[-2]
     cleaned_output = cleaned_output.replace("json", "", 1).strip()
-
+    print("Here's my cleaned output: " + cleaned_output)
     try:
         plan_data = json.loads(cleaned_output)
     except json.JSONDecodeError as e:
