@@ -683,7 +683,21 @@ from tools.tooling import Tool
 from tools.tooling import tool
 
 @tool
-def get_events_from_terplink(query: str) -> dict:
+def get_events_from_terplink(eventName: str) -> dict:
+    """
+    Retrieves event data from TerpLink based on a given event name or keyword.
+
+    This function searches a predefined set of TerpLink events and maps the event 
+    to a corresponding category using a category-to-keyword mapping. It then calls 
+    `parse_and_retrieve_events` to filter and return relevant event details.
+
+    Args:
+        eventName (str): The name or keyword of the event to search for.
+
+    Returns:
+        dict: A dictionary containing event details that match the provided event name.
+              The structure and filtering logic are handled by `parse_and_retrieve_events`.
+    """
     category_map = {
         "sports": ["%football%", "%basketball%", "%soccer%"],
         "careers": ["%career%", "%internship%", "%resume%"],
@@ -696,7 +710,7 @@ def get_events_from_terplink(query: str) -> dict:
         {"id": "2", "title": "Career Fair", "start": "friday 10am",
          "venue": "Stamp", "tags": ["career"], "category": "careers"}
     ]
-    return parse_and_retrieve_events(query, category_map, events)
+    return parse_and_retrieve_events(eventName, category_map, events)
     
     
 TOOL_SPEC = get_events_from_terplink.tool_spec()

@@ -46,6 +46,7 @@ def execute(plan):
         # Execute tool and capture result
         try:
             result = tool_func(**params)
+            result["status"] = "success"
         except Exception as e:
             result = {"status": "error", "error_message": str(e)}
             

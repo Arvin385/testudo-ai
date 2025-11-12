@@ -59,8 +59,6 @@ class Tool:
         """
         return self.func(*args, **kwargs)
     
-    
-import inspect
 
 def tool(func: Callable) -> Tool:
     """
