@@ -1,13 +1,26 @@
-def find_bus_route(start_lat, start_lon, dest_lat, dest_lon):
+def find_bus_route(start_lat: float, start_lon: float, dest_lat: float, dest_lon: float):
     """
-    Find the best bus route + direction based on cached_data.json,
-    minimizing total travel time, including walking to/from stops.
+    Determines the optimal bus route and direction between two geographic points
+    using pre-cached route data, minimizing total travel time (bus + walking).
 
-    Uses per-stop "time" (seconds) stored in cached_data.json for bus segments,
-    sums segments between boarding and alighting (wrap-around for loops),
-    and adds walking time for start->boarding and alight->dest.
+    This function searches through all routes and directions stored in
+    `cached_data.json`, identifying the combination of boarding and alighting stops
+    that yields the shortest overall estimated travel time. The total time includes
+    the in-vehicle bus segment time and walking time to and from the selected stops.
+    Candidates requiring more than 1000 meters of total walking are skipped.
 
-    Skips route-direction candidates with total walking distance > 1000 m.
+    The function accounts for circular (loop) routes and uses a wrap-around summation
+    when computing bus segment times between stops.
+
+    Args:
+        start_lat (float): Latitude of the starting location (in decimal degrees).
+        start_lon (float): Longitude of the starting location (in decimal degrees).
+        dest_lat (float): Latitude of the destination location (in decimal degrees).
+        dest_lon (float): Longitude of the destination location (in decimal degrees).
+
+    Returns:
+        dict: A dictionary describing the best-matching bus route and travel details, or
+        an error message if no suitable route is found. The returned dictionary includes:
     """
     import json
     import math

@@ -136,3 +136,7 @@ def cache_all_bus_data():
         print(f"Cached data written successfully to 'cached_data.json' ({len(cached_data)} routes).")
     except Exception as e:
         raise RuntimeError(f"Failed to write cached data to file: {e}")
+    
+if __name__ == "__main__":
+    cache_all_bus_data()
+    print("Yippee! Successful caching completed")
