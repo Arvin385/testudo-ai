@@ -8,8 +8,7 @@ def ask_user(question: str) -> str:
     Asks the user any open ended question as desired by the LLM.
     Returns the user's output as a string. 
     """
-    resp = input(question + "\n")
-    print("USER RESP" + resp)
+    resp = input(question + "\nU> ")
     return "\"" + resp + "\""
 
 TOOL_SPEC=ask_user.tool_spec()

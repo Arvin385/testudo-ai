@@ -62,7 +62,7 @@ def extract_json_objects(text: str):
                     candidate = text[start_idx:i + 1]
                     try:
                         obj = json.loads(candidate)
-                        print("OBJ IN USE: " + str(obj))
+                        # print("OBJ IN USE: " + str(obj))
                         json_objects.append(obj)
                     except json.JSONDecodeError:
                         pass
@@ -130,11 +130,11 @@ def plan(user_query: str, agent_chat: str = None) -> tuple[list[dict], str]:
     gemini_output = _call_gemini_raw(agent_chat)
 
     # print("HERE'S THE AGENT CHAT: " + agent_chat)
-    print("========================AGENT-CHAT========================")
-    print(agent_chat)
-    print("======================GEMINI-OUTPUT=======================")
-    print(gemini_output)
-    print("==========================================================")
+    # print("========================AGENT-CHAT========================")
+    # print(agent_chat)
+    # print("======================GEMINI-OUTPUT=======================")
+    # print(gemini_output)
+    # print("==========================================================")
     # print("Here's my raw output: " + gemini_output)
     # --- Simple cleanup ---
     plan_data = extract_json_objects(gemini_output)

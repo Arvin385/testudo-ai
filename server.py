@@ -44,15 +44,18 @@ def run_agent(user_input: dict):
     return all_results, end_result
 
 if __name__ == "__main__":
-    #import uvicorn
-    #uvicorn.run(app, host="0.0.0.0", port=8000)
-
-    user_input = {
-        "query" : input()
-    }
-    output = run_agent(user_input)
-    print("============JSON DATA============")
-    print(output[0])
-    print("=================================")
-    print()
-    print(output[1])
+    print(run_agent({"query" : "Introduce yourself as Testudo AI, the agentic assistant for all UMD students to love! You will help them with their pursuits on campus. Tell them what you can do. Be sure to include information about how I can type 'end' to end the conversation."})[1])
+        
+    while True:
+        print()
+        user_input = {
+            "query" : input("USER#> ")
+        }
+        if (user_input["query"] == "end"):
+            break
+        output = run_agent(user_input)
+        # print("============JSON DATA============")
+        # print(output[0])
+        # print("=================================")
+        # print()
+        print(output[1])

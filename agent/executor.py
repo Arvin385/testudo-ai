@@ -13,7 +13,7 @@ def execute(plan: list[dict]) -> tuple[list[dict], bool, bool]:
 
     
     for step in plan:
-        print(f"Attempting plan: {str(step)}")
+        # print(f"Attempting plan: {str(step)}")
         tool_name = step.get("tool")
         params = step.get("params", {})
 

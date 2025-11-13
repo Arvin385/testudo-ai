@@ -3,27 +3,32 @@ from tools.tooling import Tool
 from tools.tooling import tool
 
 @tool
-def definition(word):
+def definition(word: str) -> str:
     """
-    Looks up the definition of a word from a predefined dictionary.
+    Looks up the definition of a word using the Free Dictionary API.
     Returns a dictionary with the definition or an error message if not found.
     """
-    try:
-        dictionary = {
-            "algorithm": "A set of rules or steps used to solve a problem or perform a computation.",
-            "data": "Information that is processed or stored by a computer.",
-            "variable": "A named storage location that holds a value in a program.",
-            "function": "A block of reusable code that performs a specific task.",
-            "class": "A blueprint for creating objects, providing initial values for state and implementations of behavior."
+    
+    url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        data = response.json()
+        # Extract the first definition from the first meaning
+        meaning = data[0]['meanings'][0]
+        definition_text = meaning['definitions'][0]['definition']
+        part_of_speech = meaning['partOfSpeech']
+        
+        return {
+            "word": word,
+            "part_of_speech": part_of_speech,
+            "definition": definition_text,
+            "status": "success"
         }
-
-        word_lower = word.lower()
-        if word_lower in dictionary:
-            return {"word": word_lower, "definition": dictionary[word_lower], "status": "success"}
-        else:
-            return {"status": "error", "error_message": f"No definition found for '{word}'."}
-    except Exception as e:
-        return {"status": "error", "error_message": str(e)}
+    elif response.status_code == 404:
+        raise Exception(f"No definition found for '{word}' in the online dictionary.") 
+    else:
+        raise Exception(f"API returned status code {response.status_code}.")
 
 
 TOOL_SPEC = definition.tool_spec()
