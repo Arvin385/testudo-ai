@@ -36,4 +36,4 @@ def search_terplink_events(query):
     results.append({"Name": event["name"],
                     "Organization": event["organizationName"]})
     
-   return results
+  return results
