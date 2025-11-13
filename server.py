@@ -9,39 +9,39 @@ app = FastAPI()
 @app.post("/run")
 def run_agent(user_input: dict):
     user_query = user_input.get("query", "")
-    errors: list[tuple[str, dict]] = [("1", {"1" : "1"})]
     
     keep_old_chat: bool = False
     agent_output = ""
     plan_data = None
     agent_chat = None
+    all_results = []
     
     while True:
-        if agent_chat is not None:
-            plan_data, agent_chat = plan(user_query, gemini_output=agent_chat)
-        else:
-            plan_data, agent_chat = plan(user_query)
-        result, errors = execute(plan_data)
+        plan_data, agent_chat = plan(user_query, agent_chat=agent_chat)
         
-        # agent_chat = agent_chat + "\n\nRESULTS: \n"
-        for res in result:
+        results, errored, ended = execute(plan_data)
+        
+        all_results += results
+        
+        agent_chat = agent_chat + "\n\nHere are the results of the commands you most recently ran: \n"
+        for res in results:
             agent_chat += "\n" + str(res)
         
-        if (len(errors) > 0):
+        if errored:
             agent_chat += "\n When running the commands, some of the above tools ran into errors. Please make new requests to the tools accordingly:\n\n" 
+            continue
         
-        agent_output = explain(agent_chat)
-        # print("Intermediary agent output" + agent_output)
-        if "```" in agent_output:
-            agent_chat += "\n\n" + agent_output
-        else:
+        if ended:
             break
         
     agent_output = explain(agent_chat)
     
-    # print("AGENT CHAT: " + agent_chat)
+    end_result = ""
+    for res in results:
+        if res["tool"] == "end_chat":
+            end_result = str(res["result"]["output"])
     
-    return result, agent_output
+    return all_results, end_result
 
 if __name__ == "__main__":
     #import uvicorn

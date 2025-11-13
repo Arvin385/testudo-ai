@@ -1,20 +1,18 @@
 # executor.py
 from tools import tool_registry
 
-def execute(plan):
+def execute(plan: list[dict]) -> tuple[list[dict], bool, bool]:
     """
     Executes one or more tool calls from the plan.
     If plan contains 'plan': [ ...steps... ], runs them in order.
     """
-    # Handle both single-step and multi-step formats
-    steps = plan.get("plan", [plan])
     # Array to store error/success outputs
     all_results: list[dict] = []
     # Array to store how well/badly it does
     all_failures = []
 
     
-    for step in steps:
+    for step in plan:
         print(f"Attempting plan: {str(step)}")
         tool_name = step.get("tool")
         params = step.get("params", {})
@@ -45,8 +43,7 @@ def execute(plan):
 
         # Execute tool and capture result
         try:
-            result = tool_func(**params)
-            result["status"] = "success"
+            result = {"output": tool_func(**params), "status" : "success"}
         except Exception as e:
             result = {"status": "error", "error_message": str(e)}
             
@@ -56,9 +53,12 @@ def execute(plan):
             "result": result
         })
         
+    errored = False
+    ended = False
     for result in all_results:
         if result["result"]["status"] == "error":
-            all_failures.append((result["tool"], result["result"]["error_message"]))
+            errored = True
+        if result["tool"] == "end_chat":
+            ended = True
     
-    # If multiple steps, return a list; if single, just the first result
-    return all_results, all_failures
+    return all_results, errored, ended
