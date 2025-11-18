@@ -12,46 +12,62 @@ from playwright.sync_api import sync_playwright
 import requests
 import feedparser
 from datetime import datetime
-from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy import (
+    create_engine, Column, Integer, String, Text, DateTime,
+    ForeignKey, Enum, UniqueConstraint, Index
+)
+from sqlalchemy.orm import declarative_base, relationship, sessionmaker
+from enum import Enum as PyEnum
 
 Base = declarative_base()
 
-class Calendar(Base):
-    __tablename__ = "calendar"
-    id = Column(Integer, primary_key=True)
-    term = Column(String)
-    event = Column(String)
-    date = Column(String)
-
-class Faculty(Base):
-    __tablename__ = "faculty"
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    title_department = Column(Text)
-    degrees = Column(Text)
+class ProgramType(PyEnum):
+    MAJOR = "Major"
+    MINOR = "Minor"
+    CERTIFICATE = "Certificate"
 
 class Department(Base):
     __tablename__ = "departments"
     id = Column(Integer, primary_key=True)
-    name = Column(String)
-    url = Column(String)
+    name = Column(String(255), unique=True, index=True)
+    url = Column(String(255))
+    faculty = relationship("Faculty", back_populates="department")
+
+class Faculty(Base):
+    __tablename__ = "faculty"
+    id = Column(Integer, primary_key=True)
+    name = Column(String(255), index=True)
+    department_id = Column(Integer, ForeignKey("departments.id"), index=True)
+    title_department = Column(String(255))
+    degrees = Column(Text)
+    department = relationship("Department", back_populates="faculty")
+
+class Calendar(Base):
+    __tablename__ = "calendar"
+    id = Column(Integer, primary_key=True)
+    term = Column(String(255), index=True)
+    event = Column(String(255))
+    date = Column(String(255))
 
 class Program(Base):
     __tablename__ = "programs"
     id = Column(Integer, primary_key=True)
-    name = Column(String)
-    url = Column(String)
-    type = Column(String)
+    name = Column(String(255), index=True)
+    url = Column(String(255))
+    type = Column(Enum(ProgramType))
     description = Column(Text)
 
 class Alert(Base):
     __tablename__ = "alerts"
     id = Column(Integer, primary_key=True)
-    title = Column(String)
-    link = Column(String)
+    title = Column(String(255), index=True)
+    link = Column(String(255))
     summary = Column(Text)
-    date = Column(DateTime)
+    date = Column(DateTime, index=True)
+    __table_args__ = (UniqueConstraint("title", "date", name="_alert_uc"),)
+
+# Optional multi-column index for frequent queries
+Index("ix_faculty_dept_name", Faculty.department_id, Faculty.name)
 
 
 def umd_unified_scraper():
@@ -115,7 +131,7 @@ def umd_unified_scraper():
                 stats["faculty"] += 1
             browser.close()
 
-        # 3. Departments amd Programs
+        # 3. Departments and Programs
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=True)
             page = browser.new_page()
@@ -179,6 +195,7 @@ def umd_unified_scraper():
         }
 
     except Exception as e:
+        session.rollback()
         return {"status": "error", "error_message": str(e)}
 if __name__ == "__main__":
     res = umd_unified_scraper()
