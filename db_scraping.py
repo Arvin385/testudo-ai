@@ -100,71 +100,113 @@ def umd_unified_scraper():
             page.wait_for_selector("table.sc_sctable tbody tr")
 
             semester_tables = page.query_selector_all("table.sc_sctable")
+
             for table in semester_tables:
                 term = table.evaluate("table => table.previousElementSibling.textContent.trim()")
                 rows = table.query_selector_all("tbody tr")
+
                 for row in rows:
                     event = row.query_selector("td.column0").inner_text().strip()
                     date = row.query_selector("td.column1").inner_text().strip()
                     session.add(Calendar(term=term, event=event, date=date))
                     stats["calendar"] += 1
+            
             browser.close()
 
         # 2. Faculty Directory
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=True)
             page = browser.new_page()
-            page.goto("https://academiccatalog.umd.edu/undergraduate/administrators-officials-faculty/", wait_until="networkidle")
+            page.goto(
+                "https://academiccatalog.umd.edu/undergraduate/administrators-officials-faculty/", 
+                wait_until="networkidle"
+                )
 
             faculty_elements = page.query_selector_all("p.keeptogether.faculty-item")
+
             for el in faculty_elements:
                 name = el.query_selector("strong").inner_text().strip()
                 full_text = el.inner_text().strip()
                 rest = full_text.replace(name, "").strip(" ;\n")
+
+                # Degree parsing
                 if any(x in rest for x in ["Ph.D.", "B.A.", "M.A.", "M.S."]):
                     parts = rest.split(";")
                     title_dept = parts[0].strip()
                     degrees = ";".join(parts[1:]).strip()
                 else:
                     title_dept, degrees = rest, ""
+                
                 session.add(Faculty(name=name, title_department=title_dept, degrees=degrees))
                 stats["faculty"] += 1
+
             browser.close()
 
-        # 3. Departments and Programs
-        with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True)
-            page = browser.new_page()
-            page.goto("https://umd.edu/academic-departments-and-programs")
-            page.wait_for_selector("div.umd-text-rich-advanced ul li a")
+        # 3. Departments (with upsert and no autoflush)
+        with session.no_autoflush:
 
-            department_links = page.query_selector_all("div.umd-text-rich-advanced ul li a")
-            for link in department_links:
-                name = link.inner_text().strip()
-                url = link.get_attribute("href").strip()
-                session.add(Department(name=name, url=url))
-                stats["departments"] += 1
-            browser.close()
+            # prevents SQLAlchemy from flushing mid-loop, avoiding IntegrityError
+            with sync_playwright() as p:
+                browser = p.chromium.launch(headless=True)
+                page = browser.new_page()
 
-        # 4. Majors & Minors
-        with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True)
-            page = browser.new_page()
-            page.goto("https://admissions.umd.edu/programs")
-            page.wait_for_selector("div.entry-list div.list div")
+                page.goto("https://umd.edu/academic-departments-and-programs")
+                page.wait_for_selector("div.umd-text-rich-advanced ul li a")
 
-            program_divs = page.query_selector_all("div.entry-list div.list div")
-            for div in program_divs:
-                a_tag = div.query_selector("h3 a")
-                name = a_tag.inner_text().strip() if a_tag else ""
-                url = a_tag.get_attribute("href") if a_tag else ""
-                type_tags = div.query_selector_all("div.types span")
-                types = ", ".join([t.inner_text().strip() for t in type_tags])
-                desc_tag = div.query_selector("div.rich-text p")
-                description = desc_tag.inner_text().strip() if desc_tag else ""
-                session.add(Program(name=name, url=url, type=types, description=description))
-                stats["programs"] += 1
-            browser.close()
+                department_links = page.query_selector_all("div.umd-text-rich-advanced ul li a")
+                
+                for link in department_links:
+                    name = link.inner_text().strip()
+                    url = link.get_attribute("href").strip()
+
+                    # upsert logic (upsert = update and insert)
+                    existing = session.query(Department).filter_by(name=name).first()
+
+                    if existing:
+                        existing.url = url   # update instead of insert
+                    else:
+                        session.add(Department(name=name, url=url))
+                        stats["departments"] += 1
+                
+                browser.close()
+
+        # 4. Majors & Minors (also upsert)
+        with session.no_autoflush:
+
+            with sync_playwright() as p:
+                browser = p.chromium.launch(headless=True)
+                page = browser.new_page()
+                
+                page.goto("https://admissions.umd.edu/programs")
+                page.wait_for_selector("div.entry-list div.list div")
+
+                program_divs = page.query_selector_all("div.entry-list div.list div")
+                for div in program_divs:
+                    a_tag = div.query_selector("h3 a")
+                    name = a_tag.inner_text().strip() if a_tag else ""
+                    url = a_tag.get_attribute("href") if a_tag else ""
+                    type_tags = div.query_selector_all("div.types span")
+                    types = ", ".join([t.inner_text().strip() for t in type_tags])
+                    
+                    desc_tag = div.query_selector("div.rich-text p")
+                    description = desc_tag.inner_text().strip() if desc_tag else ""
+                    
+                    # upsert program
+                    existing = session.query(Program).filter_by(name=name).first()
+                    if existing:
+                        existing.url = url
+                        existing.type = types
+                        existing.description = description
+                    else:
+                        session.add(Program(
+                            name=name,
+                            url=url,
+                            type=types,
+                            description=description
+                        ))
+                        stats["programs"] += 1
+
+                browser.close()
 
         # 5. UMD Alerts (RSS)
         RSS_URL = "https://alert.umd.edu/rss.xml"
@@ -178,12 +220,20 @@ def umd_unified_scraper():
                 link = entry.link
                 summary = entry.get("description", "")
                 date = datetime(*entry.published_parsed[:6]) if hasattr(entry, "published_parsed") else datetime.now()
+                
                 if not session.query(Alert).filter_by(title=title).first():
-                    session.add(Alert(title=title, link=link, summary=summary, date=date))
+                    session.add(Alert(
+                        title=title, 
+                        link=link, 
+                        summary=summary, 
+                        date=date))
+                    
                     stats["alerts"] += 1
+        
         except Exception as e:
             stats["alerts_error"] = str(e)
 
+        # commit changes
         session.commit()
         session.close()
 
@@ -195,8 +245,10 @@ def umd_unified_scraper():
         }
 
     except Exception as e:
+        # always rollback session if there's an error
         session.rollback()
         return {"status": "error", "error_message": str(e)}
+
 if __name__ == "__main__":
     res = umd_unified_scraper()
     print(res)
