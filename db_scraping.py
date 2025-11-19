@@ -21,11 +21,6 @@ from enum import Enum as PyEnum
 
 Base = declarative_base()
 
-class ProgramType(PyEnum):
-    MAJOR = "Major"
-    MINOR = "Minor"
-    CERTIFICATE = "Certificate"
-
 class Department(Base):
     __tablename__ = "departments"
     id = Column(Integer, primary_key=True)
@@ -54,7 +49,7 @@ class Program(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(255), index=True)
     url = Column(String(255))
-    type = Column(Enum(ProgramType))
+    type = Column(String)
     description = Column(Text)
 
 class Alert(Base):
@@ -183,8 +178,10 @@ def umd_unified_scraper():
                 program_divs = page.query_selector_all("div.entry-list div.list div")
                 for div in program_divs:
                     a_tag = div.query_selector("h3 a")
+
                     name = a_tag.inner_text().strip() if a_tag else ""
                     url = a_tag.get_attribute("href") if a_tag else ""
+                    
                     type_tags = div.query_selector_all("div.types span")
                     types = ", ".join([t.inner_text().strip() for t in type_tags])
                     
