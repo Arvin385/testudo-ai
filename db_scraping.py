@@ -19,6 +19,15 @@ from sqlalchemy import (
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker
 from enum import Enum as PyEnum
 
+# Progress & Log bar imports and initial configuration:
+import logging
+from tqdm import tqdm
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="[%(levelname)s] %(message)s"
+)
+
 Base = declarative_base()
 
 class Department(Base):
@@ -69,8 +78,11 @@ def umd_unified_scraper():
     """
     Unified scraper for all UMD data categories.
     Returns a structured dictionary summarizing the results.
+    Progress and log bars as scraper updates/creates database
     """
     try:
+        logging.info("Starting scraper...")
+
         engine = create_engine("sqlite:///testudo_data.db")
         Base.metadata.create_all(engine)
         Session = sessionmaker(bind=engine)
@@ -85,6 +97,8 @@ def umd_unified_scraper():
         }
 
         # 1. Academic Calendar
+        # Start logging
+        logging.info("Scraping academic calendar...")
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=True)
             page = browser.new_page()
@@ -96,7 +110,8 @@ def umd_unified_scraper():
 
             semester_tables = page.query_selector_all("table.sc_sctable")
 
-            for table in semester_tables:
+            # Continuous update log
+            for table in tqdm(semester_tables, desc="Calendar sections"):
                 term = table.evaluate("table => table.previousElementSibling.textContent.trim()")
                 rows = table.query_selector_all("tbody tr")
 
@@ -107,8 +122,11 @@ def umd_unified_scraper():
                     stats["calendar"] += 1
             
             browser.close()
+        # Print final log for category
+        logging.info(f"Calendar events scraped: {stats['calendar']}")
 
         # 2. Faculty Directory
+        logging.info("Scraping faculty directory...")
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=True)
             page = browser.new_page()
@@ -119,7 +137,7 @@ def umd_unified_scraper():
 
             faculty_elements = page.query_selector_all("p.keeptogether.faculty-item")
 
-            for el in faculty_elements:
+            for el in tqdm(faculty_elements, desc="Faculty entries"):
                 name = el.query_selector("strong").inner_text().strip()
                 full_text = el.inner_text().strip()
                 rest = full_text.replace(name, "").strip(" ;\n")
@@ -136,8 +154,10 @@ def umd_unified_scraper():
                 stats["faculty"] += 1
 
             browser.close()
+        logging.info(f"Faculty scraped: {stats['faculty']}")
 
         # 3. Departments (with upsert and no autoflush)
+        logging.info("Scraping departments...")
         with session.no_autoflush:
 
             # prevents SQLAlchemy from flushing mid-loop, avoiding IntegrityError
@@ -164,8 +184,10 @@ def umd_unified_scraper():
                         stats["departments"] += 1
                 
                 browser.close()
+        logging.info(f"Departments scraped/updated: {stats['departments']}")
 
         # 4. Majors & Minors (also upsert)
+        logging.info("Scraping majors & minors...")
         with session.no_autoflush:
 
             with sync_playwright() as p:
@@ -176,10 +198,12 @@ def umd_unified_scraper():
                 page.wait_for_selector("div.entry-list div.list div")
 
                 program_divs = page.query_selector_all("div.entry-list div.list div")
-                for div in program_divs:
+                for div in tqdm(program_divs, desc="Programs"):
                     a_tag = div.query_selector("h3 a")
+                    
                     name = a_tag.inner_text().strip() if a_tag else ""
                     url = a_tag.get_attribute("href") if a_tag else ""
+                    
                     type_tags = div.query_selector_all("div.types span")
                     types = ", ".join([t.inner_text().strip() for t in type_tags])
                     
@@ -202,15 +226,17 @@ def umd_unified_scraper():
                         stats["programs"] += 1
 
                 browser.close()
+        logging.info(f"Programs scraped: {stats['programs']}")
 
         # 5. UMD Alerts (RSS)
+        logging.info("Scraping UMD alert RSS feed...")
         RSS_URL = "https://alert.umd.edu/rss.xml"
         try:
             r = requests.get(RSS_URL, timeout=10)
             r.raise_for_status()
             feed = feedparser.parse(r.content)
 
-            for entry in feed.entries:
+            for entry in tqdm(feed.entries, desc="Alerts"):
                 title = entry.title
                 link = entry.link
                 summary = entry.get("description", "")
@@ -224,13 +250,18 @@ def umd_unified_scraper():
                         date=date))
                     
                     stats["alerts"] += 1
-        
+
+            logging.info(f"Alerts scraped: {stats['alerts']}")
         except Exception as e:
+            logging.error(f"Alert RSS error: {e}")
             stats["alerts_error"] = str(e)
 
         # commit changes
         session.commit()
         session.close()
+
+        # Final log
+        logging.info("Scraping completed successfully!")
 
         return {
             "status": "success",
@@ -240,6 +271,8 @@ def umd_unified_scraper():
         }
 
     except Exception as e:
+        # Log failed session
+        logging.error(f"Scraper crashed: {e}")
         # always rollback session if there's an error
         session.rollback()
         return {"status": "error", "error_message": str(e)}

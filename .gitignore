@@ -1,2 +1,3 @@
 .env
-venvtestudo_data.db
+venv
+testudo_data.db
