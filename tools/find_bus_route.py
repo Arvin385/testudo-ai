@@ -29,7 +29,7 @@ def get_lat_lon_from_address(address: str) -> tuple[float, float]:
 
     # Include a custom User-Agent per OSM usage policy
     headers = {
-        "User-Agent": "MyBusApp/1.0 (contact@example.com)"
+        "User-Agent": "Mozilla/5.0"
     }
 
     
