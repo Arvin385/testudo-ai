@@ -13,7 +13,7 @@ We use two main branches for the entire project:
 | `main` | Contains stable, production-ready code |
 | `dev`  | Used for integrating new features before merging to `main` |
 
-Each subteam will create short-lived feature branches from `dev` for their specific tools or modules.
+Each subteam will create long-lived subteam branches and short-lived feature branches from `dev` for their specific tools or modules.
 
 ---
 
@@ -22,11 +22,15 @@ Each subteam will create short-lived feature branches from `dev` for their speci
 The general flow of work is:
 
 ```
-(feature branches) --> dev --> main
+(feature branches) --> <subteam branch> --> dev --> main
 ```
+At the beginning of the project, each team will make their own branch from dev, named after their subteam.
 
-Subteams branch from `dev`, work on their features, and merge back when complete.  
-The core team merges `dev` into `main` once testing is complete.
+Subteams branch from their subteam branch, work on their features, and merge back into the subteam branch when complete.
+
+When teams want to update the main project with all of their recent new features, they'll create a pull request from their subteam branch to `dev` and add Arvin, Farhan, Swathi, or Rohan as a reviewer. 
+
+The core team will merge this branch back into dev, test that no changes broke any features, and merge `dev` back into `main` after testing is complete. 
 
 ---
 
@@ -34,26 +38,44 @@ The core team merges `dev` into `main` once testing is complete.
 
 If your subteam is developing the Transit Tool:
 
-### 1. Create a Branch
-Always start from the latest `dev` branch:
+### 1. Create Your Subteam Branch
+Subteams start from the latest `dev` branch:
 
 ```bash
 git checkout dev
 git pull origin dev
-git checkout -b feature/transit-tool
+git checkout -b scheduler
 ```
 
-This creates a new branch for your subteam’s work.
+This creates a new branch for your subteam’s work. 
+
+If the command line interface scares you, follow this tutorial: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository
+Your source branch for this should be `dev`. 
 
 ---
 
-### 2. Make Changes and Commit Often
+### 2. Create Your Feature Branch
+When making new features, subteam members start from their subteam's branch:
+
+```bash
+git checkout dev
+git pull origin dev
+git checkout -b scheduler-scraping-tool
+```
+
+This creates a new branch for your individual work. Make sure you name your branch aptly as "<subteam-name>-feature/<feature-name>" or one of the other naming conventions down below.
+
+Making the branch works the same here as in Step 1, just note your source branch for this should be your subteam's branch, NOT `dev`. 
+
+---
+
+### 3. Make Changes and Commit Often
 As you write code and test locally, commit frequently:
 
 ```bash
 git add .
 git commit -m "Add basic transit data fetcher"
-git push origin feature/transit-tool
+git push origin scheduler-feature/scraping-tool
 ```
 
 To stay up to date with others’ work:
@@ -63,22 +85,42 @@ git pull origin dev
 git merge dev
 ```
 
+Use GitHub Desktop (HIGHLY RECOMMENDED) or Visual Studio Code if you don't want to deal with the Git CLI.
+
 ---
 
-### 3. Open a Pull Request (PR)
-When your feature is working and tested, open a **PR** to merge your branch into `dev`:
+### 4 Open a Pull Request in your subteam (PR)
+When your feature is working and tested, open a **PR** to merge your branch into your subteam's branch:
 
 ```
-feature/transit-tool → dev
+scheduler-feature/scraping-tool → scheduler
 ```
-
+Make a PR:
+- On how to make a PR: https://www.youtube.com/watch?v=nCKdihvneS0
 - Write a clear PR title and description.  
-- Request a review from your subteam lead or another member.  
-- Once approved, merge into `dev`.
+- Confirm with your subteam that it is OK to merge back into your subteam's branch
+Merge your code back:
+- Once you ALL agree, merge into your subteam branch AT YOUR OWN RISK
+- Ask for help if you want someone with Git experience to show you how to merge branches.
+Cleaning Up:
+- Go back to the GitHub website, open the pull requests tab, and go to the closed group.
+- Scroll down to the bottom and select delete branch.
+- This doesn't delete the code entirely... just makes everything less cluttered. You can restore it later if needed.
+
+### 5. Open a Pull Request to dev (PR)
+When your feature is working and tested, open a **PR** to merge your branch into dev:
+
+```
+scheduler → dev
+```
+
+- ONLY follow the steps for making a PR from above.
+- Open the PR on GitHub, and tap on reviewers. Select Arvin, Farhan (DarksharkThe1st), Swathi, or Rohan's name.  
+- Ping one of the four of us on discord, and we will review and merge as needed for you.
 
 ---
 
-### 4. Integration and Release
+### 5. Integration and Release
 After all subteams’ modules are tested and verified:
 1. The core team merges `dev` into `main`.
 2. Everyone pulls the latest stable version:
@@ -94,9 +136,9 @@ git pull origin main
 
 | Type | Format | Example |
 |:-----|:--------|:--------|
-| Feature | `feature/<name>` | `feature/dining-api` |
-| Fix | `fix/<name>` | `fix/schedule-display` |
-| Experimental (optional) | `exp/<name>` | `exp/voice-test` |
+| Feature | `<subteam_name>-feature/<name>` | `scheduler-feature/scraping-tool` |
+| Fix | `<subteam-name>-fix/<name>` | `scheduler-fix/schedule-display` |
+| Experimental (optional) | `scheduler-exp/<name>` | `scheduler-exp/auto-scheduling` |
 
 Branch names should be lowercase, short, and descriptive.
 
@@ -108,7 +150,7 @@ Branch names should be lowercase, short, and descriptive.
 - Merge often. Avoid long-lived branches that are hard to reconcile later.  
 - Write clear commit messages. Example: `Add endpoint for dining menu data`.  
 - Review PRs carefully. Reviews are part of how we learn and maintain quality.  
-- Never push directly to `main`. Always go through `dev` and feature branches.
+- Never push directly to `main`. Always go through `dev` and subteam branches.
 
 ---
 
@@ -125,11 +167,11 @@ Branch names should be lowercase, short, and descriptive.
              │    │                                                <---- branch
    ┌─────────┘    └─────────┐
    │                        │
-scheduling-api          dining-tool      
+scheduling              dining-tool                                <---- subteam branch
    │                      |    |                                   <---- branch
 feature_name         feature1  feature2
    |                    |        |                                 <---- merge
-scheduling-api          dining-tool
+scheduling              dining-tool
    └──────────────→ dev ←────┘                                     <---- merge            
             merge & test
 ```
@@ -138,7 +180,8 @@ scheduling-api          dining-tool
 
 ## Summary
 
-- Work happens on feature branches created from `dev`.  
+- Subteams begin from subteam branches, sourced from `dev`.
+- Work happens on feature branches created from your subteam branch.  
 - Merge early and often to avoid large, messy updates.  
 - The core team keeps `main` stable.  
 - Communicate regularly with your subteam to coordinate merges and reviews.
