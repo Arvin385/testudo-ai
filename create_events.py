@@ -4,7 +4,7 @@ from playwright.async_api import async_playwright
 from deepmerge import always_merger
 
 GRAPHQL_PATH_FRAGMENT = "/graphql"
-OUTPUT_FILE = "events_deduped.json"
+OUTPUT_FILE = "calendar_events_deduped.json"
 MAX_LOADS = 5
 
 def deep_merge(base, update):
