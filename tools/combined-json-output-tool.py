@@ -3,6 +3,8 @@ import datetime
 import json
 import re
 from difflib import SequenceMatcher
+from tools.tooling import Tool
+from tools.tooling import tool
 
 TOOL_SPEC = {
     "name": "combined-json-output-tool",
@@ -108,7 +110,37 @@ def load_and_deduplicate(filename):
                 seen_keys.add(key)
     return deduped_events
 
-def search_local_events(query, filename="combined_events.json", date_filter=None):
+@tool
+def search_local_events(query:str):
+    """
+    Search for events in a local JSON file that match the given query terms using fuzzy matching.
+
+    The function loads events from a combined JSON file, applies an optional date filter (currently None),
+    and returns a list of events whose title, organization name, or description contain words similar
+    to any of the query terms above a similarity threshold.
+
+    Parameters:
+    -----------
+    query : str
+        A string containing one or more search terms to look for in event titles, organizations, or descriptions.
+
+    Returns:
+    --------
+    list of dict
+        A list of dictionaries representing matching events. Each dictionary contains:
+            - "Name": The normalized event title or name.
+            - "Organization": The name of the organizing entity.
+            - "Description": The normalized event description or raw description.
+            - "StartDates": A list of event start dates as ISO formatted strings, if available.
+
+    Notes:
+    ------
+    - Uses a similarity threshold of 0.8 for fuzzy matching terms against event text.
+    - The date filter parameter is currently unused (set to None).
+    - Requires auxiliary functions `load_and_deduplicate()`, `get_event_start_dates()`, and `similar()` to be defined elsewhere.
+    """
+    date_filter=None
+    filename = "combined_events.json"
     events = load_and_deduplicate(filename)
 
     THRESHOLD = 0.8
@@ -144,3 +176,5 @@ if __name__ == "__main__":
     # Example date_filter: datetime.date(2025, 11, 21)
     results = search_local_events(query)
     print(json.dumps(results, indent=2))
+
+TOOL_SPEC = search_local_events.tool_spec()
