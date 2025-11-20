@@ -3,17 +3,32 @@ import os
 
 app = Flask(__name__)
 
-@app.route("/send-request", methods=['POST'])
-def send_request():
-    data = request.get_json()
-
+@app.route("/send-question", methods=['POST'])
+def send_question(question: str):
+    return {
+        "question" : question
+    }
+    
     # data will look like this: {"query": <user_query>}
     # run data through backend and return result
+
+@app.route("/prompt-llm", methods=["GET"])
+def prompt_llm():
+    prompt = request.args.get("prompt", "None")
+    if (prompt == "None"):
+        return {
+            "output" : "I'm sorry, I didn't get that. What would you like to do?"
+        }
+    return {
+        "output" : run_agent()
+    }
+    
+
 
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="localhost", port=port)
 
 
 # server.py
@@ -25,9 +40,7 @@ from agent.explainer import explain
 app = FastAPI()
 
 @app.post("/run")
-def run_agent(user_input: dict):
-    user_query = user_input.get("query", "")
-    
+def run_agent(user_query: str):
     keep_old_chat: bool = False
     agent_output = ""
     plan_data = None
