@@ -79,7 +79,7 @@ for card in cards:
     })
 
 # Save to JSON
-with open("wellness_events.json", "w", encoding="utf-8") as f:
+with open("wellness_events_human.json", "w", encoding="utf-8") as f:
     json.dump(output, f, indent=4, ensure_ascii=False)
 
 print("Saved wellness_events.json")
