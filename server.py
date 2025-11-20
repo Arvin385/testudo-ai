@@ -58,7 +58,6 @@ if __name__ == "__main__":
         print("============JSON DATA============")
         for o in output[0]:
             print(json.dumps(o, indent=4))
-        # print(output[0])
         print("=================================")
         print()
         print(output[1])
