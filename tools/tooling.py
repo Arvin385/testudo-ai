@@ -18,11 +18,13 @@ class Tool:
                  description: str,
                  func: Callable,
                  arguments: list,
+                 req_args: list,
                  outputs: str):
         self.name = name
         self.description = description
         self.func = func
         self.arguments = arguments
+        self.req_args = req_args
         self.outputs = outputs
 
     def to_string(self) -> str:
@@ -50,6 +52,7 @@ class Tool:
             "name" : self.name,
             "description" : self.description,
             "parameters" : self.arguments,
+            "required" : self.req_args,
             "outputs" : self.outputs
         }
 
@@ -69,6 +72,7 @@ def tool(func: Callable) -> Tool:
 
     # Extract (param_name, param_annotation) pairs for inputs
     arguments = []
+    req_args = []
     for param in signature.parameters.values():
         annotation_name = (
             param.annotation.__name__
@@ -76,6 +80,8 @@ def tool(func: Callable) -> Tool:
             else str(param.annotation)
         )
         arguments.append((param.name, annotation_name))
+        if (param.default == inspect._empty):
+            req_args.append((param.name, annotation_name))
 
     # Determine the return annotation
     return_annotation = signature.return_annotation
@@ -100,5 +106,6 @@ def tool(func: Callable) -> Tool:
         description=description,
         func=func,
         arguments=arguments,
+        req_args=req_args,
         outputs=outputs
     )
