@@ -27,7 +27,7 @@ def execute(plan: list[dict]) -> tuple[list[dict], bool, bool]:
             continue
         
         tool_func = tool_registry[tool_name]["func"]
-        required_params = tool_registry[tool_name]["spec"]["parameters"]
+        required_params = tool_registry[tool_name]["spec"]["required"]
         new_reqs = [p[0] for p in required_params]
 
         # Check for missing parameters
@@ -38,6 +38,18 @@ def execute(plan: list[dict]) -> tuple[list[dict], bool, bool]:
                 "result" : {
                 "status": "error",
                 "error_message": f"Missing parameters: {missing}"
+            }})
+            continue
+        
+        actual_params = tool_registry[tool_name]["spec"]["parameters"]
+        new_params = [p[0] for p in actual_params]
+        unknown = [p for p in params if p not in new_params]
+        if unknown:
+            all_results.append({
+                "tool" : tool_name,
+                "result" : {
+                "status": "error",
+                "error_message": f"Unexpected parameters: {unknown}"
             }})
             continue
 

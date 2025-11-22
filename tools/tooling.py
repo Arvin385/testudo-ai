@@ -35,11 +35,16 @@ class Tool:
         args_str = ", ".join([
             f"{arg_name}: {arg_type}" for arg_name, arg_type in self.arguments
         ])
+        
+        req_args_str = ", ".join([
+            f"{arg_name}: {arg_type}" for arg_name, arg_type in self.req_args
+        ])
 
         return (
             f"Tool Name: {self.name},"
             f" Description: {self.description},"
-            f" Arguments: {args_str},"
+            f" Arguments: {args_str},",
+            f" Required Args: {req_args_str}",
             f" Outputs: {self.outputs}"
         )
     
