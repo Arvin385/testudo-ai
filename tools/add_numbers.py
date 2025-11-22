@@ -10,4 +10,15 @@ def add_numbers(a: float, b: float) -> float:
     """
     return float(a) + float(b)
 
-TOOL_SPEC = add_numbers.tool_spec()
+@tool
+def sub_numbers(a: float, b: float) -> float:
+    """
+    Example tool function for dynamic agent:
+    Adds two numbers and returns a dictionary with the result.
+    """
+    return float(a) - float(b)
+
+TOOL_SPEC = [
+    add_numbers.tool_spec(), 
+    sub_numbers.tool_spec()
+]

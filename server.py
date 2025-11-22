@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from agent.planner import plan
 from agent.executor import execute
 from agent.explainer import explain
+import json
 
 app = FastAPI()
 
@@ -54,8 +55,9 @@ if __name__ == "__main__":
         if (user_input["query"] == "end"):
             break
         output = run_agent(user_input)
-        # print("============JSON DATA============")
-        # print(output[0])
-        # print("=================================")
-        # print()
+        print("============JSON DATA============")
+        for o in output[0]:
+            print(json.dumps(o, indent=4))
+        print("=================================")
+        print()
         print(output[1])
