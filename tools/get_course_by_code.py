@@ -19,8 +19,8 @@ from tools.tooling import tool
 
 @tool
 def get_course_by_code(
-    course_code: str
-    # include_sections: bool = False,
+    course_code: str,
+    include_sections: bool = False
     # *,
     # base_url: Optional[str] = None,
     # timeout: float = 10.0,
@@ -52,7 +52,7 @@ def get_course_by_code(
         - ``{"status": "error", "message": "..."}`` when validation fails or
           the API request raises :class:`JupiterPAPIError`.
     """
-    include_sections: bool = False
+    # include_sections: bool = False
     base_url: Optional[str] = None
     timeout: float = 10.0
 
