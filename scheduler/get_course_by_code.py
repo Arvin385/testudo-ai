@@ -14,7 +14,9 @@ from typing import Any, Dict, Optional
 
 from .jupiterp_client import JupiterPAPIError, build_client
 
+from tools.tooling import tool
 
+@tool
 def get_course_by_code(
     course_code: str,
     include_sections: bool = False,
