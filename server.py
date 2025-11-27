@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
 import os
+import json
+import settings
 
 app = Flask(__name__)
 
@@ -16,27 +18,25 @@ def send_question(question: str):
 
 @app.route("/prompt-llm", methods=["GET"])
 def prompt_llm():
-    global messages
-    messages = request.args.get("messages", "none")
+    # global messages
+    settings.messages = request.args.get("messages", "none")
     
     # Some error handling for empty requests
-    if (messages == "none"):
+    if (settings.messages == "none"):
         return {
             "messages" : [
-                {"role" : "User", "content" : "none"},
+                {"role" : "user", "content" : "none"},
                 {"role" : "agent", "content" : "I'm sorry, I didn't get that. What would you like to do?"}
                 ]
         }
         
     # Some error handling for empty messages
-    for msg in messages:
+    for msg in settings.messages:
         if (msg["content"] == "" or msg["content"] is None):
             msg["content"] = "none"
     
-    messages = run_agent()
-    return {
-        "output" : run_agent()
-    }
+    settings.messages = new_run_agent()[1]
+    return settings.messages
     
 # Strategy: 
 # Replace while loop with a consistent output request
@@ -50,46 +50,53 @@ def prompt_llm():
 # Every time ask_question or end_convo is called, send the whole array
 # To talk to the agent, feed in the whole discussion
 
-def new_run_agent(messages: list[dict]):
+# server.py
+# from fastapi import FastAPI
+from agent.planner import new_plan
+from agent.executor import new_execute
+# from agent.explainer import explain
+
+def new_run_agent():
+    # Using messages, assuming it is defined outside
+    # global messages
     plan_data = None
-    agent_chat = None
     all_results = []
     
-    
     while True:
-        plan_data = new_plan(messages)
+        plan_data = new_plan(settings.messages)
         
-        results, errored, ended = execute(plan_data)
-        
-        all_results += results
-        
-        messages.append({})
-        messages[-1]["role"] = "tools"
-        
-        
-        for res in results:
-            messages[-1]["content"] += "\n" + str(res)
-        
-        if errored:
-            messages.append({
-                "role" : "admin",
-                "content" : "When running the commands, some of the above tools ran into errors. Please make new requests to the tools accordingly:"
-            })
-            continue
+        results, errored, ended = new_execute(plan_data)
         
         if ended:
             break
-    
-    end_result = ""
-    for res in results:
-        if res["tool"] == "end_chat":
-            end_result = str(res["result"]["output"])
-    
-    return all_results, end_result
+        
+        all_results += results
+        
+        settings.messages.append({})
+        settings.messages[-1]["role"] = "tools"
+        settings.messages[-1]["content"] = ""
+        
+        
+        for res in results:
+            settings.messages[-1]["content"] += "\n" + str(res)
+        
+        if errored:
+            settings.messages.append({
+                "role" : "admin",
+                "content" : "When running the commands, some of the above tools ran into errors. Please make new requests to the tools accordingly."
+            })
+            continue
+        
+    # end_result = ""
+    # for res in results:
+    #     if res["tool"] == "end_chat":
+    #         end_result = str(res["result"]["output"])
+    # settings.messages.append({"uewoiqeuwq"})
+    return all_results, settings.messages
 
-if __name__ == "__main__": 
-    port = int(os.environ.get("PORT", 8080))
-    app.run(host="localhost", port=port)
+# if __name__ == "__main__": 
+#     port = int(os.environ.get("PORT", 8080))
+#     app.run(host="localhost", port=port)
 
 
 # server.py
@@ -135,19 +142,30 @@ def run_agent(user_query: str):
     
     return all_results, end_result
 
-# if __name__ == "__main__":
-#     print(run_agent({"query" : "Introduce yourself as Testudo AI, the agentic assistant for all UMD students to love! You will help them with their pursuits on campus. Tell them what you can do. Be sure to include information about how I can type 'end' to end the conversation."})[1])
-        
-#     while True:
-#         print()
-#         user_input = {
-#             "query" : input("USER#> ")
-#         }
-#         if (user_input["query"] == "end"):
-#             break
-#         output = run_agent(user_input)
-#         # print("============JSON DATA============")
-#         # print(output[0])
-#         # print("=================================")
-#         # print()
-#         print(output[1])
+if __name__ == "__main__":
+    settings.messages = [
+        {
+            "role" : "admin",
+            "content" : "Introduce yourself as Testudo AI, the agentic assistant for all UMD students to love! You will help them with their pursuits on campus. Tell them what you can do. Be sure to include information about how I can type 'end' to end the conversation."
+        }
+    ]
+    
+    new_run_agent()
+    
+    print(settings.messages[-1]["content"])
+    while True:
+        print()
+        user_input = {
+            "role" : "user",
+            "content" : input("USER#> ")
+        }
+        if (user_input["content"] == "end"):
+            break
+        settings.messages.append(user_input)
+        output = new_run_agent()
+        # print("============JSON DATA============")
+        # for o in output[0]:
+        #     print(json.dumps(o, indent=4))
+        # print("=================================")
+        # print()
+        print(settings.messages[-1]["content"])

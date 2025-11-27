@@ -3,6 +3,7 @@ import importlib
 import pkgutil
 
 tool_registry = {}
+# messages = []
 
 # dynamically import all modules in tools folder
 for _, module_name, _ in pkgutil.iter_modules(__path__):
