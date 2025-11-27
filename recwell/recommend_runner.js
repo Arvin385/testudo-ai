@@ -10,9 +10,13 @@ dotenv.config();
 // exists it will be preferred over `input.json`.
 const arg1 = process.argv[2];
 let topK = 5;
-let inputPath = new URL('./input.json', import.meta.url).pathname;
-const altInputPath = new URL('./input_locations.json', import.meta.url).pathname;
+// Correctly resolve script directory for both Windows and Unix
+const scriptDir = path.dirname(decodeURIComponent(new URL(import.meta.url).pathname).replace(/^\/([A-Za-z]:)/, '$1'));
+let inputPath = path.join(scriptDir, 'input.json');
+const altInputPath = path.join(scriptDir, 'input_locations.json');
 if (fs.existsSync(altInputPath)) inputPath = altInputPath;
+
+console.log(inputPath)
 
 if (arg1) {
   const n = parseInt(arg1, 10);

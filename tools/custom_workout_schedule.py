@@ -15,7 +15,15 @@ def custom_workout_schedule(schedule, time_preference, duration_preference, fitn
     folder (Implementationv1.js).
 
     Parameters
-    - schedule: list of class dicts (same format as recwell/input.json's "schedule")
+    - schedule: list of class dicts
+        - example class dict format:
+            {
+            "name": <class-name string>,
+            "start_time": <start time in HH:MM string>,
+            "end_time": <end time in HH:MM string>,
+            "days": <days string>,
+            "location": <location string>
+            } 
     - time_preference: string ("early", "midday", or "late")
     - duration_preference: int (minutes)
     - fitness_goal: string
@@ -37,8 +45,6 @@ def custom_workout_schedule(schedule, time_preference, duration_preference, fitn
     student_profile = {
         "experience_level": experience_level,
         "fitness_goal": fitness_goal,
-        "location_or_housing": "",
-        "transport": "",
         "duration_preference": duration_preference,
         "time_preference": time_preference
     }
@@ -67,12 +73,50 @@ def custom_workout_schedule(schedule, time_preference, duration_preference, fitn
 
     except subprocess.TimeoutExpired as e:
         return {"status": "error", "error_message": result.stderr}
+    
 
-# Example call and output
+if __name__ == '__main__':
+    
+    # Example call and output
 
-# schedule = [
-#   {"name": "Intro to CS", "start_time": "09:00", "end_time": "10:15", "days": "Mon/Wed/Fri", "location": "IRB Building"},
-# ]
+    schedule = [
+    {
+        "name": "Calculus I",
+        "start_time": "08:00",
+        "end_time": "09:15",
+        "days": "Tue/Thu",
+        "location": "Math Building 204"
+    },
+    {
+        "name": "General Chemistry",
+        "start_time": "09:30",
+        "end_time": "10:45",
+        "days": "Mon/Wed/Fri",
+        "location": "Science Hall 110"
+    },
+    {
+        "name": "World History",
+        "start_time": "11:00",
+        "end_time": "12:15",
+        "days": "Tue/Thu",
+        "location": "Humanities Center 301"
+    },
+    {
+        "name": "Intro to Computer Science",
+        "start_time": "13:00",
+        "end_time": "14:15",
+        "days": "Mon/Wed/Fri",
+        "location": "IRB Building 102"
+    },
+    {
+        "name": "English Composition",
+        "start_time": "15:00",
+        "end_time": "16:15",
+        "days": "Mon/Wed",
+        "location": "Liberal Arts 215"
+    }
+    ]
 
-# result = custom_workout_schedule(schedule, "late", 45, "Muscle gain", "Intermediate")
-# print(result)
+
+    result = custom_workout_schedule(schedule, "late", 45, "Muscle gain", "Intermediate")
+    print(result)

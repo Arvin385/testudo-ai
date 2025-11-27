@@ -20,7 +20,7 @@ export class Workout {
             "Dynamic Stretching (Leg Swings, Arm Circles)",
             "Foam Rolling (Full Body)",
             "Yoga Flow (10-15 min)",
-            "Core Activation (Planks or Dead Bugs)"
+            "Core Activation (Planks or Dead Bugs)" 
           ],
           ["Deadlifts", "Seated Cable Row", "Lat Pulldown", "Bicep Curls", "Hammer Curls"]
         ];
