@@ -1,12 +1,16 @@
 import subprocess
 import json
 
-TOOL_SPEC = {
-    "name": "custom_workout_schedule",
-    "description": "Creates a customized workout schedule based on user class schedule, time preference, duration preference, fitness goal, experience level",
-    "parameters": ["schedule", "time_preference", "duration_preference", "fitness_goal", "experience_level"] # names of required parameters 
-}
+# TOOL_SPEC = {
+#     "name": "custom_workout_schedule",
+#     "description": "Creates a customized workout schedule based on user class schedule, time preference, duration preference, fitness goal, experience level",
+#     "parameters": ["schedule", "time_preference", "duration_preference", "fitness_goal", "experience_level"] # names of required parameters 
+# }
 
+from tools.tooling import Tool
+from tools.tooling import tool
+
+@tool
 def custom_workout_schedule(schedule, time_preference, duration_preference, fitness_goal, experience_level):
     """
     Tool function for dynamic agent:
@@ -15,15 +19,17 @@ def custom_workout_schedule(schedule, time_preference, duration_preference, fitn
     folder (Implementationv1.js).
 
     Parameters
-    - schedule: list of class dicts
-        - example class dict format:
-            {
-            "name": <class-name string>,
-            "start_time": <start time in HH:MM string>,
-            "end_time": <end time in HH:MM string>,
-            "days": <days string>,
-            "location": <location string>
-            } 
+    - schedule: list of class dicts (same format as recwell/input.json's "schedule")
+        EXAMPLE SCHEDULE FOR REFERENCE:
+        "schedule": [
+        {
+        "name": "Intro to CS",
+        "start_time": "09:00",
+        "end_time": "10:15",
+        "days": "Mon/Wed/Fri",
+        "location": "IRB Building"
+        }
+  ],
     - time_preference: string ("early", "midday", or "late")
     - duration_preference: int (minutes)
     - fitness_goal: string
@@ -117,6 +123,7 @@ if __name__ == '__main__':
     }
     ]
 
-
     result = custom_workout_schedule(schedule, "late", 45, "Muscle gain", "Intermediate")
     print(result)
+
+TOOL_SPEC = custom_workout_schedule.tool_spec()
