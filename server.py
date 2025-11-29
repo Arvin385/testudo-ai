@@ -76,32 +76,32 @@ def new_run_agent():
 
 
 if __name__ == "__main__": 
-    port = int(os.environ.get("PORT", 8080))
-    app.run(host="localhost", port=port)
+    # port = int(os.environ.get("PORT", 8080))
+    # app.run(host="localhost", port=port)
     
-    # settings.messages = [
-    #     {
-    #         "role" : "admin",
-    #         "content" : "Introduce yourself as Testudo AI, the agentic assistant for all UMD students to love! You will help them with their pursuits on campus. Tell them what you can do. Be sure to include information about how I can type 'end' to end the conversation."
-    #     }
-    # ]
+    settings.messages = [
+        {
+            "role" : "admin",
+            "content" : "Introduce yourself as Testudo AI, the agentic assistant for all UMD students to love! You will help them with their pursuits on campus. Tell them what you can do. Be sure to include information about how I can type 'end' to end the conversation."
+        }
+    ]
 
-    # new_run_agent()
+    new_run_agent()
 
-    # print(settings.messages[-1]["content"])
-    # while True:
-    #     print()
-    #     user_input = {
-    #         "role" : "user",
-    #         "content" : input("USER#> ")
-    #     }
-    #     if (user_input["content"] == "end"):
-    #         break
-    #     settings.messages.append(user_input)
-    #     output = new_run_agent()
-    #     # print("============JSON DATA============")
-    #     # for o in output[0]:
-    #     #     print(json.dumps(o, indent=4))
-    #     # print("=================================")
-    #     # print()
-    #     print(settings.messages[-1]["content"])
+    print(settings.messages[-1]["content"])
+    while True:
+        print()
+        user_input = {
+            "role" : "user",
+            "content" : input("USER#> ")
+        }
+        if (user_input["content"] == "end"):
+            break
+        settings.messages.append(user_input)
+        output = new_run_agent()
+        print("============JSON DATA============")
+        for o in output[0]:
+            print(json.dumps(o, indent=4))
+        print("=================================")
+        print()
+        print(settings.messages[-1]["content"])
