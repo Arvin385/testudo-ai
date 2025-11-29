@@ -1,0 +1,3239 @@
+{
+  "104": {
+    "directions": {
+      "cpmetro": {
+        "title": "Campus Drive and Rhode Island Avenue (Outbound)",
+        "stops": {
+          "regdrgar_d": {
+            "title": "Regents Drive Garage",
+            "lat": 38.9895211,
+            "lon": -76.9407719,
+            "time": 39.2
+          },
+          "campmath": {
+            "title": "Campus Dr at Math Slip",
+            "lat": 38.9878609,
+            "lon": -76.9386053,
+            "time": 58.9
+          },
+          "paingree": {
+            "title": "Campus Drive and Diamondback Drive",
+            "lat": 38.9879877,
+            "lon": -76.934037,
+            "time": 80.6
+          },
+          "painrhod": {
+            "title": "Campus Drive and Rhode Island Avenue (Outbound)",
+            "lat": 38.9836051,
+            "lon": -76.9313264,
+            "time": 156.4
+          }
+        }
+      },
+      "regdrgar": {
+        "title": "Glenn L. Martin Wind Tunnel",
+        "stops": {
+          "cpmetro_d": {
+            "title": "College Park - UMD Metro Station",
+            "lat": 38.9755375,
+            "lon": -76.9279988,
+            "time": 138.6
+          },
+          "painrhod_in": {
+            "title": "Campus Drive and Rhode Island Avenue (Inbound)",
+            "lat": 38.9835717,
+            "lon": -76.930958,
+            "time": 133.3
+          },
+          "painglen": {
+            "title": "Glenn L. Martin Wind Tunnel",
+            "lat": 38.9899498,
+            "lon": -76.9372499,
+            "time": 267.1
+          }
+        }
+      }
+    }
+  },
+  "105": {
+    "directions": {
+      "guilrowa": {
+        "title": "Regents Drive Garage",
+        "stops": {
+          "stamsu_d": {
+            "title": "Stamp Student Union - Slip",
+            "lat": 38.9876099,
+            "lon": -76.9439449,
+            "time": 53.0
+          },
+          "artsoci": {
+            "title": "Art/Sociology Building",
+            "lat": 38.98529,
+            "lon": -76.94677,
+            "time": 32.9
+          },
+          "wico": {
+            "title": "Wicomico Hall",
+            "lat": 38.98375,
+            "lon": -76.94516,
+            "time": 26.1
+          },
+          "lotu4": {
+            "title": "Preinkert Drive at Lot MV",
+            "lat": 38.9821893,
+            "lon": -76.944884,
+            "time": 347.9
+          },
+          "cour500": {
+            "title": "Courtyards #500",
+            "lat": 39.0030898,
+            "lon": -76.94257,
+            "time": 11.9
+          },
+          "greemead_in": {
+            "title": "Greenmead Dr at Maryland 4-H (Inbound)",
+            "lat": 39.0026768,
+            "lon": -76.9433279,
+            "time": 32.0
+          },
+          "greemetz": {
+            "title": "Greenmeade Dr and Metzerott Rd",
+            "lat": 39.0010682,
+            "lon": -76.9446931,
+            "time": 76.3
+          },
+          "lot4_in": {
+            "title": "Paint Branch Dr at Lot 4b (Inbound)",
+            "lat": 38.9978287,
+            "lon": -76.9404883,
+            "time": 55.5
+          },
+          "shutbase_in": {
+            "title": "Shuttle-UM Base (Inbound)",
+            "lat": 38.9953571,
+            "lon": -76.9375886,
+            "time": 28.0
+          },
+          "regepain": {
+            "title": "Regents Dr and Paint Branch Dr (Inbound)",
+            "lat": 38.9936749,
+            "lon": -76.9377348,
+            "time": 26.8
+          },
+          "regecomc_in": {
+            "title": "Regents Drive at XFINITY Center (Inbound)",
+            "lat": 38.9936404,
+            "lon": -76.9398124,
+            "time": 37.6
+          },
+          "regefarm_in": {
+            "title": "Regents Dr and Farm Dr (Inbound)",
+            "lat": 38.9914838,
+            "lon": -76.9407074,
+            "time": 32.5
+          },
+          "regegara_d": {
+            "title": "Regents Drive Garage",
+            "lat": 38.9895254,
+            "lon": -76.94075,
+            "time": 52.0
+          }
+        }
+      },
+      "cour500": {
+        "title": "Greenmead Dr at Maryland 4-H (Outbound)",
+        "stops": {
+          "guilrowa": {
+            "title": "Guilford Drive and Rowalt Drive (Outbound)",
+            "lat": 38.978183,
+            "lon": -76.939469,
+            "time": 29.7
+          },
+          "hartshop": {
+            "title": "Baltimore Avenue and Hartwick Road (Inbound)",
+            "lat": 38.97944,
+            "lon": -76.93783,
+            "time": 53.4
+          },
+          "mont_in": {
+            "title": "Montgomery Hall (Inbound)",
+            "lat": 38.9824955,
+            "lon": -76.9391275,
+            "time": 36.0
+          },
+          "memo_in": {
+            "title": "Memorial Chapel (Inbound)",
+            "lat": 38.9845403,
+            "lon": -76.94007,
+            "time": 30.3
+          },
+          "mitc_in": {
+            "title": "Mitchell Building (Inbound)",
+            "lat": 38.9863659,
+            "lon": -76.9401199,
+            "time": 60.8
+          },
+          "regestad": {
+            "title": "Regents Dr and Stadium Dr",
+            "lat": 38.990012,
+            "lon": -76.9406498,
+            "time": 20.7
+          },
+          "regefarm_out": {
+            "title": "Regents Dr and Farm Dr (Outbound)",
+            "lat": 38.9912621,
+            "lon": -76.9406599,
+            "time": 37.9
+          },
+          "regecomc_out": {
+            "title": "Regents Drive at XFINITY Center (Outbound)",
+            "lat": 38.9934725,
+            "lon": -76.9399271,
+            "time": 31.6
+          },
+          "regepain_out": {
+            "title": "Regents Dr and Paint Branch Dr (Outbound)",
+            "lat": 38.9936299,
+            "lon": -76.9374809,
+            "time": 28.5
+          },
+          "shutbase_out": {
+            "title": "Shuttle-UM Base (Outbound)",
+            "lat": 38.9953477,
+            "lon": -76.9374989,
+            "time": 56.5
+          },
+          "lot4_out": {
+            "title": "Paint Branch Dr at Lot 4b (Outbound)",
+            "lat": 38.997895,
+            "lon": -76.940414,
+            "time": 72.4
+          },
+          "metzgree": {
+            "title": "Metzerott Rd and Greenmead Dr",
+            "lat": 39.0009112,
+            "lon": -76.9444714,
+            "time": 22.6
+          },
+          "gree_out": {
+            "title": "Greenmead Dr at Maryland 4-H (Outbound)",
+            "lat": 39.0020477,
+            "lon": -76.9434987,
+            "time": 399.1
+          }
+        }
+      }
+    }
+  },
+  "108": {
+    "directions": {
+      "chateau": {
+        "title": "New Hampshire Ave and Oakview Dr (Outbound)",
+        "stops": {
+          "regegara_d": {
+            "title": "Regents Drive Garage",
+            "lat": 38.9895254,
+            "lon": -76.94075,
+            "time": 52.0
+          },
+          "stamsu_d": {
+            "title": "Stamp Student Union - Slip",
+            "lat": 38.9876099,
+            "lon": -76.9439449,
+            "time": 53.0
+          },
+          "artsoci": {
+            "title": "Art/Sociology Building",
+            "lat": 38.98529,
+            "lon": -76.94677,
+            "time": 56.2
+          },
+          "camplt1d": {
+            "title": "Campus Dr at Lot 3",
+            "lat": 38.9846897,
+            "lon": -76.9510623,
+            "time": 39.6
+          },
+          "umuc": {
+            "title": "UMUC - College Park Marriott",
+            "lat": 38.985281,
+            "lon": -76.9540366,
+            "time": 288.4
+          },
+          "metzgree_out": {
+            "title": "Metzerott Rd and Greenmead Dr (Outbound)",
+            "lat": 39.0008257,
+            "lon": -76.9439972,
+            "time": 46.1
+          },
+          "metz36th": {
+            "title": "Metzerott Road and 36th Avenue (Outbound)",
+            "lat": 39.0014357,
+            "lon": -76.9474842,
+            "time": 35.0
+          },
+          "metzstan_out": {
+            "title": "Metzerott Road and St. Andrew's Place (Outbound)",
+            "lat": 39.0018938,
+            "lon": -76.9501337,
+            "time": 40.1
+          },
+          "metzsa": {
+            "title": "Metzerott Rd @ System Administration",
+            "lat": 39.002414,
+            "lon": -76.9531702,
+            "time": 65.1
+          },
+          "arch_ob": {
+            "title": "Metzerott Rd at Archives II (Outbound)",
+            "lat": 39.0031633,
+            "lon": -76.9581295,
+            "time": 98.4
+          },
+          "metzadel": {
+            "title": "Metzerott Rd and Adelphi Rd",
+            "lat": 39.0025171,
+            "lon": -76.9657198,
+            "time": 85.2
+          },
+          "coolspri_out": {
+            "title": "Metzerott Rd and Riggs Rd (Outbound)",
+            "lat": 39.0032699,
+            "lon": -76.972258,
+            "time": 43.3
+          },
+          "metzpres": {
+            "title": "Metzerott Rd at Presidential Towers",
+            "lat": 39.0037089,
+            "lon": -76.9755719,
+            "time": 63.4
+          },
+          "metznham_out": {
+            "title": "Metzerott Rd and New Hampshire Ave (Outbound)",
+            "lat": 39.0042327,
+            "lon": -76.9804472,
+            "time": 63.7
+          },
+          "nhamfox": {
+            "title": "New Hampshire Ave and Fox St",
+            "lat": 39.0080415,
+            "lon": -76.9797824,
+            "time": 51.5
+          },
+          "nhamadel_out": {
+            "title": "New Hampshire Ave and Adelphi Road (Outbound)",
+            "lat": 39.0110759,
+            "lon": -76.9789397,
+            "time": 67.7
+          },
+          "nhamoak_out": {
+            "title": "New Hampshire Ave and Oakview Dr (Outbound)",
+            "lat": 39.0150626,
+            "lon": -76.9777991,
+            "time": 638.2
+          }
+        }
+      },
+      "regegara": {
+        "title": "Paint Branch Dr and Stadium Dr",
+        "stops": {
+          "chateau_r": {
+            "title": "Mt Pisgah Rd at Chateau Apartments",
+            "lat": 39.01658,
+            "lon": -76.97613,
+            "time": 90.5
+          },
+          "nhamadel_in": {
+            "title": "New Hampshire Ave and Adelphi Rd (Inbound)",
+            "lat": 39.0116175,
+            "lon": -76.9790439,
+            "time": 125.1
+          },
+          "metznham_in": {
+            "title": "Metzerott Rd and New Hampshire Ave (Inbound)",
+            "lat": 39.0041118,
+            "lon": -76.9800581,
+            "time": 52.0
+          },
+          "metz1811": {
+            "title": "Metzerott Rd at The Delano Apts",
+            "lat": 39.0036704,
+            "lon": -76.9760639,
+            "time": 41.7
+          },
+          "coolspri_in": {
+            "title": "Metzerott Rd and Riggs Rd (Inbound)",
+            "lat": 39.0032712,
+            "lon": -76.97287,
+            "time": 78.4
+          },
+          "metz24th": {
+            "title": "Metzerott Rd and 24th Ave",
+            "lat": 39.0025883,
+            "lon": -76.9668481,
+            "time": 102.4
+          },
+          "metzarch": {
+            "title": "Metzerott Rd at Archives II (Inbound)",
+            "lat": 39.00314,
+            "lon": -76.9589308,
+            "time": 56.9
+          },
+          "metzobse": {
+            "title": "Metzerott Rd @ UM Observatory",
+            "lat": 39.0025843,
+            "lon": -76.9545755,
+            "time": 40.8
+          },
+          "metzstan_in": {
+            "title": "Metzerott Road and St. Andrew's Place (Inbound)",
+            "lat": 39.002051,
+            "lon": -76.9514869,
+            "time": 44.2
+          },
+          "metz36th_in": {
+            "title": "Metzerott Road and 36th Avenue (Inbound)",
+            "lat": 39.0014833,
+            "lon": -76.9481327,
+            "time": 44.2
+          },
+          "metzgree_in": {
+            "title": "Metzerott Rd and University Blvd (Inbound)",
+            "lat": 39.0008996,
+            "lon": -76.9447876,
+            "time": 75.3
+          },
+          "lot4_in": {
+            "title": "Paint Branch Dr at Lot 4b (Inbound)",
+            "lat": 38.9978287,
+            "lon": -76.9404883,
+            "time": 55.5
+          },
+          "shutbase_in": {
+            "title": "Shuttle-UM Base (Inbound)",
+            "lat": 38.9953571,
+            "lon": -76.9375886,
+            "time": 30.9
+          },
+          "painrege_bus": {
+            "title": "Paint Branch Dr and Regents Dr (Bus Shelter)",
+            "lat": 38.993499,
+            "lon": -76.9373896,
+            "time": 53.2
+          },
+          "painstad": {
+            "title": "Paint Branch Dr and Stadium Dr",
+            "lat": 38.9902898,
+            "lon": -76.9373,
+            "time": 663.7
+          }
+        }
+      }
+    }
+  },
+  "109": {
+    "directions": {
+      "loop": {
+        "title": "River Road at American Center for Physics",
+        "stops": {
+          "cpmetro_d": {
+            "title": "College Park - UMD Metro Station",
+            "lat": 38.9755375,
+            "lon": -76.9279988,
+            "time": 93.3
+          },
+          "acphys": {
+            "title": "River Road and Rivertech Court",
+            "lat": 38.969956,
+            "lon": -76.927107,
+            "time": 49.8
+          },
+          "acphys_elli": {
+            "title": "American Center for Physics",
+            "lat": 38.9718215,
+            "lon": -76.9301382,
+            "time": 62.0
+          },
+          "rayt": {
+            "title": "Raytheon",
+            "lat": 38.9683562,
+            "lon": -76.9283283,
+            "time": 5.3
+          },
+          "collpark": {
+            "title": "College Park Academy",
+            "lat": 38.9682907,
+            "lon": -76.9279223,
+            "time": 62.0
+          },
+          "diviofit": {
+            "title": "Division of IT",
+            "lat": 38.9691729,
+            "lon": -76.9232474,
+            "time": 26.5
+          },
+          "msqua": {
+            "title": "M-Square",
+            "lat": 38.9707579,
+            "lon": -76.922991,
+            "time": 43.0
+          },
+          "usda": {
+            "title": "USDA",
+            "lat": 38.9698863,
+            "lon": -76.9261352,
+            "time": 47.8
+          },
+          "rrmshel": {
+            "title": "River Road at American Center for Physics",
+            "lat": 38.9722046,
+            "lon": -76.9283434,
+            "time": 55.4
+          }
+        }
+      }
+    }
+  },
+  "110": {
+    "directions": {
+      "regegara": {
+        "title": "Seven Springs Apts at 9308 Cherry Hill Rd",
+        "stops": {
+          "ssvill": {
+            "title": "Seven Springs Apts at 9310 Cherry Hill Rd",
+            "lat": 39.0159991,
+            "lon": -76.9394283,
+            "time": 38.4
+          },
+          "cher9308": {
+            "title": "Seven Springs Apts at 9308 Cherry Hill Rd",
+            "lat": 39.0178782,
+            "lon": -76.9376829,
+            "time": 38.4
+          }
+        }
+      },
+      "ssvill": {
+        "title": "Seven Springs Apts at 9348 Cherry Hill Rd",
+        "stops": {
+          "regegara_d": {
+            "title": "Regents Drive Garage",
+            "lat": 38.9895254,
+            "lon": -76.94075,
+            "time": 455.0
+          },
+          "cher9348": {
+            "title": "Seven Springs Apts at 9348 Cherry Hill Rd",
+            "lat": 39.016946,
+            "lon": -76.9393952,
+            "time": 455.0
+          }
+        }
+      }
+    }
+  },
+  "111": {
+    "directions": {
+      "ssmetro": {
+        "title": "Wayne Ave and Fenton St (Outbound)",
+        "stops": {
+          "stamsuhh_d": {
+            "title": "Stamp Student Union - Slip",
+            "lat": 38.9874519,
+            "lon": -76.9440396,
+            "time": 50.2
+          },
+          "artsoci": {
+            "title": "Art/Sociology Building",
+            "lat": 38.98529,
+            "lon": -76.94677,
+            "time": 56.2
+          },
+          "camplt1d": {
+            "title": "Campus Dr at Lot 3",
+            "lat": 38.9846897,
+            "lon": -76.9510623,
+            "time": 100.5
+          },
+          "univtula": {
+            "title": "University Blvd and Tulane Dr",
+            "lat": 38.9853988,
+            "lon": -76.9588032,
+            "time": 107.7
+          },
+          "univshop_out": {
+            "title": "University Blvd at Adelphi Plaza",
+            "lat": 38.9846405,
+            "lon": -76.9671043,
+            "time": 77.4
+          },
+          "univguil_out": {
+            "title": "University Blvd at Campus Gardens",
+            "lat": 38.984079,
+            "lon": -76.9730672,
+            "time": 94.3
+          },
+          "univrigg_out": {
+            "title": "University Blvd and Riggs Rd (Outbound)",
+            "lat": 38.9845483,
+            "lon": -76.9803602,
+            "time": 94.9
+          },
+          "univ14th": {
+            "title": "University Blvd and 14th Ave",
+            "lat": 38.9880237,
+            "lon": -76.98621,
+            "time": 43.0
+          },
+          "univrite": {
+            "title": "Takoma-Langley Crossroads Transit Center (Outbound)",
+            "lat": 38.989844,
+            "lon": -76.9885876,
+            "time": 62.6
+          },
+          "merrilock": {
+            "title": "Merrimac Dr and Lockney Ave",
+            "lat": 38.99242,
+            "lon": -76.99214,
+            "time": 45.2
+          },
+          "carrchest": {
+            "title": "Carroll Ave and Chester St",
+            "lat": 38.9899268,
+            "lon": -76.9935629,
+            "time": 34.3
+          },
+          "carrglen": {
+            "title": "Carroll Ave and Glenside Dr",
+            "lat": 38.9879584,
+            "lon": -76.994382,
+            "time": 38.1
+          },
+          "carrgarl": {
+            "title": "Caroll Ave and Garland Ave (Outbound)",
+            "lat": 38.9862204,
+            "lon": -76.9963195,
+            "time": 35.9
+          },
+          "flowcarr": {
+            "title": "Flower Ave and Carroll Ave (Outbound)",
+            "lat": 38.9853069,
+            "lon": -76.9988477,
+            "time": 27.4
+          },
+          "flowdivi": {
+            "title": "Flower Ave at Washington Adventist University (Outbound)",
+            "lat": 38.9867605,
+            "lon": -76.9998514,
+            "time": 50.7
+          },
+          "flowkenne": {
+            "title": "Flower Ave and Kennebec Ave (Outbound)",
+            "lat": 38.9895808,
+            "lon": -77.0013728,
+            "time": 48.8
+          },
+          "flowhuds": {
+            "title": "Flower Ave and Hudson (Outbound)",
+            "lat": 38.9924554,
+            "lon": -77.0021792,
+            "time": 71.1
+          },
+          "flowdome": {
+            "title": "Flower Ave and Domer Ave (Outbound)",
+            "lat": 38.9966735,
+            "lon": -77.0031553,
+            "time": 83.0
+          },
+          "flowplym": {
+            "title": "Flower Ave and Plymouth St",
+            "lat": 39.00156,
+            "lon": -77.00454,
+            "time": 82.0
+          },
+          "waynslig_out": {
+            "title": "Wayne Ave and Sligo Creek Pkwy (Outbound)",
+            "lat": 38.9996595,
+            "lon": -77.0104152,
+            "time": 88.6
+          },
+          "wayndale_out": {
+            "title": "Wayne Ave and Dale Dr (Outbound)",
+            "lat": 38.9993802,
+            "lon": -77.0172814,
+            "time": 98.6
+          },
+          "waynwhol": {
+            "title": "Wayne Ave and Fenton St (Outbound)",
+            "lat": 38.9959666,
+            "lon": -77.0235453,
+            "time": 1034.4
+          }
+        }
+      },
+      "stamsuhh": {
+        "title": "Regents Drive Garage",
+        "stops": {
+          "ssmetro": {
+            "title": "Silver Spring Metro Station",
+            "lat": 38.993673,
+            "lon": -77.029742,
+            "time": 71.2
+          },
+          "waynfent": {
+            "title": "Wayne Ave and Fenton St (Inbound)",
+            "lat": 38.9952298,
+            "lon": -77.0245902,
+            "time": 110.4
+          },
+          "wayndale_in": {
+            "title": "Wayne Ave and Dale Dr (Inbound)",
+            "lat": 38.9992414,
+            "lon": -77.0177496,
+            "time": 135.2
+          },
+          "waynslig_in": {
+            "title": "Wayne Ave and Manchester Place (Inbound)",
+            "lat": 39.0016406,
+            "lon": -77.0077193,
+            "time": 39.4
+          },
+          "flowplym_in": {
+            "title": "Flower Ave and Plymouth St (Inbound)",
+            "lat": 39.001575,
+            "lon": -77.0046644,
+            "time": 90.2
+          },
+          "flowdome_in": {
+            "title": "Flower Ave and Domer Ave (Inbound)",
+            "lat": 38.9962614,
+            "lon": -77.0031528,
+            "time": 62.5
+          },
+          "flowhuds_in": {
+            "title": "Flower Ave and Hudson (Inbound)",
+            "lat": 38.9925543,
+            "lon": -77.00228,
+            "time": 48.0
+          },
+          "flowkenn_in": {
+            "title": "Flower Ave and Kennebec (Inbound)",
+            "lat": 38.9897144,
+            "lon": -77.0015479,
+            "time": 47.6
+          },
+          "flowdivi_inn": {
+            "title": "Flower Ave at Washington Adventist University (Inbound)",
+            "lat": 38.9870475,
+            "lon": -77.0001883,
+            "time": 34.5
+          },
+          "flowcarr_in": {
+            "title": "Flower Ave and Carroll Ave (Inbound)",
+            "lat": 38.9852146,
+            "lon": -76.9989177,
+            "time": 39.1
+          },
+          "carrgarl_in": {
+            "title": "Carroll Ave and Garland Ave (Inbound)",
+            "lat": 38.9862373,
+            "lon": -76.9961839,
+            "time": 30.9
+          },
+          "carranne_in": {
+            "title": "Carroll Ave and Anne St",
+            "lat": 38.9876429,
+            "lon": -76.994607,
+            "time": 37.4
+          },
+          "carrwild_in": {
+            "title": "Carroll Ave and Wildwood Dr",
+            "lat": 38.9897314,
+            "lon": -76.9935114,
+            "time": 51.2
+          },
+          "merriuniv": {
+            "title": "Merrimac Dr and University Blvd",
+            "lat": 38.9924899,
+            "lon": -76.99173,
+            "time": 61.1
+          },
+          "univhamp": {
+            "title": "Takoma-Langley Crossroads Transit Center (Inbound)",
+            "lat": 38.990052,
+            "lon": -76.988171,
+            "time": 113.6
+          },
+          "univ15th": {
+            "title": "University Blvd and 15th Ave",
+            "lat": 38.9852516,
+            "lon": -76.9818874,
+            "time": 61.7
+          },
+          "univhech": {
+            "title": "University Blvd and Riggs Road (Inbound)",
+            "lat": 38.9834699,
+            "lon": -76.9776816,
+            "time": 133.3
+          },
+          "univ25th_in": {
+            "title": "University Blvd and 25th Ave",
+            "lat": 38.9844296,
+            "lon": -76.9674135,
+            "time": 124.0
+          },
+          "univgrad": {
+            "title": "University Blvd at Graduate Hills",
+            "lat": 38.9853553,
+            "lon": -76.9578695,
+            "time": 144.7
+          },
+          "cspa_main": {
+            "title": "Stadium Drive and University Boulevard",
+            "lat": 38.991756,
+            "lon": -76.950237,
+            "time": 34.7
+          },
+          "stadgara": {
+            "title": "Stadium Drive Garage",
+            "lat": 38.9917469,
+            "lon": -76.9475442,
+            "time": 33.5
+          },
+          "stadvtho": {
+            "title": "Varsity Team House",
+            "lat": 38.9906015,
+            "lon": -76.9454061,
+            "time": 62.6
+          },
+          "regegara_d": {
+            "title": "Regents Drive Garage",
+            "lat": 38.9895254,
+            "lon": -76.94075,
+            "time": 1149.0
+          }
+        }
+      }
+    }
+  },
+  "113": {
+    "directions": {
+      "regegara": {
+        "title": "Varsity Team House",
+        "stops": {
+          "39thquee": {
+            "title": "Queensbury Rd and 39th Pl",
+            "lat": 38.96391,
+            "lon": -76.9503707,
+            "time": 53.3
+          },
+          "42ndquee": {
+            "title": "42nd Ave and Queensbury Rd",
+            "lat": 38.9635641,
+            "lon": -76.9462603,
+            "time": 64.6
+          },
+          "42ndogle": {
+            "title": "42nd Ave and Oglethorpe St",
+            "lat": 38.9596743,
+            "lon": -76.9465446,
+            "time": 27.8
+          },
+          "42ndmadi": {
+            "title": "42nd Ave and Madison St",
+            "lat": 38.9580062,
+            "lon": -76.9467596,
+            "time": 45.2
+          },
+          "42ndjeff": {
+            "title": "42nd Ave and Jefferson St",
+            "lat": 38.9553894,
+            "lon": -76.9457762,
+            "time": 63.1
+          },
+          "42ndfarr": {
+            "title": "Farragut St and 42nd Pl",
+            "lat": 38.9517499,
+            "lon": -76.944358,
+            "time": 40.4
+          },
+          "farrrhod": {
+            "title": "Farragut St and Rhode Island Ave",
+            "lat": 38.95166,
+            "lon": -76.94123,
+            "time": 25.5
+          },
+          "baltgall": {
+            "title": "Baltimore Ave and Gallatin St",
+            "lat": 38.9530736,
+            "lon": -76.9404606,
+            "time": 20.0
+          },
+          "balthami": {
+            "title": "Baltimore Ave and Hamilton St",
+            "lat": 38.9542751,
+            "lon": -76.9403194,
+            "time": 40.8
+          },
+          "baltlong": {
+            "title": "Baltimore Ave and Longfellow St",
+            "lat": 38.9567242,
+            "lon": -76.9400419,
+            "time": 44.3
+          },
+          "baltogle": {
+            "title": "Baltimore Ave and Oglethorpe St",
+            "lat": 38.9593855,
+            "lon": -76.9397604,
+            "time": 64.8
+          },
+          "44thquee": {
+            "title": "Queensbury Rd and 44th Pl",
+            "lat": 38.9632582,
+            "lon": -76.9404546,
+            "time": 60.0
+          },
+          "quee42nd": {
+            "title": "Queensbury Rd and 42nd Pl",
+            "lat": 38.9637691,
+            "lon": -76.9450616,
+            "time": 99.0
+          },
+          "belcquch": {
+            "title": "Belcrest Rd and Queens Chapel Rd",
+            "lat": 38.9643701,
+            "lon": -76.9527003,
+            "time": 22.6
+          },
+          "pgmetro_in": {
+            "title": "Prince George's Plaza Metro Station (Inbound)",
+            "lat": 38.9654413,
+            "lon": -76.9537801,
+            "time": 45.0
+          },
+          "pgcc": {
+            "title": "Prince George's Community College",
+            "lat": 38.9681505,
+            "lon": -76.95394,
+            "time": 29.6
+          },
+          "belctole": {
+            "title": "Toledo Rd and Belcrest Rd (Inbound)",
+            "lat": 38.9698444,
+            "lon": -76.9532048,
+            "time": 55.4
+          },
+          "adeltole": {
+            "title": "Adelphi Rd and Toledo Rd",
+            "lat": 38.9706254,
+            "lon": -76.9490295,
+            "time": 84.8
+          },
+          "adelvbur": {
+            "title": "Adelphi Rd and Van Buren St",
+            "lat": 38.975281,
+            "lon": -76.9517565,
+            "time": 73.3
+          },
+          "adelwell_in": {
+            "title": "Adelphi Rd and Wells Pkwy (Inbound)",
+            "lat": 38.9792306,
+            "lon": -76.9543073,
+            "time": 90.6
+          },
+          "adeltula": {
+            "title": "Adelphi Rd and Campus Dr",
+            "lat": 38.9846321,
+            "lon": -76.9553383,
+            "time": 135.2
+          },
+          "cspa_main": {
+            "title": "Stadium Drive and University Boulevard",
+            "lat": 38.991756,
+            "lon": -76.950237,
+            "time": 34.7
+          },
+          "stadgara": {
+            "title": "Stadium Drive Garage",
+            "lat": 38.9917469,
+            "lon": -76.9475442,
+            "time": 33.5
+          },
+          "stadvtho": {
+            "title": "Varsity Team House",
+            "lat": 38.9906015,
+            "lon": -76.9454061,
+            "time": 447.2
+          }
+        }
+      },
+      "42ndquee": {
+        "title": "Prince George's Plaza Metro Station (Outbound)",
+        "stops": {
+          "regegara_d": {
+            "title": "Regents Drive Garage",
+            "lat": 38.9895254,
+            "lon": -76.94075,
+            "time": 52.0
+          },
+          "stamsu_d": {
+            "title": "Stamp Student Union - Slip",
+            "lat": 38.9876099,
+            "lon": -76.9439449,
+            "time": 53.0
+          },
+          "artsoci": {
+            "title": "Art/Sociology Building",
+            "lat": 38.98529,
+            "lon": -76.94677,
+            "time": 56.2
+          },
+          "camplt1d": {
+            "title": "Campus Dr at Lot 3",
+            "lat": 38.9846897,
+            "lon": -76.9510623,
+            "time": 57.7
+          },
+          "gradhill": {
+            "title": "Adelphi Rd at Graduate Hills Apts",
+            "lat": 38.9846606,
+            "lon": -76.9555421,
+            "time": 85.8
+          },
+          "adelwell_out": {
+            "title": "Adelphi Rd and Wells Blvd",
+            "lat": 38.9795417,
+            "lon": -76.9545905,
+            "time": 74.4
+          },
+          "adel_nwhs": {
+            "title": "Adelphi Rd at Northwestern HS",
+            "lat": 38.9754953,
+            "lon": -76.952102,
+            "time": 94.7
+          },
+          "toleadel": {
+            "title": "Toledo Rd and Adelphi Rd",
+            "lat": 38.97007,
+            "lon": -76.9497998,
+            "time": 45.0
+          },
+          "tolebelc": {
+            "title": "Toledo and Belcrest Rd (Outbound)",
+            "lat": 38.96991,
+            "lon": -76.9532842,
+            "time": 30.4
+          },
+          "targ": {
+            "title": "The Mall at Prince George's",
+            "lat": 38.96821,
+            "lon": -76.95417,
+            "time": 38.6
+          },
+          "pgmetro_out": {
+            "title": "Prince George's Plaza Metro Station (Outbound)",
+            "lat": 38.9658812,
+            "lon": -76.954134,
+            "time": 428.4
+          }
+        }
+      }
+    }
+  },
+  "114": {
+    "directions": {
+      "loop": {
+        "title": "Campus Dr at M Circle",
+        "stops": {
+          "stamsuhh_d": {
+            "title": "Stamp Student Union - Slip",
+            "lat": 38.9874519,
+            "lon": -76.9440396,
+            "time": 50.2
+          },
+          "artsoci": {
+            "title": "Art/Sociology Building",
+            "lat": 38.98529,
+            "lon": -76.94677,
+            "time": 32.9
+          },
+          "wico": {
+            "title": "Wicomico Hall",
+            "lat": 38.98375,
+            "lon": -76.94516,
+            "time": 26.1
+          },
+          "lotu4": {
+            "title": "Preinkert Drive at Lot MV",
+            "lat": 38.9821893,
+            "lon": -76.944884,
+            "time": 78.2
+          },
+          "collpksh": {
+            "title": "College Park Shopping Ctr (Outbound)",
+            "lat": 38.9809619,
+            "lon": -76.9390277,
+            "time": 75.8
+          },
+          "baltritc": {
+            "title": "Ritchie Coliseum",
+            "lat": 38.9852774,
+            "lon": -76.9370967,
+            "time": 124.2
+          },
+          "univview": {
+            "title": "University View",
+            "lat": 38.99234,
+            "lon": -76.9338999,
+            "time": 25.1
+          },
+          "baltvars": {
+            "title": "Baltimore Ave at The Varsity",
+            "lat": 38.9908313,
+            "lon": -76.9340075,
+            "time": 88.0
+          },
+          "mcirc": {
+            "title": "Campus Dr at M Circle",
+            "lat": 38.987699,
+            "lon": -76.9395199,
+            "time": 58.4
+          }
+        }
+      }
+    }
+  },
+  "115": {
+    "directions": {
+      "loop": {
+        "title": "Campus Dr at M Circle",
+        "stops": {
+          "stamsu_d": {
+            "title": "Stamp Student Union - Slip",
+            "lat": 38.9876099,
+            "lon": -76.9439449,
+            "time": 54.7
+          },
+          "lot1": {
+            "title": "Union Dr at Lot 1b",
+            "lat": 38.9872099,
+            "lon": -76.9481576,
+            "time": 52.7
+          },
+          "cspac": {
+            "title": "Valley Drive at Stadium Drive Garage",
+            "lat": 38.9902373,
+            "lon": -76.9494,
+            "time": 37.6
+          },
+          "elk": {
+            "title": "Elkton Hall",
+            "lat": 38.9924177,
+            "lon": -76.9485888,
+            "time": 15.7
+          },
+          "hage": {
+            "title": "Hagerstown Hall",
+            "lat": 38.99297,
+            "lon": -76.947599,
+            "time": 28.3
+          },
+          "laplat": {
+            "title": "La Plata Hall",
+            "lat": 38.9922186,
+            "lon": -76.94563,
+            "time": 26.9
+          },
+          "varhous": {
+            "title": "Varsity Team House",
+            "lat": 38.9906039,
+            "lon": -76.9454355,
+            "time": 42.8
+          },
+          "stadatl": {
+            "title": "Stadium Drive at Atlantic Building",
+            "lat": 38.9905589,
+            "lon": -76.9421162,
+            "time": 24.6
+          },
+          "regegara_d": {
+            "title": "Regents Drive Garage",
+            "lat": 38.9895254,
+            "lon": -76.94075,
+            "time": 48.2
+          },
+          "mitc_out": {
+            "title": "Mitchell Building (Outbound)",
+            "lat": 38.9866498,
+            "lon": -76.9401999,
+            "time": 30.3
+          },
+          "memo_out": {
+            "title": "Memorial Chapel (Outbound)",
+            "lat": 38.9848206,
+            "lon": -76.94015,
+            "time": 41.7
+          },
+          "mont_out": {
+            "title": "Montgomery Hall (Outbound)",
+            "lat": 38.9824312,
+            "lon": -76.9391529,
+            "time": 54.1
+          },
+          "baltritc_s": {
+            "title": "Ritchie Coliseum",
+            "lat": 38.9852774,
+            "lon": -76.9370967,
+            "time": 50.7
+          },
+          "mcirc_s": {
+            "title": "Campus Dr at M Circle",
+            "lat": 38.9877034,
+            "lon": -76.9394934,
+            "time": 57.4
+          }
+        }
+      }
+    }
+  },
+  "116": {
+    "directions": {
+      "loop": {
+        "title": "Campus Dr at M Circle",
+        "stops": {
+          "stamsuhh_d": {
+            "title": "Stamp Student Union - Slip",
+            "lat": 38.9874519,
+            "lon": -76.9440396,
+            "time": 20.2
+          },
+          "hoff": {
+            "title": "Hoff Theater",
+            "lat": 38.9880692,
+            "lon": -76.94539,
+            "time": 10.4
+          },
+          "uniofiel": {
+            "title": "Union Ln and Fieldhouse Dr",
+            "lat": 38.9886932,
+            "lon": -76.9453067,
+            "time": 42.3
+          },
+          "biofield": {
+            "title": "BioSciences Research Building",
+            "lat": 38.9892576,
+            "lon": -76.9421089,
+            "time": 22.6
+          },
+          "regestad": {
+            "title": "Regents Dr and Stadium Dr",
+            "lat": 38.990012,
+            "lon": -76.9406498,
+            "time": 20.7
+          },
+          "regefarm_out": {
+            "title": "Regents Dr and Farm Dr (Outbound)",
+            "lat": 38.9912621,
+            "lon": -76.9406599,
+            "time": 37.9
+          },
+          "regecomc_out": {
+            "title": "Regents Drive at XFINITY Center (Outbound)",
+            "lat": 38.9934725,
+            "lon": -76.9399271,
+            "time": 31.6
+          },
+          "regepain_out": {
+            "title": "Regents Dr and Paint Branch Dr (Outbound)",
+            "lat": 38.9936299,
+            "lon": -76.9374809,
+            "time": 28.5
+          },
+          "shutbase_out": {
+            "title": "Shuttle-UM Base (Outbound)",
+            "lat": 38.9953477,
+            "lon": -76.9374989,
+            "time": 56.5
+          },
+          "lot4_out": {
+            "title": "Paint Branch Dr at Lot 4b (Outbound)",
+            "lat": 38.997895,
+            "lon": -76.940414,
+            "time": 59.9
+          },
+          "cour300": {
+            "title": "Courtyards #300",
+            "lat": 39.0013104,
+            "lon": -76.9419255,
+            "time": 13.7
+          },
+          "cour400": {
+            "title": "Courtyards #400",
+            "lat": 39.001867,
+            "lon": -76.94271,
+            "time": 20.4
+          },
+          "cour500": {
+            "title": "Courtyards #500",
+            "lat": 39.0030898,
+            "lon": -76.94257,
+            "time": 11.9
+          },
+          "gree": {
+            "title": "Greenmeade Dr at Maryland 4-H (Inbound)",
+            "lat": 39.0026811,
+            "lon": -76.9433266,
+            "time": 32.0
+          },
+          "greemetz": {
+            "title": "Greenmeade Dr and Metzerott Rd",
+            "lat": 39.0010682,
+            "lon": -76.9446931,
+            "time": 76.3
+          },
+          "lot4i_r": {
+            "title": "Paint Branch Dr at Lot 4b (Inbound)",
+            "lat": 38.9978287,
+            "lon": -76.9404883,
+            "time": 55.5
+          },
+          "shutbase_in": {
+            "title": "Shuttle-UM Base (Inbound)",
+            "lat": 38.9953571,
+            "lon": -76.9375886,
+            "time": 28.0
+          },
+          "regepain": {
+            "title": "Regents Dr and Paint Branch Dr (Inbound)",
+            "lat": 38.9936749,
+            "lon": -76.9377348,
+            "time": 26.8
+          },
+          "regecomc_in": {
+            "title": "Regents Drive at XFINITY Center (Inbound)",
+            "lat": 38.9936404,
+            "lon": -76.9398124,
+            "time": 37.6
+          },
+          "regefarm_in": {
+            "title": "Regents Dr and Farm Dr (Inbound)",
+            "lat": 38.9914838,
+            "lon": -76.9407074,
+            "time": 32.5
+          },
+          "regegara_d": {
+            "title": "Regents Drive Garage",
+            "lat": 38.9895254,
+            "lon": -76.94075,
+            "time": 48.2
+          },
+          "mitc_out": {
+            "title": "Mitchell Building (Outbound)",
+            "lat": 38.9866498,
+            "lon": -76.9401999,
+            "time": 30.3
+          },
+          "memo_out": {
+            "title": "Memorial Chapel (Outbound)",
+            "lat": 38.9848206,
+            "lon": -76.94015,
+            "time": 41.7
+          },
+          "mont_out": {
+            "title": "Montgomery Hall (Outbound)",
+            "lat": 38.9824312,
+            "lon": -76.9391529,
+            "time": 54.1
+          },
+          "baltritc_s": {
+            "title": "Ritchie Coliseum",
+            "lat": 38.9852774,
+            "lon": -76.9370967,
+            "time": 50.7
+          },
+          "mcirc_s": {
+            "title": "Campus Dr at M Circle",
+            "lat": 38.9877034,
+            "lon": -76.9394934,
+            "time": 58.7
+          }
+        }
+      }
+    }
+  },
+  "117": {
+    "directions": {
+      "loop": {
+        "title": "Campus Dr at M Circle",
+        "stops": {
+          "stamsuhh_d": {
+            "title": "Stamp Student Union - Slip",
+            "lat": 38.9874519,
+            "lon": -76.9440396,
+            "time": 20.2
+          },
+          "hoff": {
+            "title": "Hoff Theater",
+            "lat": 38.9880692,
+            "lon": -76.94539,
+            "time": 10.4
+          },
+          "uniofiel": {
+            "title": "Union Ln and Fieldhouse Dr",
+            "lat": 38.9886932,
+            "lon": -76.9453067,
+            "time": 42.3
+          },
+          "biofield": {
+            "title": "BioSciences Research Building",
+            "lat": 38.9892576,
+            "lon": -76.9421089,
+            "time": 49.8
+          },
+          "mitc_out": {
+            "title": "Mitchell Building (Outbound)",
+            "lat": 38.9866498,
+            "lon": -76.9401999,
+            "time": 30.3
+          },
+          "memo_out": {
+            "title": "Memorial Chapel (Outbound)",
+            "lat": 38.9848206,
+            "lon": -76.94015,
+            "time": 41.7
+          },
+          "mont_out": {
+            "title": "Montgomery Hall (Outbound)",
+            "lat": 38.9824312,
+            "lon": -76.9391529,
+            "time": 54.1
+          },
+          "baltritc": {
+            "title": "Ritchie Coliseum",
+            "lat": 38.9852774,
+            "lon": -76.9370967,
+            "time": 129.5
+          },
+          "univclub": {
+            "title": "University Club Apartments",
+            "lat": 38.9906518,
+            "lon": -76.9298057,
+            "time": 59.7
+          },
+          "univview": {
+            "title": "University View",
+            "lat": 38.99234,
+            "lon": -76.9338999,
+            "time": 25.1
+          },
+          "varsity": {
+            "title": "Baltimore Ave at The Varsity",
+            "lat": 38.9908309,
+            "lon": -76.9340079,
+            "time": 88.0
+          },
+          "mcirc": {
+            "title": "Campus Dr at M Circle",
+            "lat": 38.987699,
+            "lon": -76.9395199,
+            "time": 58.4
+          }
+        }
+      }
+    }
+  },
+  "118": {
+    "directions": {
+      "loop": {
+        "title": "Regents Drive Garage",
+        "stops": {
+          "stamsu_d": {
+            "title": "Stamp Student Union - Slip",
+            "lat": 38.9876099,
+            "lon": -76.9439449,
+            "time": 54.7
+          },
+          "lot1": {
+            "title": "Union Dr at Lot 1b",
+            "lat": 38.9872099,
+            "lon": -76.9481576,
+            "time": 52.7
+          },
+          "cspac": {
+            "title": "Valley Drive at Stadium Drive Garage",
+            "lat": 38.9902373,
+            "lon": -76.9494,
+            "time": 28.9
+          },
+          "dent": {
+            "title": "Denton Hall",
+            "lat": 38.9919122,
+            "lon": -76.9500274,
+            "time": 138.4
+          },
+          "tula3424": {
+            "title": "Graduate Hills at 3424 Tulane Dr",
+            "lat": 38.9849405,
+            "lon": -76.9559259,
+            "time": 17.8
+          },
+          "tula3410": {
+            "title": "Graduate Hills at 3410 Tulane Dr",
+            "lat": 38.984739,
+            "lon": -76.9572802,
+            "time": 12.4
+          },
+          "tula3403": {
+            "title": "Graduate Hills at 3404 Tulane Dr",
+            "lat": 38.9846822,
+            "lon": -76.95824,
+            "time": 12.1
+          },
+          "univgrad": {
+            "title": "University Blvd at Graduate Hills",
+            "lat": 38.9853553,
+            "lon": -76.9578695,
+            "time": 43.7
+          },
+          "camplot19": {
+            "title": "Campus Dr at UMUC Lot 19",
+            "lat": 38.9852911,
+            "lon": -76.9544776,
+            "time": 27.4
+          },
+          "univbapt": {
+            "title": "University Methodist Church",
+            "lat": 38.9848573,
+            "lon": -76.9524262,
+            "time": 62.3
+          },
+          "hillmunc": {
+            "title": "Van Munching Hall (Inbound)",
+            "lat": 38.9830167,
+            "lon": -76.9482112,
+            "time": 18.5
+          },
+          "lds": {
+            "title": "LDS Institute of Religion",
+            "lat": 38.9822297,
+            "lon": -76.9471916,
+            "time": 48.1
+          },
+          "sccomm1_2": {
+            "title": "South Campus Commons 1 & 2",
+            "lat": 38.9823305,
+            "lon": -76.9434585,
+            "time": 63.3
+          },
+          "4315rwlt": {
+            "title": "Graduate Gardens at 4315 Rowalt Dr",
+            "lat": 38.9788425,
+            "lon": -76.9414545,
+            "time": 21.2
+          },
+          "4327rwlt": {
+            "title": "Graduate Gardens at 4327 Rowalt Dr",
+            "lat": 38.9782048,
+            "lon": -76.9400307,
+            "time": 35.2
+          },
+          "balthart_in": {
+            "title": "Baltimore Ave and Hartwick Rd (Inbound)",
+            "lat": 38.9794663,
+            "lon": -76.93783,
+            "time": 52.9
+          },
+          "mont_in": {
+            "title": "Montgomery Hall (Inbound)",
+            "lat": 38.9824955,
+            "lon": -76.9391275,
+            "time": 36.0
+          },
+          "memo_in": {
+            "title": "Memorial Chapel (Inbound)",
+            "lat": 38.9845403,
+            "lon": -76.94007,
+            "time": 29.5
+          },
+          "shoebuil": {
+            "title": "Shoemaker Building",
+            "lat": 38.9838654,
+            "lon": -76.9421853,
+            "time": 10.0
+          },
+          "loty": {
+            "title": "Lot Y and Chapel Dr",
+            "lat": 38.9843599,
+            "lon": -76.9417399,
+            "time": 39.3
+          },
+          "mitc_in": {
+            "title": "Mitchell Building (Inbound)",
+            "lat": 38.9863659,
+            "lon": -76.9401199,
+            "time": 31.6
+          },
+          "campmath": {
+            "title": "Campus Dr at Math Slip",
+            "lat": 38.9878609,
+            "lon": -76.9386053,
+            "time": 38.9
+          },
+          "painstad_r": {
+            "title": "Glenn L. Martin Wind Tunnel",
+            "lat": 38.9899585,
+            "lon": -76.9372506,
+            "time": 17.0
+          },
+          "avwill": {
+            "title": "A.V. Williams Building",
+            "lat": 38.9909815,
+            "lon": -76.93726,
+            "time": 26.5
+          },
+          "techpain": {
+            "title": "Paint Branch Dr and Technology Dr",
+            "lat": 38.9925816,
+            "lon": -76.93727,
+            "time": 19.1
+          },
+          "regepain": {
+            "title": "Regents Dr and Paint Branch Dr (Inbound)",
+            "lat": 38.9936749,
+            "lon": -76.9377348,
+            "time": 26.8
+          },
+          "regecomc_in": {
+            "title": "Regents Drive at XFINITY Center (Inbound)",
+            "lat": 38.9936404,
+            "lon": -76.9398124,
+            "time": 37.6
+          },
+          "regefarm_in": {
+            "title": "Regents Dr and Farm Dr (Inbound)",
+            "lat": 38.9914838,
+            "lon": -76.9407074,
+            "time": 29.9
+          },
+          "camb": {
+            "title": "Cambridge Hall (Outbound)",
+            "lat": 38.9914576,
+            "lon": -76.943027,
+            "time": 21.7
+          },
+          "cumber": {
+            "title": "Cumberland Hall",
+            "lat": 38.9923509,
+            "lon": -76.944254,
+            "time": 65.1
+          },
+          "regegara_d": {
+            "title": "Regents Drive Garage",
+            "lat": 38.9895254,
+            "lon": -76.94075,
+            "time": 52.0
+          }
+        }
+      }
+    }
+  },
+  "122": {
+    "directions": {
+      "loop": {
+        "title": "Regents Drive Garage",
+        "stops": {
+          "stamsu_m": {
+            "title": "Stamp Student Union - Slip",
+            "lat": 38.9876098,
+            "lon": -76.9439438,
+            "time": 53.0
+          },
+          "artsoci": {
+            "title": "Art/Sociology Building",
+            "lat": 38.98529,
+            "lon": -76.94677,
+            "time": 32.9
+          },
+          "wico": {
+            "title": "Wicomico Hall",
+            "lat": 38.98375,
+            "lon": -76.94516,
+            "time": 26.1
+          },
+          "lotu4": {
+            "title": "Preinkert Drive at Lot MV",
+            "lat": 38.9821893,
+            "lon": -76.944884,
+            "time": 78.2
+          },
+          "collpksh": {
+            "title": "College Park Shopping Ctr (Outbound)",
+            "lat": 38.9809619,
+            "lon": -76.9390277,
+            "time": 28.6
+          },
+          "knoxyale": {
+            "title": "Knox Road and Yale Avenue",
+            "lat": 38.9806089,
+            "lon": -76.9368551,
+            "time": 20.5
+          },
+          "prinknox": {
+            "title": "Knox Rd and Princeton Ave",
+            "lat": 38.9802601,
+            "lon": -76.9353307,
+            "time": 20.1
+          },
+          "hopkknox": {
+            "title": "Knox Rd and Hopkins Ave",
+            "lat": 38.9799235,
+            "lon": -76.9338359,
+            "time": 18.9
+          },
+          "knoxrhod": {
+            "title": "Knox Rd and Rhode Island Ave",
+            "lat": 38.9796165,
+            "lon": -76.9324227,
+            "time": 19.7
+          },
+          "rhodcoll": {
+            "title": "Rhode Island Ave & College Ave",
+            "lat": 38.9807245,
+            "lon": -76.9318659,
+            "time": 20.4
+          },
+          "rhodnorw_s": {
+            "title": "Rhode Island Ave and Norwich Rd",
+            "lat": 38.9818979,
+            "lon": -76.9313952,
+            "time": 24.9
+          },
+          "rossrhod": {
+            "title": "Rossborough Ln and Rhode Island Ave",
+            "lat": 38.9834008,
+            "lon": -76.93131,
+            "time": 44.7
+          },
+          "5frat": {
+            "title": "Fraternity Row #5",
+            "lat": 38.9848022,
+            "lon": -76.9342719,
+            "time": 19.1
+          },
+          "leoncomm_out": {
+            "title": "Leonardtown Community Center",
+            "lat": 38.98371,
+            "lon": -76.9337999,
+            "time": 24.6
+          },
+          "11frat": {
+            "title": "Fraternity Row #11",
+            "lat": 38.983016,
+            "lon": -76.9354865,
+            "time": 27.7
+          },
+          "yalecoll": {
+            "title": "Yale Ave and Lehigh Rd",
+            "lat": 38.9815053,
+            "lon": -76.9364056,
+            "time": 14.9
+          },
+          "yaleknox_ib": {
+            "title": "Yale Avenue and Knox Road",
+            "lat": 38.9806721,
+            "lon": -76.9368328,
+            "time": 27.9
+          },
+          "collpksh_ib": {
+            "title": "College Park Shopping Center (Inbound)",
+            "lat": 38.9810063,
+            "lon": -76.9389541,
+            "time": 24.1
+          },
+          "scam34": {
+            "title": "South Campus Commons 3 and 4",
+            "lat": 38.9811409,
+            "lon": -76.9408182,
+            "time": 55.5
+          },
+          "sccomm5_6": {
+            "title": "South Campus Commons 5 and 6",
+            "lat": 38.9823229,
+            "lon": -76.9448437,
+            "time": 32.3
+          },
+          "lota": {
+            "title": "Preinkert Drive at Lot A",
+            "lat": 38.9842509,
+            "lon": -76.9451946,
+            "time": 11.6
+          },
+          "somehall": {
+            "title": "Somerset Hall",
+            "lat": 38.9847538,
+            "lon": -76.9458235,
+            "time": 24.5
+          },
+          "annearun": {
+            "title": "Anne Arundel Hall",
+            "lat": 38.9859448,
+            "lon": -76.9469495,
+            "time": 17.8
+          },
+          "dorchall": {
+            "title": "Dorchester Hall",
+            "lat": 38.9869691,
+            "lon": -76.9465401,
+            "time": 21.2
+          },
+          "lot1": {
+            "title": "Union Dr at Lot 1b",
+            "lat": 38.9872099,
+            "lon": -76.9481576,
+            "time": 52.7
+          },
+          "cspac": {
+            "title": "Valley Drive at Stadium Drive Garage",
+            "lat": 38.9902373,
+            "lon": -76.9494,
+            "time": 37.6
+          },
+          "elk": {
+            "title": "Elkton Hall",
+            "lat": 38.9924177,
+            "lon": -76.9485888,
+            "time": 15.7
+          },
+          "hage": {
+            "title": "Hagerstown Hall",
+            "lat": 38.99297,
+            "lon": -76.947599,
+            "time": 28.3
+          },
+          "laplat": {
+            "title": "La Plata Hall",
+            "lat": 38.9922186,
+            "lon": -76.94563,
+            "time": 26.9
+          },
+          "varhous": {
+            "title": "Varsity Team House",
+            "lat": 38.9906039,
+            "lon": -76.9454355,
+            "time": 42.8
+          },
+          "stadatl": {
+            "title": "Stadium Drive at Atlantic Building",
+            "lat": 38.9905589,
+            "lon": -76.9421162,
+            "time": 24.6
+          },
+          "regegara_d": {
+            "title": "Regents Drive Garage",
+            "lat": 38.9895254,
+            "lon": -76.94075,
+            "time": 52.0
+          }
+        }
+      }
+    }
+  },
+  "123": {
+    "directions": {
+      "loop": {
+        "title": "Division of IT",
+        "stops": {
+          "regegara_d": {
+            "title": "Regents Drive Garage",
+            "lat": 38.9895254,
+            "lon": -76.94075,
+            "time": 406.0
+          },
+          "diviofit": {
+            "title": "Division of IT",
+            "lat": 38.9691729,
+            "lon": -76.9232474,
+            "time": 406.0
+          }
+        }
+      }
+    }
+  },
+  "124": {
+    "directions": {
+      "univshad": {
+        "title": "The Universities at Shady Grove",
+        "stops": {
+          "stamsu_d": {
+            "title": "Stamp Student Union - Slip",
+            "lat": 38.9876099,
+            "lon": -76.9439449,
+            "time": 3756.7
+          },
+          "univshad": {
+            "title": "The Universities at Shady Grove",
+            "lat": 39.0934528,
+            "lon": -77.2018299,
+            "time": 3756.7
+          }
+        }
+      }
+    }
+  },
+  "126": {
+    "directions": {
+      "ncarmetr": {
+        "title": "Harkins Rd and Annapolis Rd",
+        "stops": {
+          "stamsuhh_d": {
+            "title": "Stamp Student Union - Slip",
+            "lat": 38.9874519,
+            "lon": -76.9440396,
+            "time": 50.2
+          },
+          "artsoci": {
+            "title": "Art/Sociology Building",
+            "lat": 38.98529,
+            "lon": -76.94677,
+            "time": 32.9
+          },
+          "wico": {
+            "title": "Wicomico Hall",
+            "lat": 38.98375,
+            "lon": -76.94516,
+            "time": 26.1
+          },
+          "lotu4": {
+            "title": "Preinkert Drive at Lot MV",
+            "lat": 38.9821893,
+            "lon": -76.944884,
+            "time": 96.4
+          },
+          "guilrowa": {
+            "title": "Guilford Drive and Rowalt Drive (Outbound)",
+            "lat": 38.978183,
+            "lon": -76.939469,
+            "time": 96.0
+          },
+          "univpkth": {
+            "title": "Baltimore Ave at University Park Town Hall",
+            "lat": 38.9725018,
+            "lon": -76.9380183,
+            "time": 43.1
+          },
+          "baltrive_out": {
+            "title": "Baltimore Avenue at Riverdale Park Station (Outbound)",
+            "lat": 38.9699162,
+            "lon": -76.9383656,
+            "time": 21.8
+          },
+          "baltunde": {
+            "title": "Baltimore Ave and Underwood St",
+            "lat": 38.9686098,
+            "lon": -76.9385684,
+            "time": 74.9
+          },
+          "ewhwbeal": {
+            "title": "East-West Hwy and W Beale Cir",
+            "lat": 38.9641206,
+            "lon": -76.9379016,
+            "time": 112.9
+          },
+          "ewhwtayl_out": {
+            "title": "East-West Hwy and Taylor Rd (Outbound)",
+            "lat": 38.9623242,
+            "lon": -76.9294593,
+            "time": 250.6
+          },
+          "rivd63rd": {
+            "title": "Riverdale Rd and 63rd Ave",
+            "lat": 38.9609676,
+            "lon": -76.9100993,
+            "time": 42.8
+          },
+          "riveeast": {
+            "title": "Riverdale Rd and Eastpine Dr",
+            "lat": 38.9610499,
+            "lon": -76.9067853,
+            "time": 51.0
+          },
+          "rive67th": {
+            "title": "Riverdale Rd and 67th Ave",
+            "lat": 38.9613322,
+            "lon": -76.9028455,
+            "time": 88.7
+          },
+          "riveaubu": {
+            "title": "Riverdale Rd and Auburn Ave",
+            "lat": 38.9642799,
+            "lon": -76.8971077,
+            "time": 100.8
+          },
+          "rivemart": {
+            "title": "Riverdale Rd and Martins Ln",
+            "lat": 38.9634325,
+            "lon": -76.8893633,
+            "time": 40.4
+          },
+          "rivefinn": {
+            "title": "Riverdale Rd and Finns Ln",
+            "lat": 38.9620909,
+            "lon": -76.8867462,
+            "time": 54.0
+          },
+          "rivelamo": {
+            "title": "Riverdale Rd and Lamont Dr",
+            "lat": 38.9613655,
+            "lon": -76.8826626,
+            "time": 45.5
+          },
+          "founclap": {
+            "title": "Riverdale Rd at Fountain Club Apartments",
+            "lat": 38.9600285,
+            "lon": -76.8795845,
+            "time": 25.8
+          },
+          "rivemaho": {
+            "title": "Riverdale Rd and Mahoney Dr",
+            "lat": 38.9595921,
+            "lon": -76.8776599,
+            "time": 36.1
+          },
+          "herisqap": {
+            "title": "Riverdale Rd at Heritage Square Apartments",
+            "lat": 38.9585214,
+            "lon": -76.8752214,
+            "time": 54.7
+          },
+          "annarive": {
+            "title": "Annapolis Rd and Riverdale Rd",
+            "lat": 38.9554776,
+            "lon": -76.8735862,
+            "time": 73.7
+          },
+          "harkanna": {
+            "title": "Harkins Rd and Annapolis Rd",
+            "lat": 38.9523513,
+            "lon": -76.8776441,
+            "time": 1035.1
+          }
+        }
+      },
+      "stamsu": {
+        "title": "Mitchell Building (Inbound)",
+        "stops": {
+          "ncarmetr": {
+            "title": "New Carrollton Metro Station",
+            "lat": 38.950275,
+            "lon": -76.872531,
+            "time": 77.0
+          },
+          "lenocrap": {
+            "title": "85th Ave at Lenox Court Apartments",
+            "lat": 38.9538912,
+            "lon": -76.86878,
+            "time": 35.9
+          },
+          "carrmnap": {
+            "title": "85th Ave at Carrollton Manor Apartments",
+            "lat": 38.9560194,
+            "lon": -76.8682799,
+            "time": 62.5
+          },
+          "long85th": {
+            "title": "85th Ave and Longfellow St",
+            "lat": 38.9595984,
+            "lon": -76.8697998,
+            "time": 19.8
+          },
+          "lega85th": {
+            "title": "85th Ave and Legation St",
+            "lat": 38.9607897,
+            "lon": -76.86988,
+            "time": 26.1
+          },
+          "westmadi": {
+            "title": "Westbrook Dr and Madison St",
+            "lat": 38.9623382,
+            "lon": -76.8702329,
+            "time": 36.1
+          },
+          "westogle": {
+            "title": "Westbrook Dr and Oglethorpe St",
+            "lat": 38.9642507,
+            "lon": -76.8715631,
+            "time": 28.3
+          },
+          "westpowh": {
+            "title": "Westbrook Dr and Powhatan St",
+            "lat": 38.9655375,
+            "lon": -76.8730066,
+            "time": 93.9
+          },
+          "westlamo": {
+            "title": "Westbrook Dr and Lamont Dr",
+            "lat": 38.9658,
+            "lon": -76.8802797,
+            "time": 34.8
+          },
+          "lamolarc": {
+            "title": "Lamont Dr and Larchwood St",
+            "lat": 38.9678768,
+            "lon": -76.8798726,
+            "time": 25.0
+          },
+          "lamocarr": {
+            "title": "Lamont Dr and Carrollton Pkwy",
+            "lat": 38.9693724,
+            "lon": -76.8801133,
+            "time": 42.0
+          },
+          "lamoquen": {
+            "title": "Lamont Dr and Quentin St",
+            "lat": 38.9718528,
+            "lon": -76.8807906,
+            "time": 49.9
+          },
+          "lamodono": {
+            "title": "Lamont Dr and Donoghue Dr",
+            "lat": 38.9746629,
+            "lon": -76.8821712,
+            "time": 22.6
+          },
+          "lamoelem": {
+            "title": "Good Luck Rd at Lamont Elementary School",
+            "lat": 38.97497,
+            "lon": -76.8838799,
+            "time": 32.9
+          },
+          "gdlknash": {
+            "title": "Good Luck Rd and Nashville Rd",
+            "lat": 38.9746889,
+            "lon": -76.8864035,
+            "time": 72.3
+          },
+          "gdlkian": {
+            "title": "Good Luck Rd and Ian St",
+            "lat": 38.9725315,
+            "lon": -76.8912732,
+            "time": 36.8
+          },
+          "aubuches": {
+            "title": "Auburn Ave and Chestnut Ave",
+            "lat": 38.9714872,
+            "lon": -76.893795,
+            "time": 41.3
+          },
+          "aubu3rd": {
+            "title": "Auburn Ave and 3rd St",
+            "lat": 38.9691259,
+            "lon": -76.8948129,
+            "time": 49.3
+          },
+          "aubu1st": {
+            "title": "Auburn Ave and 1st St",
+            "lat": 38.96631,
+            "lon": -76.8960399,
+            "time": 22.5
+          },
+          "auburive": {
+            "title": "Auburn Ave and Riverdale Rd",
+            "lat": 38.9650301,
+            "lon": -76.8966299,
+            "time": 19.1
+          },
+          "wildshop": {
+            "title": "Riverdale Rd at Wildercroft Shopping Center",
+            "lat": 38.9644101,
+            "lon": -76.8978744,
+            "time": 71.6
+          },
+          "rive67ct": {
+            "title": "Riverdale Rd and 67th Ct",
+            "lat": 38.9618134,
+            "lon": -76.9023121,
+            "time": 66.4
+          },
+          "rive64th": {
+            "title": "Riverdale Rd and 64th Ave",
+            "lat": 38.9612295,
+            "lon": -76.907408,
+            "time": 59.9
+          },
+          "rive62nd_in": {
+            "title": "Riverdale Rd and 62nd Place",
+            "lat": 38.9607608,
+            "lon": -76.9120177,
+            "time": 48.2
+          },
+          "rive58th": {
+            "title": "Riverdale Rd at St Jude Lutheran Church",
+            "lat": 38.9601372,
+            "lon": -76.915671,
+            "time": 176.5
+          },
+          "ewhwtayl_in": {
+            "title": "East-West Hwy and Taylor Rd (Inbound)",
+            "lat": 38.9624905,
+            "lon": -76.9290223,
+            "time": 137.2
+          },
+          "baltsher": {
+            "title": "Baltimore Ave and Sheridan St",
+            "lat": 38.9657284,
+            "lon": -76.9388188,
+            "time": 43.1
+          },
+          "ngarmo": {
+            "title": "Baltimore Ave at National Guard Armory",
+            "lat": 38.9683105,
+            "lon": -76.9384612,
+            "time": 23.2
+          },
+          "baltrive_in": {
+            "title": "Baltimore Avenue at Riverdale Park Station (Inbound)",
+            "lat": 38.9697021,
+            "lon": -76.9382695,
+            "time": 52.5
+          },
+          "baltamhe": {
+            "title": "Baltimore Ave and Amherst Rd",
+            "lat": 38.9728518,
+            "lon": -76.937862,
+            "time": 109.2
+          },
+          "hartshop": {
+            "title": "Baltimore Avenue and Hartwick Road (Inbound)",
+            "lat": 38.97944,
+            "lon": -76.93783,
+            "time": 53.4
+          },
+          "mont_in": {
+            "title": "Montgomery Hall (Inbound)",
+            "lat": 38.9824955,
+            "lon": -76.9391275,
+            "time": 36.0
+          },
+          "memo_in": {
+            "title": "Memorial Chapel (Inbound)",
+            "lat": 38.9845403,
+            "lon": -76.94007,
+            "time": 30.3
+          },
+          "mitc_in": {
+            "title": "Mitchell Building (Inbound)",
+            "lat": 38.9863659,
+            "lon": -76.9401199,
+            "time": 1057.1
+          }
+        }
+      }
+    }
+  },
+  "127": {
+    "directions": {
+      "regegara": {
+        "title": "Glenn L. Martin Wind Tunnel",
+        "stops": {
+          "baltberw_s": {
+            "title": "Baltimore Ave and Berwyn Rd (Inbound)",
+            "lat": 38.996407,
+            "lon": -76.931829,
+            "time": 30.3
+          },
+          "baltqueb_in": {
+            "title": "Baltimore Ave and Quebec St (Inbound)",
+            "lat": 38.9946243,
+            "lon": -76.932356,
+            "time": 66.4
+          },
+          "varsfron": {
+            "title": "Baltimore Ave at The Varsity",
+            "lat": 38.9908311,
+            "lon": -76.9340076,
+            "time": 44.2
+          },
+          "painstad_r": {
+            "title": "Glenn L. Martin Wind Tunnel",
+            "lat": 38.9899585,
+            "lon": -76.9372506,
+            "time": 127.7
+          }
+        }
+      },
+      "mazz": {
+        "title": "Mazza GrandMarc",
+        "stops": {
+          "regegara_d": {
+            "title": "Regents Drive Garage",
+            "lat": 38.9895254,
+            "lon": -76.94075,
+            "time": 39.1
+          },
+          "campmath_m": {
+            "title": "Campus Dr at Math Slip",
+            "lat": 38.9878607,
+            "lon": -76.9386064,
+            "time": 102.5
+          },
+          "baltmacd": {
+            "title": "Baltimore Avenue and Berwyn House Road",
+            "lat": 38.9923857,
+            "lon": -76.9331919,
+            "time": 38.9
+          },
+          "baltqueb_out": {
+            "title": "Baltimore Ave and Quebec St(Outbound)",
+            "lat": 38.9946079,
+            "lon": -76.9322248,
+            "time": 47.5
+          },
+          "balttecu": {
+            "title": "Baltimore Avenue and Tecumseh Street",
+            "lat": 38.9974284,
+            "lon": -76.9315668,
+            "time": 105.2
+          },
+          "rhoduniv": {
+            "title": "Rhode Island Avenue and University Boulevard (Outbound)",
+            "lat": 39.0009848,
+            "lon": -76.92481,
+            "time": 23.8
+          },
+          "rhodcher": {
+            "title": "Rhode Island Avenue and Cherokee Street (Outbound)",
+            "lat": 39.0023911,
+            "lon": -76.9244429,
+            "time": 60.7
+          },
+          "rhodfox": {
+            "title": "Rhode Island Avenue and Fox Street (Outbound)",
+            "lat": 39.0059745,
+            "lon": -76.9235001,
+            "time": 83.4
+          },
+          "rhodholl": {
+            "title": "Rhode Island Avenue and Hollywood Road (Outbound)",
+            "lat": 39.0108965,
+            "lon": -76.9221691,
+            "time": 49.8
+          },
+          "rhodshop": {
+            "title": "Rhode Island Avenue at Hollywood Shopping Center",
+            "lat": 39.0138375,
+            "lon": -76.9213841,
+            "time": 37.6
+          },
+          "edgerhod": {
+            "title": "Edgewood Road and Rhode Island Avenue (Outbound)",
+            "lat": 39.0161019,
+            "lon": -76.9214156,
+            "time": 37.9
+          },
+          "edge49th": {
+            "title": "Edgewood Road and 49th Avenue (Outbound)",
+            "lat": 39.0160649,
+            "lon": -76.924355,
+            "time": 109.9
+          },
+          "mazz": {
+            "title": "Mazza GrandMarc",
+            "lat": 39.0111215,
+            "lon": -76.9300394,
+            "time": 383.8
+          }
+        }
+      }
+    }
+  },
+  "128": {
+    "directions": {
+      "stamsu": {
+        "title": "Campus Dr at M Circle",
+        "stops": {
+          "baltberw_s": {
+            "title": "Baltimore Ave and Berwyn Rd (Inbound)",
+            "lat": 38.996407,
+            "lon": -76.931829,
+            "time": 30.3
+          },
+          "baltqueb_in": {
+            "title": "Baltimore Ave and Quebec St (Inbound)",
+            "lat": 38.9946243,
+            "lon": -76.932356,
+            "time": 66.4
+          },
+          "baltvars": {
+            "title": "Baltimore Ave at The Varsity",
+            "lat": 38.9908313,
+            "lon": -76.9340075,
+            "time": 87.7
+          },
+          "mcirc_s": {
+            "title": "Campus Dr at M Circle",
+            "lat": 38.9877034,
+            "lon": -76.9394934,
+            "time": 174.9
+          }
+        }
+      },
+      "enclave": {
+        "title": "The Enclave",
+        "stops": {
+          "stamsuhh_d": {
+            "title": "Stamp Student Union - Slip",
+            "lat": 38.9874519,
+            "lon": -76.9440396,
+            "time": 53.2
+          },
+          "lot1": {
+            "title": "Union Dr at Lot 1b",
+            "lat": 38.9872099,
+            "lon": -76.9481576,
+            "time": 52.7
+          },
+          "cspac": {
+            "title": "Valley Drive at Stadium Drive Garage",
+            "lat": 38.9902373,
+            "lon": -76.9494,
+            "time": 29.6
+          },
+          "dent_e": {
+            "title": "Denton Hall",
+            "lat": 38.9919412,
+            "lon": -76.9500943,
+            "time": 254.9
+          },
+          "enclave_s": {
+            "title": "The Enclave",
+            "lat": 38.99782,
+            "lon": -76.93182,
+            "time": 233.2
+          }
+        }
+      }
+    }
+  },
+  "131": {
+    "directions": {
+      "stamsu": {
+        "title": "Campus Dr at M Circle",
+        "stops": {
+          "enclave_s": {
+            "title": "The Enclave",
+            "lat": 38.99782,
+            "lon": -76.93182,
+            "time": 23.4
+          },
+          "baltberw_s": {
+            "title": "Baltimore Ave and Berwyn Rd (Inbound)",
+            "lat": 38.996407,
+            "lon": -76.931829,
+            "time": 30.3
+          },
+          "baltqueb_in": {
+            "title": "Baltimore Ave and Quebec St (Inbound)",
+            "lat": 38.9946243,
+            "lon": -76.932356,
+            "time": 66.4
+          },
+          "vars": {
+            "title": "Baltimore Ave at The Varsity",
+            "lat": 38.9908313,
+            "lon": -76.9340075,
+            "time": 88.0
+          },
+          "mcirc": {
+            "title": "Campus Dr at M Circle",
+            "lat": 38.987699,
+            "lon": -76.9395199,
+            "time": 195.0
+          }
+        }
+      },
+      "mazz": {
+        "title": "Mazza GrandMarc",
+        "stops": {
+          "stamsuhh_d": {
+            "title": "Stamp Student Union - Slip",
+            "lat": 38.9874519,
+            "lon": -76.9440396,
+            "time": 20.2
+          },
+          "hoff": {
+            "title": "Hoff Theater",
+            "lat": 38.9880692,
+            "lon": -76.94539,
+            "time": 10.4
+          },
+          "uniofiel": {
+            "title": "Union Ln and Fieldhouse Dr",
+            "lat": 38.9886932,
+            "lon": -76.9453067,
+            "time": 42.3
+          },
+          "biofield": {
+            "title": "BioSciences Research Building",
+            "lat": 38.9892576,
+            "lon": -76.9421089,
+            "time": 49.8
+          },
+          "mitc_out": {
+            "title": "Mitchell Building (Outbound)",
+            "lat": 38.9866498,
+            "lon": -76.9401999,
+            "time": 30.3
+          },
+          "memo_out": {
+            "title": "Memorial Chapel (Outbound)",
+            "lat": 38.9848206,
+            "lon": -76.94015,
+            "time": 41.7
+          },
+          "mont_out": {
+            "title": "Montgomery Hall (Outbound)",
+            "lat": 38.9824312,
+            "lon": -76.9391529,
+            "time": 54.1
+          },
+          "baltritc": {
+            "title": "Ritchie Coliseum",
+            "lat": 38.9852774,
+            "lon": -76.9370967,
+            "time": 128.2
+          },
+          "baltmacd": {
+            "title": "Baltimore Avenue and Berwyn House Road",
+            "lat": 38.9923857,
+            "lon": -76.9331919,
+            "time": 38.9
+          },
+          "baltqueb_out": {
+            "title": "Baltimore Ave and Quebec St(Outbound)",
+            "lat": 38.9946079,
+            "lon": -76.9322248,
+            "time": 47.5
+          },
+          "balttecu": {
+            "title": "Baltimore Avenue and Tecumseh Street",
+            "lat": 38.9974284,
+            "lon": -76.9315668,
+            "time": 105.2
+          },
+          "rhoduniv": {
+            "title": "Rhode Island Avenue and University Boulevard (Outbound)",
+            "lat": 39.0009848,
+            "lon": -76.92481,
+            "time": 23.8
+          },
+          "rhodcher": {
+            "title": "Rhode Island Avenue and Cherokee Street (Outbound)",
+            "lat": 39.0023911,
+            "lon": -76.9244429,
+            "time": 60.7
+          },
+          "rhodfox": {
+            "title": "Rhode Island Avenue and Fox Street (Outbound)",
+            "lat": 39.0059745,
+            "lon": -76.9235001,
+            "time": 83.4
+          },
+          "rhodholl": {
+            "title": "Rhode Island Avenue and Hollywood Road (Outbound)",
+            "lat": 39.0108965,
+            "lon": -76.9221691,
+            "time": 49.8
+          },
+          "rhodshop": {
+            "title": "Rhode Island Avenue at Hollywood Shopping Center",
+            "lat": 39.0138375,
+            "lon": -76.9213841,
+            "time": 37.6
+          },
+          "edgerhod": {
+            "title": "Edgewood Road and Rhode Island Avenue (Outbound)",
+            "lat": 39.0161019,
+            "lon": -76.9214156,
+            "time": 37.9
+          },
+          "edge49th": {
+            "title": "Edgewood Road and 49th Avenue (Outbound)",
+            "lat": 39.0160649,
+            "lon": -76.924355,
+            "time": 109.9
+          },
+          "mazz": {
+            "title": "Mazza GrandMarc",
+            "lat": 39.0111215,
+            "lon": -76.9300394,
+            "time": 432.0
+          }
+        }
+      }
+    }
+  },
+  "132": {
+    "directions": {
+      "loop": {
+        "title": "Campus Dr at M Circle",
+        "stops": {
+          "stamsuhh_d": {
+            "title": "Stamp Student Union - Slip",
+            "lat": 38.9874519,
+            "lon": -76.9440396,
+            "time": 50.2
+          },
+          "artsoci": {
+            "title": "Art/Sociology Building",
+            "lat": 38.98529,
+            "lon": -76.94677,
+            "time": 32.9
+          },
+          "wico": {
+            "title": "Wicomico Hall",
+            "lat": 38.98375,
+            "lon": -76.94516,
+            "time": 26.1
+          },
+          "lotu4": {
+            "title": "Preinkert Drive at Lot MV",
+            "lat": 38.9821893,
+            "lon": -76.944884,
+            "time": 78.2
+          },
+          "collpksh": {
+            "title": "College Park Shopping Ctr (Outbound)",
+            "lat": 38.9809619,
+            "lon": -76.9390277,
+            "time": 75.8
+          },
+          "baltritc": {
+            "title": "Ritchie Coliseum",
+            "lat": 38.9852774,
+            "lon": -76.9370967,
+            "time": 129.5
+          },
+          "univclub": {
+            "title": "University Club Apartments",
+            "lat": 38.9906518,
+            "lon": -76.9298057,
+            "time": 54.2
+          },
+          "baltvars": {
+            "title": "Baltimore Ave at The Varsity",
+            "lat": 38.9908313,
+            "lon": -76.9340075,
+            "time": 88.0
+          },
+          "mcirc": {
+            "title": "Campus Dr at M Circle",
+            "lat": 38.987699,
+            "lon": -76.9395199,
+            "time": 58.4
+          }
+        }
+      }
+    }
+  },
+  "133": {
+    "directions": {
+      "regegara": {
+        "title": "Stadium Drive at Atlantic Building",
+        "stops": {
+          "baltsher": {
+            "title": "Baltimore Ave and Sheridan St",
+            "lat": 38.9657284,
+            "lon": -76.9388188,
+            "time": 43.1
+          },
+          "ngarmo": {
+            "title": "Baltimore Ave at National Guard Armory",
+            "lat": 38.9683105,
+            "lon": -76.9384612,
+            "time": 23.2
+          },
+          "baltrive_in": {
+            "title": "Baltimore Avenue at Riverdale Park Station (Inbound)",
+            "lat": 38.9697021,
+            "lon": -76.9382695,
+            "time": 52.5
+          },
+          "baltamhe": {
+            "title": "Baltimore Ave and Amherst Rd",
+            "lat": 38.9728518,
+            "lon": -76.937862,
+            "time": 89.3
+          },
+          "guilrowa_in": {
+            "title": "Guilford Drive and Rowalt Drive (Inbound)",
+            "lat": 38.9781553,
+            "lon": -76.9390836,
+            "time": 101.4
+          },
+          "sccomm5_6": {
+            "title": "South Campus Commons 5 and 6",
+            "lat": 38.9823229,
+            "lon": -76.9448437,
+            "time": 32.3
+          },
+          "lota": {
+            "title": "Preinkert Drive at Lot A",
+            "lat": 38.9842509,
+            "lon": -76.9451946,
+            "time": 11.6
+          },
+          "somehall": {
+            "title": "Somerset Hall",
+            "lat": 38.9847538,
+            "lon": -76.9458235,
+            "time": 24.5
+          },
+          "annearun": {
+            "title": "Anne Arundel Hall",
+            "lat": 38.9859448,
+            "lon": -76.9469495,
+            "time": 17.8
+          },
+          "dorchall": {
+            "title": "Dorchester Hall",
+            "lat": 38.9869691,
+            "lon": -76.9465401,
+            "time": 21.2
+          },
+          "lot1": {
+            "title": "Union Dr at Lot 1b",
+            "lat": 38.9872099,
+            "lon": -76.9481576,
+            "time": 52.7
+          },
+          "cspac": {
+            "title": "Valley Drive at Stadium Drive Garage",
+            "lat": 38.9902373,
+            "lon": -76.9494,
+            "time": 37.6
+          },
+          "elk": {
+            "title": "Elkton Hall",
+            "lat": 38.9924177,
+            "lon": -76.9485888,
+            "time": 15.7
+          },
+          "hage_in": {
+            "title": "Hagerstown Hall (Inbound)",
+            "lat": 38.99297,
+            "lon": -76.9475987,
+            "time": 28.3
+          },
+          "laplat_in": {
+            "title": "La Plata Hall (Inbound)",
+            "lat": 38.9922184,
+            "lon": -76.94563,
+            "time": 26.9
+          },
+          "varhous": {
+            "title": "Varsity Team House",
+            "lat": 38.9906039,
+            "lon": -76.9454355,
+            "time": 42.8
+          },
+          "stadatl": {
+            "title": "Stadium Drive at Atlantic Building",
+            "lat": 38.9905589,
+            "lon": -76.9421162,
+            "time": 413.9
+          }
+        }
+      },
+      "targ": {
+        "title": "The Mall at Prince George's",
+        "stops": {
+          "regegara_d": {
+            "title": "Regents Drive Garage",
+            "lat": 38.9895254,
+            "lon": -76.94075,
+            "time": 8.2
+          },
+          "regestad": {
+            "title": "Regents Dr and Stadium Dr",
+            "lat": 38.990012,
+            "lon": -76.9406498,
+            "time": 79.4
+          },
+          "laplat_out": {
+            "title": "La Plata Hall (Outbound)",
+            "lat": 38.9928692,
+            "lon": -76.945597,
+            "time": 27.3
+          },
+          "hage_out": {
+            "title": "Hagerstown Hall (Outbound)",
+            "lat": 38.9930112,
+            "lon": -76.9477048,
+            "time": 14.6
+          },
+          "elkton_out": {
+            "title": "Elkton Hall (Outbound)",
+            "lat": 38.992501,
+            "lon": -76.9486289,
+            "time": 39.1
+          },
+          "vallstad": {
+            "title": "Valley Drive at Stadium Drive Garage (Outbound)",
+            "lat": 38.9902296,
+            "lon": -76.949457,
+            "time": 59.0
+          },
+          "benj": {
+            "title": "Benjamin Building",
+            "lat": 38.987176,
+            "lon": -76.9471001,
+            "time": 31.6
+          },
+          "artsoci": {
+            "title": "Art/Sociology Building",
+            "lat": 38.98529,
+            "lon": -76.94677,
+            "time": 32.9
+          },
+          "wico": {
+            "title": "Wicomico Hall",
+            "lat": 38.98375,
+            "lon": -76.94516,
+            "time": 26.1
+          },
+          "lotu4": {
+            "title": "Preinkert Drive at Lot MV",
+            "lat": 38.9821893,
+            "lon": -76.944884,
+            "time": 96.4
+          },
+          "guilrowa": {
+            "title": "Guilford Drive and Rowalt Drive (Outbound)",
+            "lat": 38.978183,
+            "lon": -76.939469,
+            "time": 96.0
+          },
+          "univpkth": {
+            "title": "Baltimore Ave at University Park Town Hall",
+            "lat": 38.9725018,
+            "lon": -76.9380183,
+            "time": 43.1
+          },
+          "baltrive_out": {
+            "title": "Baltimore Avenue at Riverdale Park Station (Outbound)",
+            "lat": 38.9699162,
+            "lon": -76.9383656,
+            "time": 21.8
+          },
+          "baltunde": {
+            "title": "Baltimore Ave and Underwood St",
+            "lat": 38.9686098,
+            "lon": -76.9385684,
+            "time": 177.0
+          },
+          "amersafe": {
+            "title": "America Boulevard at Safeway",
+            "lat": 38.9674013,
+            "lon": -76.9522059,
+            "time": 25.3
+          },
+          "amerregal": {
+            "title": "America Boulevard at Regal Cinemas Hyattsville",
+            "lat": 38.9689219,
+            "lon": -76.952074,
+            "time": 22.6
+          },
+          "tolebelc": {
+            "title": "Toledo and Belcrest Rd (Outbound)",
+            "lat": 38.96991,
+            "lon": -76.9532842,
+            "time": 30.4
+          },
+          "targ": {
+            "title": "The Mall at Prince George's",
+            "lat": 38.96821,
+            "lon": -76.95417,
+            "time": 393.5
+          }
+        }
+      }
+    }
+  },
+  "140": {
+    "directions": {
+      "balt": {
+        "title": "Baltimore St & Paca St",
+        "stops": {
+          "stamsuhh_d": {
+            "title": "Stamp Student Union - Slip",
+            "lat": 38.9874519,
+            "lon": -76.9440396,
+            "time": 96.8
+          },
+          "painglen_ob": {
+            "title": "Glenn L. Martin Wind Tunnel",
+            "lat": 38.98995,
+            "lon": -76.93725,
+            "time": 6412.9
+          },
+          "baltpaca": {
+            "title": "Baltimore St & Paca St",
+            "lat": 39.2897837,
+            "lon": -76.6223289,
+            "time": 6500.4
+          }
+        }
+      }
+    }
+  },
+  "143": {
+    "directions": {
+      "regegara": {
+        "title": "Varsity Team House",
+        "stops": {
+          "greegreei_ib": {
+            "title": "Greenbelt Rd at Greenway Center (Inbound)",
+            "lat": 38.9942301,
+            "lon": -76.8770008,
+            "time": 128.0
+          },
+          "lakegree_ib": {
+            "title": "Lakecrest Drive and Greenbelt Road (Inbound)",
+            "lat": 38.9960957,
+            "lon": -76.8866386,
+            "time": 29.1
+          },
+          "lakelake_ib": {
+            "title": "Lakecrest Dr and Lakeside Dr",
+            "lat": 38.9978001,
+            "lon": -76.886087,
+            "time": 20.5
+          },
+          "lakewest_ib": {
+            "title": "Lakeside Dr and Westway (Inbound)",
+            "lat": 38.9986079,
+            "lon": -76.8848814,
+            "time": 40.5
+          },
+          "westridg_ib": {
+            "title": "Westway and Ridge Rd (Inbound)",
+            "lat": 38.9995338,
+            "lon": -76.8819761,
+            "time": 68.8
+          },
+          "ridgsout_ib": {
+            "title": "Ridge Rd and Southway",
+            "lat": 38.9986295,
+            "lon": -76.8767675,
+            "time": 59.4
+          },
+          "ridggard_ib": {
+            "title": "Ridge Rd and Gardenway (Inbound)",
+            "lat": 39.0006214,
+            "lon": -76.8729368,
+            "time": 70.9
+          },
+          "ridgeast_ib": {
+            "title": "Ridge Rd and Eastway (Inbound)",
+            "lat": 39.0048962,
+            "lon": -76.8727822,
+            "time": 72.3
+          },
+          "ridgplat_ib": {
+            "title": "Ridge Rd and Plateau Pl (Inbound)",
+            "lat": 39.0092352,
+            "lon": -76.8733011,
+            "time": 70.3
+          },
+          "ridgrese_ib": {
+            "title": "Ridge Rd and Research Rd (Inbound)",
+            "lat": 39.0113699,
+            "lon": -76.8780186,
+            "time": 101.5
+          },
+          "lastjuli_ib": {
+            "title": "Lastner Ln and Julian Ct (Inbound)",
+            "lat": 39.0090903,
+            "lon": -76.8853262,
+            "time": 51.1
+          },
+          "lastivy_ib": {
+            "title": "Lastner Ln and Ivy Ln",
+            "lat": 39.0075078,
+            "lon": -76.8887266,
+            "time": 24.8
+          },
+          "ivyridg_ib": {
+            "title": "Ivy Ln and Ridge Rd",
+            "lat": 39.0077479,
+            "lon": -76.8906287,
+            "time": 343.2
+          },
+          "westpark_ib": {
+            "title": "Westchester Park Circle",
+            "lat": 38.9899967,
+            "lon": -76.9043145,
+            "time": 47.0
+          },
+          "pont63rd_ib": {
+            "title": "Pontiac St and 63rd Ave (Inbound)",
+            "lat": 38.9910473,
+            "lon": -76.9076994,
+            "time": 70.2
+          },
+          "pontcunn_ib": {
+            "title": "Pontiac St and Cunningham Dr",
+            "lat": 38.9922585,
+            "lon": -76.9129185,
+            "time": 43.8
+          },
+          "ruat60th_ib": {
+            "title": "60th Ave and Ruatan St (Inbound)",
+            "lat": 38.9946237,
+            "lon": -76.9114003,
+            "time": 44.4
+          },
+          "gree60th_ib": {
+            "title": "60th Ave and Greenbelt Rd (Inbound)",
+            "lat": 38.9972712,
+            "lon": -76.9119102,
+            "time": 84.9
+          },
+          "greestat_ib": {
+            "title": "Greenbelt Road and Greenbelt Station Parkway (Inbound)",
+            "lat": 38.9981455,
+            "lon": -76.918404,
+            "time": 90.7
+          },
+          "greerhod_ib": {
+            "title": "Greenbelt Rd at Severn Building (Inbound)",
+            "lat": 38.9982133,
+            "lon": -76.9254433,
+            "time": 337.0
+          },
+          "cspa_main": {
+            "title": "Stadium Drive and University Boulevard",
+            "lat": 38.991756,
+            "lon": -76.950237,
+            "time": 34.7
+          },
+          "stadgara": {
+            "title": "Stadium Drive Garage",
+            "lat": 38.9917469,
+            "lon": -76.9475442,
+            "time": 33.5
+          },
+          "stadvtho": {
+            "title": "Varsity Team House",
+            "lat": 38.9906015,
+            "lon": -76.9454061,
+            "time": 883.7
+          }
+        }
+      },
+      "greegree_ob": {
+        "title": "Hanover Pkwy and Greenbelt Rd",
+        "stops": {
+          "regegara_d": {
+            "title": "Regents Drive Garage",
+            "lat": 38.9895254,
+            "lon": -76.94075,
+            "time": 52.0
+          },
+          "stamsu_d": {
+            "title": "Stamp Student Union - Slip",
+            "lat": 38.9876099,
+            "lon": -76.9439449,
+            "time": 54.7
+          },
+          "lot1": {
+            "title": "Union Dr at Lot 1b",
+            "lat": 38.9872099,
+            "lon": -76.9481576,
+            "time": 52.7
+          },
+          "cspac": {
+            "title": "Valley Drive at Stadium Drive Garage",
+            "lat": 38.9902373,
+            "lon": -76.9494,
+            "time": 29.6
+          },
+          "dent_e": {
+            "title": "Denton Hall",
+            "lat": 38.9919412,
+            "lon": -76.9500943,
+            "time": 345.8
+          },
+          "greeseve_ob": {
+            "title": "Greenbelt Rd at Severn Building (Outbound)",
+            "lat": 38.99809,
+            "lon": -76.9244527,
+            "time": 78.4
+          },
+          "greestat_ob": {
+            "title": "Greenbelt Road and Greenbelt Station Parkway (Outbound)",
+            "lat": 38.9980441,
+            "lon": -76.9183707,
+            "time": 73.4
+          },
+          "gree60th_ob": {
+            "title": "Greenbelt Rd and 60th Ave",
+            "lat": 38.9979499,
+            "lon": -76.9126796,
+            "time": 13.7
+          },
+          "60thgree_ob": {
+            "title": "60th Ave and Greenbelt Rd (Outbound)",
+            "lat": 38.9973235,
+            "lon": -76.911988,
+            "time": 42.4
+          },
+          "60thruat_ob": {
+            "title": "60th Ave and Ruatan St (Outbound)",
+            "lat": 38.9947933,
+            "lon": -76.9115234,
+            "time": 44.8
+          },
+          "cunnpont": {
+            "title": "Cunningham Dr and Pontiac St",
+            "lat": 38.9923653,
+            "lon": -76.9130547,
+            "time": 68.3
+          },
+          "pont63rd_ob": {
+            "title": "Pontiac St and 63rd Ave (Outbound)",
+            "lat": 38.9910682,
+            "lon": -76.9080273,
+            "time": 51.0
+          },
+          "westpark_ob": {
+            "title": "Westchester Park Circle",
+            "lat": 38.9899966,
+            "lon": -76.9043144,
+            "time": 340.6
+          },
+          "ridgivy_ob": {
+            "title": "Ridge Road and Ivy Lane",
+            "lat": 39.0076373,
+            "lon": -76.8907826,
+            "time": 24.0
+          },
+          "ivylast_ob": {
+            "title": "Ivy Lane and Lastner Lane",
+            "lat": 39.0074111,
+            "lon": -76.8889441,
+            "time": 50.9
+          },
+          "lastjuli_ob": {
+            "title": "Lastner Lane and Julian Court (Outbound)",
+            "lat": 39.009003,
+            "lon": -76.8855675,
+            "time": 99.5
+          },
+          "ridgrese_ob": {
+            "title": "Ridge Road and Research Road (Outbound)",
+            "lat": 39.0113012,
+            "lon": -76.8784344,
+            "time": 74.4
+          },
+          "ridgplat_ob": {
+            "title": "Ridge Road and Plateau Place (Outbound)",
+            "lat": 39.0090892,
+            "lon": -76.8734108,
+            "time": 66.9
+          },
+          "ridgeast_ob": {
+            "title": "Ridge Road and Eastway (Outbound)",
+            "lat": 39.0050668,
+            "lon": -76.8729771,
+            "time": 70.6
+          },
+          "ridggard_ob": {
+            "title": "Ridge Road and Gardenway (Outbound)",
+            "lat": 39.0008081,
+            "lon": -76.8729202,
+            "time": 36.1
+          },
+          "ridggrid": {
+            "title": "Ridge Road at Green Ridge House Apartments",
+            "lat": 38.9992112,
+            "lon": -76.874829,
+            "time": 94.9
+          },
+          "westridg_ob": {
+            "title": "Westway and Ridge Road (Outbound)",
+            "lat": 38.9994685,
+            "lon": -76.8821864,
+            "time": 40.2
+          },
+          "lakewest_ob": {
+            "title": "Lakeside Drive and Westway (Outbound)",
+            "lat": 38.9985222,
+            "lon": -76.8850616,
+            "time": 46.6
+          },
+          "lakegree_ob": {
+            "title": "Lakecrest Drive and Greenbelt Road (Outbound)",
+            "lat": 38.9960411,
+            "lon": -76.886761,
+            "time": 124.0
+          },
+          "greegree_ob": {
+            "title": "Greenbelt Rd at Greenway Center (Outbound)",
+            "lat": 38.9939788,
+            "lon": -76.8775104,
+            "time": 53.3
+          },
+          "oraghano_ob": {
+            "title": "Ora Glen Dr and Hanover Pkwy",
+            "lat": 38.99108,
+            "lon": -76.8757162,
+            "time": 66.1
+          },
+          "oraggree_ob": {
+            "title": "Ora Glen Dr and Greenbrook Dr",
+            "lat": 38.9902385,
+            "lon": -76.870705,
+            "time": 47.2
+          },
+          "oragmorr": {
+            "title": "Ora Glen Drive and Morrison Drive",
+            "lat": 38.9892076,
+            "lon": -76.8672934,
+            "time": 42.6
+          },
+          "mandcann_ob": {
+            "title": "Mandan Rd and Canning Terr",
+            "lat": 38.9904441,
+            "lon": -76.8643979,
+            "time": 37.0
+          },
+          "mandgoak_d": {
+            "title": "Mandan Rd at Glen Oaks Apartments",
+            "lat": 38.992671,
+            "lon": -76.864278,
+            "time": 88.1
+          },
+          "mandhano_ib": {
+            "title": "Mandan Rd and Hanover Pkwy",
+            "lat": 38.9979006,
+            "lon": -76.8654631,
+            "time": 69.1
+          },
+          "hanoelea_ib": {
+            "title": "Hanover Pkwy at Eleanor Roosevelt High School",
+            "lat": 38.9965594,
+            "lon": -76.8705396,
+            "time": 53.2
+          },
+          "hanogree_ib": {
+            "title": "Hanover Pkwy and Greenbelt Rd",
+            "lat": 38.9948379,
+            "lon": -76.8740241,
+            "time": 864.5
+          }
+        }
+      }
+    }
+  }
+}
