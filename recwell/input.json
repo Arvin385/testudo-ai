@@ -1,0 +1,19 @@
+{
+  "schedule": [
+    {
+      "name": "Intro to CS",
+      "start_time": "09:00",
+      "end_time": "10:15",
+      "days": "Mon/Wed/Fri",
+      "location": "IRB Building"
+    }
+  ],
+  "student_profile": {
+    "experience_level": "Intermediate",
+    "fitness_goal": "Muscle gain",
+    "location_or_housing": "",
+    "transport": "",
+    "duration_preference": 45,
+    "time_preference": "late"
+  }
+}
