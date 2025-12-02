@@ -1,3 +1,4 @@
 .env
 venv
 testudo_data.db
+*.pyc
