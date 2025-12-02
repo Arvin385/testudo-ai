@@ -99,51 +99,6 @@ def query_gemini(prompt_text: str) -> str:
     text_output = response.text.strip()
     return text_output
 
-def plan(user_query: str, agent_chat: str = None) -> tuple[list[dict], str]:
-    """
-    build prompt using EXACT SAME TEXT you had before
-    call Gemini
-    parse output
-    return dict
-    """
-    tool_descriptions = "\n".join(
-        [f"- {t['spec']['name']}: {t['spec']['description']}" for t in tool_registry.values()]
-    )
-
-    # System prompt for gemini
-    prompt = (
-        f"You are an AI agent planner. "
-        f"The user gave the query: '{user_query}'.\n"
-        f"Available tools:\n{tool_descriptions}\n"
-        f"Return a JSON object with a key 'plan'. "
-        f"'plan' must be a list of one or more steps. Each step is an object with keys 'tool' and 'params'. "
-        f"'tool' must be one of the available tool names, and 'params' must contain all required parameters. "
-        f"If the user asks for multiple actions, include multiple steps in the plan in logical order."
-        f"Feed all your jsons in between three ticks: ```{{json}}```"
-        f"Make sure parameter names exactly match the tool specifications (for example, 'a' and 'b' for add_numbers).\n"
-        f"And if you NO LONGER need to use tools to answer the user's question, type END TOOLING in all caps."
-    )
-    
-    if (agent_chat is None):
-        agent_chat = prompt
-        
-    gemini_output = _call_gemini_raw(agent_chat)
-
-    # print("HERE'S THE AGENT CHAT: " + agent_chat)
-    # print("========================AGENT-CHAT========================")
-    # print(agent_chat)
-    # print("======================GEMINI-OUTPUT=======================")
-    # print(gemini_output)
-    # print("==========================================================")
-    # print("Here's my raw output: " + gemini_output)
-    # --- Simple cleanup ---
-    plan_data = extract_json_objects(gemini_output)
-    # print("Here's the plan: " + str(plan_data))
-
-    return plan_data, prompt + "\n\n You callled upon these tool(s): \n" + gemini_output
-
-
-
 def new_plan(messages: list[dict]):
     """
     build plan based on prior conversation
