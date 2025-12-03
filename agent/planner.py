@@ -3,7 +3,7 @@
 import os
 import json
 from tools import tool_registry
-from google import genai
+import google.genai as genai
 from pydantic import BaseModel, Field
 from typing import Dict
 from dotenv import load_dotenv

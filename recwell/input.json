@@ -1,45 +1,9 @@
 {
-  "schedule": [
-    {
-      "name": "Calculus I",
-      "start_time": "08:00",
-      "end_time": "09:15",
-      "days": "Tue/Thu",
-      "location": "Math Building 204"
-    },
-    {
-      "name": "General Chemistry",
-      "start_time": "09:30",
-      "end_time": "10:45",
-      "days": "Mon/Wed/Fri",
-      "location": "Science Hall 110"
-    },
-    {
-      "name": "World History",
-      "start_time": "11:00",
-      "end_time": "12:15",
-      "days": "Tue/Thu",
-      "location": "Humanities Center 301"
-    },
-    {
-      "name": "Intro to Computer Science",
-      "start_time": "13:00",
-      "end_time": "14:15",
-      "days": "Mon/Wed/Fri",
-      "location": "IRB Building 102"
-    },
-    {
-      "name": "English Composition",
-      "start_time": "15:00",
-      "end_time": "16:15",
-      "days": "Mon/Wed",
-      "location": "Liberal Arts 215"
-    }
-  ],
+  "schedule": "[]",
   "student_profile": {
-    "experience_level": "Intermediate",
-    "fitness_goal": "Muscle gain",
-    "duration_preference": 45,
+    "experience_level": "advanced",
+    "fitness_goal": "become a better soccer player",
+    "duration_preference": "45",
     "time_preference": "late"
   }
 }

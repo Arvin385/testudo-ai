@@ -129,3 +129,117 @@ they can toggle to the next avaiable time; returns chosen index from filtered_li
 // }
 
 // test();
+
+
+// Idea for the future - Update Schedule based on User Prompts
+import subprocess
+import json
+from pathlib import Path
+from tools.tooling import tool
+
+@tool
+def update_workout(update_data):
+    print("Hello from update_workout.py")
+    """
+    Tool function for dynamic agent:
+    Updates the existing recwell/input.json file with new data and reruns the scheduler(Implementationv1.js).
+    
+    Parameters
+    - update_data: dict containing any fields to update in the input.json.
+                   Can update schedule, student_profile fields, or both.
+                   If any fields are not mentioned, they remain as they were before the update.
+                   Examples:
+                   - {"time_preference": "early"}
+                   - {"duration_preference": 45}
+                   - {"schedule": [...new schedule...]}
+                   - {"fitness_goal": "Weight Loss", "experience_level": "beginner"}
+    
+    Returns a dict with keys: result, status, and optionally error_message.
+    """
+    
+    # Determine recwell folder relative to this script: ../recwell
+    tools_dir = Path(__file__).resolve().parent
+    project_root = tools_dir.parent
+    recwell_dir = project_root / 'recwell'
+    recwell_dir.mkdir(parents=True, exist_ok=True)
+    input_path = recwell_dir / 'input.json'
+    
+    # Read existing input.json if it exists
+    
+    with open(input_path, 'r', encoding='utf-8') as f:
+        existing_data = json.load(f)
+        
+    # Update the data based on update_data
+    
+    # If updating schedule directly
+    if "schedule" in update_data:
+        existing_data["schedule"] = update_data["schedule"]
+        
+        # If updating student_profile fields
+    student_profile_keys = ["experience_level", "fitness_goal", "duration_preference", "time_preference"]
+    for key in student_profile_keys:
+        if key in update_data:
+            existing_data["student_profile"][key] = update_data[key]
+        
+    # Handle any other top-level keys
+    for key, value in update_data.items():
+        if key not in ["schedule"] and key not in student_profile_keys:
+            # If it's a nested update to student_profile
+            if key == "student_profile" and isinstance(value, dict):
+                existing_data["student_profile"].update(value)
+    
+    # Write the updated file
+    with open(input_path, 'w', encoding='utf-8') as f:
+        json.dump(existing_data, f, indent=2)
+    
+    # Run the node script from the recwell folder
+    try:
+        result = subprocess.run(
+            ['node', 'Implementationv1.js'],
+            cwd=str(recwell_dir),
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=120
+        )
+        
+        return {"result": result.stdout, "status": "success"}
+        
+    except Exception as e:
+        return {"status": "error", "error_message": str(e)}
+
+
+if __name__ == '__main__':
+    
+    # Example 1: Update time preference
+    # result = update_workout({"time_preference": "early"})
+    # print("Example 1 - Update time preference:")
+    # print(result)
+    # print()
+    
+    # Example 2: Update multiple student profile fields
+    result = update_workout({
+        "fitness_goal": "Strength Training",
+        "duration_preference": 90,
+        "experience_level": "advanced"
+    })
+    print("Example 2 - Update multiple fields:")
+    print(result)
+    print()
+    
+    # # Example 3: Update schedule
+    # new_schedule = [
+    #     {
+    #         "name": "Morning Lecture",
+    #         "start_time": "08:00",
+    #         "end_time": "09:30",
+    #         "days": "Mon/Wed/Fri",
+    #         "location": "Building A"
+    #     }
+    # ]
+    # result = update_workout({"schedule": new_schedule})
+    # print("Example 3 - Update schedule:")
+    # print(result)
+
+# Get the tool spec for the Gemini LLM
+TOOL_SPEC = update_workout.tool_spec()

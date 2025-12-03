@@ -3,7 +3,7 @@ import json
 
 # TOOL_SPEC = {
 #     "name": "custom_workout_schedule",
-#     "description": "Creates a customized workout schedule based on user class schedule, time preference, duration preference, fitness goal, experience level",
+#     "description": "Creates a customized workout schedule based on user class schedule(UMD Courses), time preference, duration preference, fitness goal, experience level",
 #     "parameters": ["schedule", "time_preference", "duration_preference", "fitness_goal", "experience_level"] # names of required parameters 
 # }
 
@@ -14,7 +14,7 @@ from tools.tooling import tool
 def custom_workout_schedule(schedule, time_preference, duration_preference, fitness_goal, experience_level):
     """
     Tool function for dynamic agent:
-    Overwrites recwell/input.json with the provided schedule and a student_profile built
+    Overwrites recwell/input.json with the provided UMD class schedule and a student_profile built
     from the function parameters, then runs the Node scheduler located in the recwell
     folder (Implementationv1.js).
 
@@ -123,7 +123,7 @@ if __name__ == '__main__':
     }
     ]
 
-    result = custom_workout_schedule(schedule, "late", 45, "Muscle gain", "Intermediate")
+    result = custom_workout_schedule([], "late", 60, "Basketball", "Intermediate")
     print(result)
 
 TOOL_SPEC = custom_workout_schedule.tool_spec()

@@ -23,9 +23,7 @@ const data = JSON.parse(fs.readFileSync('input.json', 'utf-8'));
 // Create User object based on data from JSON
 const user = new User(data.student_profile.experience_level, 
                       data.student_profile.fitness_goal, 
-                      data.student_profile.location_or_housing, 
-                      data.student_profile.transport, 
-                      data.student_profile.duration_preference, 
+                      Number(data.student_profile.duration_preference), 
                       data.student_profile.time_preference);
 
 // Function to convert schedule to 2D array of start and end times for each class
@@ -72,7 +70,18 @@ function makeDailySchedules(classes) {
 
 }
 
-let daily_schedule = makeDailySchedules(data.schedule);
+// Before calling makeDailySchedules, check if schedule is empty. If it is, set daily_schedule to empty array
+// Otherwise, parse the schedule array from JSON and then call makeDailySchedules
+let daily_schedule;
+// if (!Array.isArray(data.schedule) || data.schedule.length === 0) {
+//   daily_schedule = [];
+// } else {
+  // Parse array from JSON
+  let schedule = JSON.parse(data.schedule);
+  daily_schedule = makeDailySchedules(schedule);
+// }
+
+
 
 // console.log(daily_schedule);
 
@@ -223,16 +232,16 @@ function filter_suggestions(suggestions, preference) {
  * are still available in list, continue to toggle through solutions; finally either display selected 
  * time or indicate that there are no other suggestions
  */
-async function toggle_suggestions(filtered_suggestion_list) {
+function toggle_suggestions(filtered_suggestion_list) {
   // Non-interactive: choose the earliest (first) suggestion if available.
   if (!Array.isArray(filtered_suggestion_list) || filtered_suggestion_list.length === 0) return null;
   return filtered_suggestion_list[0];
 }
 
 // Call toggle function for the given suggestions of a particular day
-async function manage_toggle(day, suggestions) {
+function manage_toggle(day, suggestions) {
   // Non-interactive manager: automatically select earliest suggestion for the day
-  const selected_time = await toggle_suggestions(suggestions);
+  const selected_time = toggle_suggestions(suggestions);
   if (selected_time) {
     return day.day + " " + Time.militaryToStandard(selected_time.start_time)
                            + " - " + Time.militaryToStandard(selected_time.end_time);
@@ -275,13 +284,13 @@ function add_plan_to_schedule(schedule, plan) {
 let workout_schedule = [];
 
 // Non-interactive scheduler: pick earliest available time for each day automatically
-async function runScheduler() {
+function runScheduler() {
   for (const day of daily_schedule) {
     const gapList = adequateGaps(day.schedule);
     const possible_workout_times = workoutTimes(gapList);
     const filtered_suggestions = filter_suggestions(possible_workout_times, user.time_preference);
 
-    const result = await manage_toggle(day, filtered_suggestions); // manage_toggle now auto-selects earliest
+    const result = manage_toggle(day, filtered_suggestions); // manage_toggle now auto-selects earliest
     workout_schedule.push(result);
   }
 
@@ -290,30 +299,37 @@ async function runScheduler() {
 
   // Write newly created workout schedule to output text file
   const output = workout_plan.join("\n");
-  fs.writeFileSync("output.txt", output, "utf-8");
+  // fs.writeFileSync("output.txt", output, "utf-8");
 
   return output;
 }
 
-// Start the scheduler and store returned schedule
-let current_plan = await runScheduler();
+// console.log(runScheduler());
 
-/**
- * PART TWO - CUSTOMIZE PLAN
- */
+// Create function that waits for runScheduler to finish, then uses the current_plan to generate a complete prompt(which is sent to Groq API)
+// async function generatePlan() {
+//   console.log(await runScheduler());
+//   //return current_plan;
+// }
 
-// This portion needs to be asynchronous, waiting for runScheduler to finish
+let current_plan = runScheduler();
+
+// console.log(await generatePlan());
+
+// /**
+//  * PART TWO - CUSTOMIZE PLAN
+//  */
+
+// // This portion needs to be asynchronous, waiting for runScheduler to finish
 
 let context = 
   "You are a fitness trainer who is trying to help me reach my fitness goal: "
-+ user.fitness_goal + ". (Do not give me any extra information. " +
-"I just want the schedule in my format"
++ user.fitness_goal + ". I just want the schedule in my format. ";
 
-let prompt = 
-  "Tailor the following workout plan for me without changing any of the start or end times"
+let prompt = context + "Tailor the following workout plan for me without changing any of the start or end times"
 + "(while considering my fitness goal). "
-// + "and return the changes in the EXACT same format as was given to you.\n"
-+ "After the entire schedule is printed, add a brief description of what you changed and how it helps me reach my goal:\n"
++ "\n"
++ "After the entire schedule is printed, add a brief description of what you changed and how it helps me reach my goal.\n"
 + current_plan;
 
 // Use API Key that connects to Groq API - Put in .env file and hide!
@@ -324,7 +340,7 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 
 async function queryGroq(prompt) {
   const API_KEY = groq_key; // Paste your Groq API key
-  
+
   let custom_plan = "";
 
   try {
@@ -353,9 +369,9 @@ async function queryGroq(prompt) {
     const my_data = await res.json();
     
     custom_plan = my_data.choices[0].message.content;
-
-    console.log(custom_plan);
     
+    console.log(custom_plan);
+
     return custom_plan
 
   } catch (error) {
@@ -365,6 +381,6 @@ async function queryGroq(prompt) {
   }
 }
 
-let customized_plan = await queryGroq(context + prompt);
+let customized_plan = await queryGroq(prompt);
 
 fs.writeFileSync("output.txt", customized_plan, "utf-8");
