@@ -6,6 +6,13 @@
       "end_time": "10:15",
       "days": "Mon/Wed/Fri",
       "location": "IRB Building"
+    },
+    {
+      "name": "Calculus II",
+      "start_time": "14:00",
+      "end_time": "15:15",
+      "days": "Tue/Thu",
+      "location": "Math Building"
     }
   ],
   "student_profile": {

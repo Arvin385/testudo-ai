@@ -7,102 +7,81 @@ const FACILITIES_PATH = new URL('./facilities.json', import.meta.url).pathname;
 const CACHE_PATH = new URL('./facilities_embeddings.json', import.meta.url).pathname;
 const INPUT_PATH = new URL('./input.json', import.meta.url).pathname;
 
-// Choose an embeddings model. Adjust if you prefer a different model name.
-const EMBEDDING_MODEL = 'text-embedding-3-small';
+// Deterministic, non-AI recommender
+// This implementation avoids external AI calls. It ranks facilities by matching
+// user interest against facility types and keywords.
 
-function cosineSimilarity(a, b) {
-  let dot = 0.0;
-  let normA = 0.0;
-  let normB = 0.0;
-  for (let i = 0; i < a.length; i++) {
-    dot += a[i] * b[i];
-    normA += a[i] * a[i];
-    normB += b[i] * b[i];
-  }
-  if (normA === 0 || normB === 0) return 0;
-  return dot / (Math.sqrt(normA) * Math.sqrt(normB));
+function tokenize(str) {
+  return String(str || '')
+    .toLowerCase()
+    .split(/\W+/)
+    .filter(t => t.length > 0);
 }
 
-async function embedText(apiKey, text) {
-  if (!apiKey) throw new Error('OPENAI_API_KEY not set');
-
-  const res = await fetch('https://api.openai.com/v1/embeddings', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}`
-    },
-    body: JSON.stringify({ model: EMBEDDING_MODEL, input: text })
-  });
-
-  if (!res.ok) {
-    const txt = await res.text();
-    throw new Error(`OpenAI embeddings error: ${res.status} ${txt}`);
-  }
-
-  const data = await res.json();
-  return data.data[0].embedding;
-}
-
-async function buildFacilityEmbeddings(apiKey) {
-  if (!fs.existsSync(FACILITIES_PATH)) throw new Error('facilities.json not found');
-
-  const facilitiesRaw = JSON.parse(fs.readFileSync(FACILITIES_PATH, 'utf-8'));
-  const facilities = facilitiesRaw.Facilities || [];
-
-  // If cache exists, return it
-  if (fs.existsSync(CACHE_PATH)) {
-    try {
-      const cache = JSON.parse(fs.readFileSync(CACHE_PATH, 'utf-8'));
-      // basic sanity check
-      if (Array.isArray(cache) && cache.length === facilities.length) return cache;
-    } catch (e) {
-      // fallthrough to rebuild cache
+/**
+ * Calculate similarity between two strings (0-1).
+ * Checks if tokens from userStr appear in facilityStr.
+ */
+function stringSimilarity(userStr, facilityStr) {
+  const userTokens = tokenize(userStr);
+  const facilityText = facilityStr.toLowerCase();
+  
+  if (userTokens.length === 0) return 0;
+  
+  let matches = 0;
+  for (const token of userTokens) {
+    if (facilityText.includes(token)) {
+      matches += 1;
     }
   }
+  return matches / userTokens.length;
+}
 
-  const results = [];
-
-  for (const f of facilities) {
-    const doc = `${f.name}. Type: ${f.type}. Location: ${f.location}. Address: ${f.address}. Hours: ${f.hours}`;
-    const embedding = await embedText(apiKey, doc);
-    results.push({ facility: f, embedding });
-  }
-
-  // Save cache (overwrite)
-  try {
-    fs.writeFileSync(CACHE_PATH, JSON.stringify(results), 'utf-8');
-  } catch (e) {
-    // non-fatal
-    console.warn('Warning: could not write embeddings cache', e.message);
-  }
-
-  return results;
+function scoreFacilityByIntent(facility, userInterest) {
+  let score = 0;
+  
+  // High weight: match against facility type
+  const typeScore = stringSimilarity(userInterest, facility.type || '');
+  score += typeScore * 3.0;
+  
+  // Medium weight: match against facility name
+  const nameScore = stringSimilarity(userInterest, facility.name || '');
+  score += nameScore * 2.0;
+  
+  // Low weight: match against location
+  const locationScore = stringSimilarity(userInterest, facility.location || '');
+  score += locationScore * 0.5;
+  
+  return score;
 }
 
 /**
  * Recommend locations based on a short user interest string.
  * Returns an array of {facility, score} sorted descending by score.
  */
-export async function recommendLocations(userInterest, { apiKey = process.env.OPENAI_API_KEY, topK = 5 } = {}) {
+export async function recommendLocations(userInterest, { apiKey = null, topK = 5 } = {}) {
   if (!userInterest || typeof userInterest !== 'string') throw new Error('userInterest must be a non-empty string');
-  if (!apiKey) throw new Error('OPENAI_API_KEY must be provided either via options or environment');
 
-  // Ensure facility embeddings are available (cached)
-  const facilityEmbeddings = await buildFacilityEmbeddings(apiKey);
+  if (!fs.existsSync(FACILITIES_PATH)) return [];
+  const facilitiesRaw = JSON.parse(fs.readFileSync(FACILITIES_PATH, 'utf-8'));
+  const facilities = facilitiesRaw.Facilities || [];
 
-  // Embed user interest
-  const userEmb = await embedText(apiKey, userInterest);
-
-  // Score facilities
-  const scored = facilityEmbeddings.map(item => {
-    const score = cosineSimilarity(userEmb, item.embedding);
-    return { facility: item.facility, score };
+  // Score each facility against the user interest
+  const scored = facilities.map(f => {
+    const score = scoreFacilityByIntent(f, userInterest);
+    return { facility: f, score };
   });
 
-  // Sort desc by score and return topK
+  // Sort by score descending
   scored.sort((a, b) => b.score - a.score);
-  return scored.slice(0, topK);
+  
+  // Return top matches, or all if scores are zero
+  const nonZero = scored.filter(s => s.score > 0);
+  if (nonZero.length === 0) {
+    // Fallback: return first topK facilities in order
+    return scored.slice(0, Math.max(1, topK));
+  }
+  return nonZero.slice(0, topK);
 }
 
 export async function listFacilities() {
