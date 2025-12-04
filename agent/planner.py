@@ -112,18 +112,20 @@ def new_plan(messages: list[dict]):
     )
 
     # System prompt for gemini
-    prompt: str = (
-        f"**SYSTEM PROMPT**"
-        f"You are an AI agent planner. "
-        f"You have these available tools:\n{tool_descriptions}\n"
-        f"Return a JSON object with a key 'plan'. "
-        f"'plan' must be a list of one or more steps. Each step is an object with keys 'tool' and 'params'. "
-        f"'tool' must be one of the available tool names, and 'params' must contain all required parameters. "
-        f"If the user asks for multiple actions, include multiple steps in the plan in logical order."
-        f"Feed all your jsons in between three ticks: ```{{json}}```"
-        f"Make sure parameter names exactly match the tool specifications (for example, 'a' and 'b' for add_numbers).\n"
-        f"And if you NO LONGER need to use tools to answer the user's question, type END TOOLING in all caps."
-    )
+    prompt: str = f"""**SYSTEM PROMPT**
+You are an AI agent planner. 
+You have these available tools:\n{tool_descriptions}\n
+Return a JSON object with a key 'plan'. 
+'plan' must be a list of one or more steps. Each step is an object with keys 'tool' and 'params'. 
+'tool' must be one of the available tool names, and 'params' must contain all required parameters. 
+If the user asks for multiple actions, include multiple steps in the plan in logical order.
+
+Also, if the plan uses steps with outputs that feed into each other, use the save_knowledge tool.
+This tool will put information into a global dictionary. To access the dictionary, replace params with $PARAM where PARAM is the name you put into save_knowledge.
+
+Feed all your jsons in between three ticks: ```{{json}}```"
+Make sure parameter names exactly match the tool specifications (for example, 'a' and 'b' for add_numbers).\n
+And if you NO LONGER need to use tools to answer the user's question, type END TOOLING in all caps."""
     
     agent_chat: str = ""
     agent_chat += prompt + "\n\n"
