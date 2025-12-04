@@ -2,14 +2,15 @@ import subprocess
 import json
 import os
 from pathlib import Path
+from tools.tooling import tool
 
-TOOL_SPEC = {
-    "name": "recommend_locations",
-    "description": "Writes a profile to recwell/ and runs facility_Matcher.js to get facility recommendations based on fitness goal and location.",
-    "parameters": ["fitness_goal", "location_or_housing", "time_preference"]
-}
+#TOOL_SPEC = {
+#    "name": "recommend_locations",
+#    "description": "Writes a profile to recwell/ and runs facility_Matcher.js to get facility recommendations based on fitness goal and location.",
+#    "parameters": ["fitness_goal", "location_or_housing", "time_preference"]
+#}
 
-
+@tool
 def recommend_facility(payload = None, student_profile=None, purpose=None, location_or_housing=None, transport=None, duration_preference=None, time_preference=None, topK=None, api_key=None):
     """
     Writes a payload (or builds one from the provided student_profile/purpose) to
@@ -119,3 +120,5 @@ if __name__ == '__main__':
         api_key= "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"
     )
     print(sample)
+
+TOOL_SPEC = recommend_facility.tool_spec()
