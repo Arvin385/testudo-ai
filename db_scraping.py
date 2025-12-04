@@ -1,12 +1,5 @@
-TOOL_SPEC = {
-    "name": "db_scraping",
-    "description": (
-        "Scrapes academic data from sites from the University of Maryland including "
-        "academic calendar, faculty directory, departments, programs, and alerts, "
-        "and stores all data in a unified SQLite database."
-    ),
-    "parameters": []
-}
+# This file is NOT A TOOL, it's something we will: 
+# USE ONCE IN A WHILE TO UPDATE LOCAL DB
 
 from playwright.sync_api import sync_playwright
 import requests
