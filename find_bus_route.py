@@ -1,3 +1,4 @@
+from tools.tooling import Tool
 @tool 
 def find_bus_route(start_loc, dest_loc):
     """
@@ -207,10 +208,7 @@ def find_bus_route(start_loc, dest_loc):
         return best_option
 
     return {"error": "No suitable route found."}
+TOOL_SPEC = find_bus_route.tool_spec()
 
 
-TOOL_SPEC = {
-    "name": "find_bus_route",
-    "description": "Find the best bus route from one location to another",
-    "parameters": ["start_location", "destination"] # names of required parameters 
-}
+
