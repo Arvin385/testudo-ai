@@ -5,19 +5,18 @@ from pathlib import Path
 
 TOOL_SPEC = {
     "name": "recommend_locations",
-    "description": "Writes a profile to recwell/ and runs the Node recommender to get facility recommendations (non-AI deterministic scorer).",
-    "parameters": ["purpose", "location_or_housing", "transport", "duration_preference", "time_preference", "topK"]
+    "description": "Writes a profile to recwell/ and runs facility_Matcher.js to get facility recommendations based on fitness goal and location.",
+    "parameters": ["fitness_goal", "location_or_housing", "time_preference"]
 }
 
 
-def recommend_facility(payload=None, student_profile=None, purpose=None, location_or_housing="", transport="walking", duration_preference=45, time_preference="early", topK=5, api_key=None, input_filename='input_locations.json'):
+def recommend_facility(payload = None, student_profile=None, purpose=None, location_or_housing=None, transport=None, duration_preference=None, time_preference=None, topK=None, api_key=None):
     """
     Writes a payload (or builds one from the provided student_profile/purpose) to
-    `recwell/<input_filename>` and runs the Node recommender `recommend_runner.js`.
+    `recwell/input.json` and runs the Node facility matcher `facility_Matcher.js`.
 
     This matches the pattern used by `custom_workout_schedule.custom_workout_schedule`:
     - determines the `recwell` folder relative to this `tools` folder
-    - writes the input file
     - runs the node script from `recwell/`
 
     Returns a dict containing: `result` (stdout), `stderr`, `returncode`, `path`, `status`.
@@ -29,8 +28,7 @@ def recommend_facility(payload=None, student_profile=None, purpose=None, locatio
     recwell_dir = project_root / 'recwell'
     recwell_dir.mkdir(parents=True, exist_ok=True)
 
-    input_path = recwell_dir / input_filename
-
+    input_path = recwell_dir / 'input.json'
     # Build the body to write
     if payload and isinstance(payload, dict):
         to_write = payload
@@ -51,28 +49,28 @@ def recommend_facility(payload=None, student_profile=None, purpose=None, locatio
         if not purpose:
             raise ValueError('Either payload (dict), student_profile (dict), or purpose (string) must be provided')
         to_write = {
-            "profile": {
-                "purpose": purpose,
+            "student_profile": {
+                "fitness_goal": purpose,
                 "location_or_housing": location_or_housing,
                 "transport": transport,
                 "duration_preference": duration_preference,
                 "time_preference": time_preference
-            }
+            },
+            "schedule": []
         }
 
-    # Write the input file
+    # Write the input file (use standard input.json for facility_Matcher.js)
     with open(input_path, 'w', encoding='utf-8') as f:
         json.dump(to_write, f, indent=2)
 
-    # Prepare environment for subprocess. API key is optional for the new deterministic recommender.
     env = os.environ.copy()
     if api_key:
-        env['OPENAI_API_KEY'] = api_key
+        env['GROQ_API_KEY'] = api_key
 
     try:
-        # Run node from the recwell folder and pass the absolute input path
+        # Run facility_Matcher.js from the recwell folder
         result = subprocess.run(
-            ['node', 'recommend_runner.js', str(input_path), str(topK)],
+            ['node', 'facility_Matcher.js'],
             cwd=str(recwell_dir),
             capture_output=True,
             text=True,
@@ -83,12 +81,15 @@ def recommend_facility(payload=None, student_profile=None, purpose=None, locatio
 
         status = 'success' if result.returncode == 0 else 'error'
 
-        # Try to parse the stdout as JSON (recommend_runner prints JSON results).
+        # Parse the stdout output (facility_Matcher prints formatted recommendations)
         parsed = None
         try:
-            parsed = json.loads(result.stdout) if result.stdout else None
+            # Try to parse as JSON if it looks like JSON
+            if result.stdout and result.stdout.strip().startswith('['):
+                parsed = json.loads(result.stdout)
         except Exception:
-            parsed = None
+            # If not JSON, just use the raw text
+            parsed = result.stdout if result.stdout else None
 
         return {
             'result': result.stdout,
@@ -107,11 +108,14 @@ if __name__ == '__main__':
     # Example quick run for dev: change values here as needed
     # Example: call with simple purpose (backwards-compatible)
     sample = recommend_facility(
-        purpose='Weight Training and Cardio',
-        location_or_housing='Ellicott Hall, College Park, MD',
+        payload = None,
+        student_profile = None,
+        purpose='Weight Training',
+        location_or_housing='Ellicott Hall, 4052 Stadium Dr, College Park, MD 20742',
         transport='walking',
         duration_preference=45,
         time_preference='midday',
-        topK=5
+        topK=5,
+        api_key= "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"
     )
     print(sample)
