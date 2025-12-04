@@ -1,7 +1,8 @@
-def find_bus_route(start_lat, start_lon, dest_lat, dest_lon):
+@tool 
+def find_bus_route(start_loc, dest_loc):
     """
     Find the best bus route + direction based on cached_data.json,
-    minimizing total travel time, including walking to/from stops.
+    minimizing total travel time including walking to/from stops.
 
     Uses per-stop "time" (seconds) stored in cached_data.json for bus segments,
     sums segments between boarding and alighting (wrap-around for loops),
@@ -10,8 +11,62 @@ def find_bus_route(start_lat, start_lon, dest_lat, dest_lon):
     Skips route-direction candidates with total walking distance > 1000 m.
     """
     import json
+    from math import radians, sin, cos, sqrt, atan2
+    import requests
     import math
 
+    def get_coordinates(address: str):
+        url = "https://nominatim.openstreetmap.org/search"
+        params = {
+            "q": address,        # You can enter full street addresses here
+            "format": "json"
+        }
+        headers = {"User-Agent": "SimplePythonGPS/1.0"}
+
+        response = requests.get(url, params=params, headers=headers)
+        data = response.json()
+
+        if not data:
+            return None
+        return float(data[0]["lat"]), float(data[0]["lon"])
+
+
+    # Distance between two GPS coordinates
+    def haversine(coord1, coord2):
+        R = 6371  # km
+        lat1, lon1 = coord1
+        lat2, lon2 = coord2
+
+        dlat = radians(lat2 - lat1)
+        dlon = radians(lon2 - lon1)
+
+        a = sin(dlat/2)**2 + cos(radians(lat1)) * cos(radians(lat2)) * sin(dlon/2)**2
+        c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+        return R * c
+
+
+    # GPS-like function that works on street addresses
+    def gps_route(start_address, end_address):
+        start = get_coordinates(start_address)
+        end = get_coordinates(end_address)
+
+        if not start or not end:
+            return "Error: One of the addresses could not be found."
+
+        distance = haversine(start, end)
+
+        return {
+            "start_address": start_address,
+            "end_address": end_address,
+            "start_coordinates": start,
+            "end_coordinates": end,
+            "distance_km": round(distance, 2)
+        }
+    results = gps_route(start_loc, dest_loc)
+    if results == "Error: One of the addresses could not be found.":
+        return {"error": "One of the addresses could not be found."}
+    start_lat, start_lon, dest_lat, dest_lon = results["start_coordinates"] + results["end_coordinates"]
     def haversine_m(lat1, lon1, lat2, lon2):
         R = 6371000.0
         phi1, phi2 = math.radians(lat1), math.radians(lat2)
@@ -152,3 +207,10 @@ def find_bus_route(start_lat, start_lon, dest_lat, dest_lon):
         return best_option
 
     return {"error": "No suitable route found."}
+
+
+TOOL_SPEC = {
+    "name": "find_bus_route",
+    "description": "Find the best bus route from one location to another",
+    "parameters": ["start_location", "destination"] # names of required parameters 
+}
