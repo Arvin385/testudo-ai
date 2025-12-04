@@ -15,10 +15,7 @@ from email.message import EmailMessage
 from datetime import datetime, timezone
 from typing import Dict
 
-from dotenv import load_dotenv
-load_dotenv()
-
-#timezones
+#local timezones
 try:
     from zoneinfo import ZoneInfo
 except Exception:
@@ -26,18 +23,20 @@ except Exception:
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s: %(message)s")
 
-# TODO: replace with UMD SMTP relay
-# SMTP_HOST should be "smtp.umd.edu"
-# SMTP_USER should be your UMD relay account
-SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
-SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
-SMTP_USER = os.getenv("SMTP_USER")
-SMTP_PASS = os.getenv("SMTP_PASS")
-FROM_NAME = os.getenv("FROM_NAME", "Transport Scheduling")
-FROM_EMAIL = SMTP_USER or "noreply@university.example.edu"
+# TODO: Replace with UMD SMTP relay after approval
+# SMTP_HOST: "smtp.umd.edu"
+# SMTP_USER: UMD relay account
+# Hardcoded credentials - replace with actual values
+SMTP_HOST = "smtp.gmail.com" #replace with UMD SMTP host shown above
+SMTP_PORT = 587
+SMTP_USER = "test932mail@gmail.com"  #replace with UMD SMTP account
+SMTP_PASS = "onmaysipoihkpmoh"  #remove after SMTP approval (or replace if needed)
+FROM_NAME = "Transportation Scheduling" #edit if needed
+FROM_EMAIL = SMTP_USER
 
 MAX_RETRIES = 3
 RETRY_DELAY_SECONDS = 5
+
 
 def make_message(
     to_email: str,
@@ -45,7 +44,7 @@ def make_message(
     plain_text: str,
     html_text: str
 ) -> EmailMessage:
-    #creates email message
+    """Create an email message with plain text and HTML versions."""
     msg = EmailMessage()
     msg["From"] = f"{FROM_NAME} <{FROM_EMAIL}>"
     msg["To"] = to_email
@@ -117,8 +116,8 @@ def request_bus_ride(
             - sent_to: Email address the request was sent to (only on success)
     """
     
-    # TODO: replace with UMD transportation email
-    transportation_email = os.getenv("TRANSPORTATION_EMAIL", "ray.anisha@gmail.com")
+    # TODO: replace with UMD transportation email after testing
+    transportation_email = "ray.anisha@gmail.com"  #replace with actual email
     
     try:
         #parse datetime string
@@ -133,7 +132,7 @@ def request_bus_ride(
 
         subject = f"Ride Request: {route_name} — {depart_dt.strftime('%b %d, %Y %H:%M')}"
         
-        #build plain text email
+        #plain text email
         plain = (
             f"Hello,\n\n"
             f"I would like to request an accessibility ride. See below for details:\n\n"
