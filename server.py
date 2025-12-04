@@ -46,6 +46,10 @@ def new_run_agent():
     all_results = []
     
     while True:
+        print("=============MESSAGES============")
+        for m in settings.messages:
+            print(json.dumps(m, indent=4))
+        print("=================================")
         
         # Plan and execute agent instructions
         plan_data = new_plan(settings.messages)
