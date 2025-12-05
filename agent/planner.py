@@ -19,7 +19,7 @@ class JSONPlan(BaseModel):
     params: Dict[str,str]
 
 
-def extract_json_objects(text: str):
+def extract_json_objects(text: str) -> list[dict]:
     """
     Extracts only top-level (outermost) JSON objects or arrays from a text string.
     Nested JSON objects within other JSONs are ignored.
@@ -31,7 +31,7 @@ def extract_json_objects(text: str):
     Returns:
         list: A list of successfully parsed top-level JSON objects (dicts or lists).
     """
-    json_objects = []
+    json_objects: list[dict] = []
     stack = []
     start_idx = None
     in_string = False
@@ -99,22 +99,23 @@ def query_gemini(prompt_text: str) -> str:
     text_output = response.text.strip()
     return text_output
 
-def plan(user_query: str, agent_chat: str = None) -> tuple[list[dict], str]:
+def new_plan(messages: list[dict]):
     """
-    build prompt using EXACT SAME TEXT you had before
+    build plan based on prior conversation
     call Gemini
     parse output
     return dict
     """
-    tool_descriptions = "\n".join(
+    
+    tool_descriptions: str = "\n".join(
         [f"- {t['spec']['name']}: {t['spec']['description']}" for t in tool_registry.values()]
     )
 
     # System prompt for gemini
-    prompt = (
+    prompt: str = (
+        f"**SYSTEM PROMPT**"
         f"You are an AI agent planner. "
-        f"The user gave the query: '{user_query}'.\n"
-        f"Available tools:\n{tool_descriptions}\n"
+        f"You have these available tools:\n{tool_descriptions}\n"
         f"Return a JSON object with a key 'plan'. "
         f"'plan' must be a list of one or more steps. Each step is an object with keys 'tool' and 'params'. "
         f"'tool' must be one of the available tool names, and 'params' must contain all required parameters. "
@@ -124,8 +125,14 @@ def plan(user_query: str, agent_chat: str = None) -> tuple[list[dict], str]:
         f"And if you NO LONGER need to use tools to answer the user's question, type END TOOLING in all caps."
     )
     
-    if (agent_chat is None):
-        agent_chat = prompt
+    agent_chat: str = ""
+    agent_chat += prompt + "\n\n"
+    
+    # Loop through the messages, add them to the ongoing chat
+    for message in messages:
+        agent_chat += "**" + message["role"].upper() + "**:\n"
+        agent_chat += message["content"] + "\n\n"
+            
         
     gemini_output = _call_gemini_raw(agent_chat)
 
@@ -140,5 +147,4 @@ def plan(user_query: str, agent_chat: str = None) -> tuple[list[dict], str]:
     plan_data = extract_json_objects(gemini_output)
     # print("Here's the plan: " + str(plan_data))
 
-    return plan_data, prompt + "\n\n You callled upon these tool(s): \n" + gemini_output
-
+    return plan_data
