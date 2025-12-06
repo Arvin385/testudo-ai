@@ -15,7 +15,7 @@ from email.message import EmailMessage
 from datetime import datetime, timezone
 from typing import Dict
 
-#local timezones
+#timezones
 try:
     from zoneinfo import ZoneInfo
 except Exception:
@@ -23,16 +23,13 @@ except Exception:
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s: %(message)s")
 
-# TODO: Replace with UMD SMTP relay after approval
-# SMTP_HOST: "smtp.umd.edu"
-# SMTP_USER: UMD relay account
-# Hardcoded credentials - replace with actual values
-SMTP_HOST = "smtp.gmail.com" #replace with UMD SMTP host shown above
+#UMD SMTP Relay Configuration (should not be modified)
+SMTP_HOST = "marley.umd.edu"
 SMTP_PORT = 587
-SMTP_USER = "test932mail@gmail.com"  #replace with UMD SMTP account
-SMTP_PASS = "onmaysipoihkpmoh"  #remove after SMTP approval (or replace if needed)
-FROM_NAME = "Transportation Scheduling" #edit if needed
-FROM_EMAIL = SMTP_USER
+SMTP_USER = "request-ride"
+SMTP_PASS = "TQ2EXWqk2uSjjfl0nE2c4v6Rw" 
+FROM_NAME = "Transportation Scheduling"
+FROM_EMAIL = "noreply@umd.edu" #can be any @umd.edu address
 
 MAX_RETRIES = 3
 RETRY_DELAY_SECONDS = 5
@@ -44,7 +41,7 @@ def make_message(
     plain_text: str,
     html_text: str
 ) -> EmailMessage:
-    """Create an email message with plain text and HTML versions."""
+    #create email message (plain text and HTML versions)
     msg = EmailMessage()
     msg["From"] = f"{FROM_NAME} <{FROM_EMAIL}>"
     msg["To"] = to_email
@@ -57,9 +54,9 @@ def make_message(
 
 
 def send_email(msg: EmailMessage) -> None:
-    """Send email via SMTP with retry logic."""
+    #send email via SMTP (including retry logic)
     if not SMTP_USER or not SMTP_PASS:
-        raise RuntimeError("SMTP credentials not configured in SMTP_USER / SMTP_PASS environment variables.")
+        raise RuntimeError("SMTP credentials not configured in SMTP_USER/SMTP_PASS.")
 
     context = ssl.create_default_context()
 
@@ -80,7 +77,7 @@ def send_email(msg: EmailMessage) -> None:
         except Exception as e:
             logging.exception("Failed to send email on attempt %d: %s", attempt, e)
             if attempt >= MAX_RETRIES:
-                logging.error("Exceeded max retries, giving up.")
+                logging.error("Exceeded max retries, try again later.")
                 raise
             time.sleep(RETRY_DELAY_SECONDS)
 
@@ -95,11 +92,10 @@ def request_bus_ride(
     extra_notes: str = ""
 ) -> Dict[str, str]:
     """
-    Request an accessibility bus ride from UMD transportation by sending an email.
+    Request an accessibility ride from UMD transportation by sending a formatted email.
     
     This tool sends a formatted ride request email to the university transportation
-    department with student information, destination, pickup location, and requested
-    departure time.
+    department with student information, destination, pickup location, and departure time.
     
     Args:
         student_name (str): Full name of the student requesting the ride (e.g., "Jane Smith")
@@ -110,14 +106,14 @@ def request_bus_ride(
         extra_notes (str): Additional information or special requirements (optional, e.g., "Uses wheelchair", "Have 2 large bags")
     
     Returns:
-        dict: A dictionary containing:
-            - status: "success" if request was sent, "error" if it failed
+        dict:
+            - status: "success" if request was sent, "error" if failed
             - message: Descriptive message about the request result
             - sent_to: Email address the request was sent to (only on success)
     """
     
-    # TODO: replace with UMD transportation email after testing
-    transportation_email = "ray.anisha@gmail.com"  #replace with actual email
+    #UMD Transportation email: shuttledrm@umd.edu 
+    transportation_email = "anishar@umd.edu"  #replace with above email after testing
     
     try:
         #parse datetime string
@@ -130,6 +126,13 @@ def request_bus_ride(
             else:
                 depart_dt = depart_dt.replace(tzinfo=timezone.utc)
 
+        #fix year for datetime
+        now = datetime.now(timezone.utc)
+        if depart_dt.year < now.year or (depart_dt.year == now.year and depart_dt < now):
+            depart_dt = depart_dt.replace(year=now.year)
+            if depart_dt < now:
+                depart_dt = depart_dt.replace(year=now.year + 1)
+        
         subject = f"Ride Request: {route_name} — {depart_dt.strftime('%b %d, %Y %H:%M')}"
         
         #plain text email
@@ -162,7 +165,7 @@ def request_bus_ride(
               <li><strong>University ID:</strong> {university_id}</li>
               <li><strong>Destination:</strong> {route_name}</li>
               <li><strong>Pickup Location:</strong> {pickup}</li>
-              <li><strong>Requested Departure:</strong> {depart_dt.strftime('%Y-%m-%d %H:%M %Z')}</li>
+              <li><strong>Requested Departure Time:</strong> {depart_dt.strftime('%Y-%m-%d %H:%M %Z')}</li>
         """
         
         if extra_notes:
@@ -170,7 +173,7 @@ def request_bus_ride(
         
         html += """
             </ul>
-            <p>Thank you,<br>
+            <p>Thank you very much,<br>
             """ + student_name + """</p>
           </body>
         </html>
