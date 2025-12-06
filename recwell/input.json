@@ -1,9 +1,10 @@
 {
-  "schedule": "[]",
   "student_profile": {
-    "experience_level": "advanced",
-    "fitness_goal": "become a better soccer player",
-    "duration_preference": "45",
-    "time_preference": "late"
-  }
+    "fitness_goal": "gain muscle",
+    "location_or_housing": null,
+    "transport": null,
+    "duration_preference": null,
+    "time_preference": null
+  },
+  "schedule": []
 }

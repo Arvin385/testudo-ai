@@ -137,9 +137,14 @@ import json
 from pathlib import Path
 from tools.tooling import tool
 
+# TOOL_SPEC = {
+#     "name": "update_workout",
+#     "description": "Takes in a dict with fields to update in recwell/input.json and reruns the scheduler(Implementationv1.js). Does not need full schedule or student_profile, only the fields to update.",
+#     "parameters": ["update_data"] # names of required parameters 
+# }
+
 @tool
 def update_workout(update_data):
-    print("Hello from update_workout.py")
     """
     Tool function for dynamic agent:
     Updates the existing recwell/input.json file with new data and reruns the scheduler(Implementationv1.js).
