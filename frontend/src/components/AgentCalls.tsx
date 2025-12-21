@@ -1,4 +1,5 @@
 import /*React,*/ { useState } from "react";
+import ChatFrame from "./ChatFrame.jsx"
 
 const AgentCalls = () => {
   const [messages, setMessages] = useState([{
@@ -52,6 +53,12 @@ const AgentCalls = () => {
     } catch (error) {
       console.error("Error:", error);
       alert(`Agent could not be reached with error: ${error}`);
+
+      newMessages.push({
+        "role" : "system",
+        "content" : "We apologize, the agent couldn't handle that request. Please try again momentarily."
+      });
+      setMessages(newMessages);
     } finally {
       setIsLoading(false);
     }
@@ -79,7 +86,7 @@ const AgentCalls = () => {
       <button onClick={speak} disabled={isLoading}>
         {isLoading ? "Generating..." : "Ask LLM"}
       </button>
-    <p>{JSON.stringify(messages)}</p>
+    <ChatFrame messages={messages}></ChatFrame>
     </div>
   );
 };
