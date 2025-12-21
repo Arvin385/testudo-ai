@@ -3,7 +3,8 @@ import { useState } from "react";
 // import viteLogo from "/vite.svg";
 import "./App.css";
 import Dictaphone from "./components/Dictaphone";
-import Elevenlabs from "./components/Elevenlabs";
+// import Elevenlabs from "./components/Elevenlabs";
+import AgentCalls from "./components/AgentCalls";
 
 function App() {
   const [TTS, setTTS] = useState(false);
@@ -12,7 +13,7 @@ function App() {
     <>
       <div id="container">
         {!TTS && <Dictaphone />}
-        {TTS && <Elevenlabs />}
+        {TTS && <AgentCalls />}
         <div className="card">
           <button className={TTS ? "" : "active"} onClick={() => setTTS(false)}>
             Speech to Text
