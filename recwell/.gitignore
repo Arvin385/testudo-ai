@@ -5,4 +5,15 @@ node_modules/
 .vscode/
 Ideas.txt
 UnusedCode.txt
-
+User.js
+Workout.js
+Time.js
+simulated_output_for_input_json.txt
+recommend_runner.js
+recommend_Location.js
+Implementationv1.js
+input.json 
+input_locations.json
+facility_Matcher.js
+facilities.json
+Day.js
