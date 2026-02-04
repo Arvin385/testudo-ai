@@ -1,11 +1,9 @@
 {
-  "schedule": "[]",
+  "schedule": "[{\"name\":\"Class\",\"start_time\":\"16:00\",\"end_time\":\"18:00\",\"days\":\"Fri\",\"location\":\"Unknown\"}]",
   "student_profile": {
     "experience_level": "advanced",
-    "fitness_goal": "Building lean muscle",
-    "location_or_housing": "",
-    "transport": "",
-    "duration_preference": "30",
-    "time_preference": "early"
+    "fitness_goal": "gain muscle",
+    "duration_preference": "45",
+    "time_preference": "late"
   }
 }

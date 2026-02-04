@@ -8,17 +8,9 @@
         - Primary: What muscle group on what day
         - Secondary: What exercises for each experience level 
         - LLM(Groq API) to tailor workouts based on fitness goal
-- Factors that we have used fixed default values for:
-    - Transportation Time - use data from Transit team(only buses)
-        - Potentially add Google Maps API down the line
-    - What is considered early vs midday vs late?
-    - Opening/Closing Hours
-        - Continue to use fixed for now(do not expend time with API calls)
-    - Facility
-- Features we have not yet included:
-    - What to do on each day(muscle group, exercises, machines)
-        - Should set default split in JSON file 
-        - Default split can be tailored by LLM using experience and fitness goal
+- Features we have not yet included or are working on:
+    - Update workout schedule based on user prompt
+    - Handle missing inputs
 Factors we have not yet considered:
     - Make workouts progress week by week based on user progress
 Potential Improvements:
@@ -27,14 +19,4 @@ Potential Improvements:
     - Install LLM locally
 
 Next Issue:
-- Tertiary: Suggested exercises/activities for fitness goal
-    - Add facility resources to facilities.json db
 - Quarternary: What machines specifically to use?
-    
-- Facility/Transportation/Hours 
-    - find out which facility is most viable given duration, transport, and most recent location
-    - add correct hours(not 6AM-12PM) to schedule based on chosen facility
-        - After user selects time block, filter locations by viable(is it open? can I get there in time?),
-        find location for shortest distance(maybe allow user to toggle)
-    - factor in correct travel time(not just 15 min to arrive, 15 min to leave)
-        - Use Transit team function
