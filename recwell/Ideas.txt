@@ -1,0 +1,22 @@
+- Features:
+    - Currently the program creates a schedule of times for the user to work out
+      for each day of the week. Factors include:
+        - Class Schedule 
+        - Duration Preference
+        - Time Preference
+    - Create plan to accompany workout times
+        - Primary: What muscle group on what day
+        - Secondary: What exercises for each experience level 
+        - LLM(Groq API) to tailor workouts based on fitness goal
+- Features we have not yet included or are working on:
+    - Update workout schedule based on user prompt
+    - Handle missing inputs
+Factors we have not yet considered:
+    - Make workouts progress week by week based on user progress
+Potential Improvements:
+    - Speed -> JSON might be too slow in the future(parsing cost)
+        - Look for alternatives(MessagePack?)
+    - Install LLM locally
+
+Next Issue:
+- Quarternary: What machines specifically to use?

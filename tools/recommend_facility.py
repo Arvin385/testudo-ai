@@ -6,23 +6,48 @@ from pathlib import Path
 # TOOL_SPEC = {
 #     "name": "recommend_locations",
 #     "description": "Suggests facilities or locations for recreational activities",
-#     "parameters": ["fitness_goal", "location_or_housing", "time_preference"]
+#     "parameters": ["fitness_goal", "location_or_housing", "transport"]
 # }
 
 from tools.tooling import Tool
 from tools.tooling import tool
 
 @tool
-def recommend_facility(payload = None, student_profile=None, purpose=None, location_or_housing=None, transport=None, duration_preference=None, time_preference=None, topK=None, api_key=None):
+def recommend_facility(schedule=None, fitness_goal=None, location_or_housing=None, transport=None, topK=None):
     """
-    Writes a payload (or builds one from the provided student_profile/purpose) to
-    `recwell/input.json` and runs the Node facility matcher `facility_Matcher.js`.
+    Tool function for dynamic agent:
+    Writes student preferences to recwell/input.json and runs the Node.js facility 
+    matcher (facility_Matcher.js) to recommend recreational facilities based on 
+    activity type, location, and scheduling preferences.
 
-    This matches the pattern used by `custom_workout_schedule.custom_workout_schedule`:
-    - determines the `recwell` folder relative to this `tools` folder
-    - runs the node script from `recwell/`
+    Parameters:
+    - schedule: list of class dicts (same format as recwell/input.json's "schedule")
+        EXAMPLE SCHEDULE FOR REFERENCE:
+        "schedule": [
+        {
+        "name": "Intro to CS",
+        "start_time": "09:00",
+        "end_time": "10:15",
+        "days": "Mon/Wed/Fri",
+        "location": "IRB Building"
+        }
+  ],
+    - fitness_goal: string (e.g., "soccer", "weight training", "swimming")
+        The type of activity or fitness objective the student wants to pursue
+    - location_or_housing: string (e.g., "Montgomery Hall", "Ellicott Hall, 4052 Stadium Dr")
+        Student's residence hall or current location on campus
+    - transport: string ("walking", "biking", or "driving")
+        Preferred method of transportation to the facility
+    - topK: int (optional, default 5)
+        Number of top facility recommendations to return
 
-    Returns a dict containing: `result` (stdout), `stderr`, `returncode`, `path`, `status`.
+    Returns a dict with keys:
+    - status: "success" or "error"
+    - result: stdout from facility_Matcher.js (formatted recommendations)
+    - parsed: JSON-parsed recommendations if available, otherwise None
+    - stderr: any error messages from the Node script
+    - returncode: subprocess exit code
+    - path: file path of the written input.json
     """
 
     # Determine recwell folder relative to this script: ../recwell
@@ -32,43 +57,24 @@ def recommend_facility(payload = None, student_profile=None, purpose=None, locat
     recwell_dir.mkdir(parents=True, exist_ok=True)
 
     input_path = recwell_dir / 'input.json'
-    # Build the body to write
-    if payload and isinstance(payload, dict):
-        to_write = payload
-    elif student_profile and isinstance(student_profile, dict):
-        sp = {}
-        sp['experience_level'] = student_profile.get('experience_level', student_profile.get('experience', 'beginner'))
-        sp['fitness_goal'] = student_profile.get('fitness_goal', student_profile.get('goal', ''))
-        sp['location_or_housing'] = student_profile.get('location_or_housing', student_profile.get('location', ''))
-        sp['transport'] = student_profile.get('transport', 'walking')
-        sp['duration_preference'] = student_profile.get('duration_preference', student_profile.get('duration', duration_preference))
-        sp['time_preference'] = student_profile.get('time_preference', student_profile.get('time', time_preference))
-
-        to_write = {
-            "student_profile": sp,
-            "schedule": []
-        }
-    else:
-        if not purpose:
-            raise ValueError('Either payload (dict), student_profile (dict), or purpose (string) must be provided')
-        to_write = {
-            "student_profile": {
-                "fitness_goal": purpose,
+    
+    student_profile =  {
+                "fitness_goal": fitness_goal,
                 "location_or_housing": location_or_housing,
                 "transport": transport,
-                "duration_preference": duration_preference,
-                "time_preference": time_preference
-            },
-            "schedule": []
-        }
+                "duration_preference": 30,
+                "time_preference": 'late'
+            }
+    
+    payload = {
+        "schedule": schedule,
+        "student_profile": student_profile
+    }
+
 
     # Write the input file (use standard input.json for facility_Matcher.js)
     with open(input_path, 'w', encoding='utf-8') as f:
-        json.dump(to_write, f, indent=2)
-
-    env = os.environ.copy()
-    if api_key:
-        env['GROQ_API_KEY'] = api_key
+        json.dump(payload, f, indent=2)
 
     try:
         # Run facility_Matcher.js from the recwell folder
@@ -78,7 +84,6 @@ def recommend_facility(payload = None, student_profile=None, purpose=None, locat
             capture_output=True,
             text=True,
             check=False,
-            env=env,
             timeout=120
         )
 
@@ -111,15 +116,32 @@ if __name__ == '__main__':
     # Example quick run for dev: change values here as needed
     # Example: call with simple purpose (backwards-compatible)
     sample = recommend_facility(
-        payload = None,
-        student_profile = None,
-        purpose='Weight Training',
+        schedule=[
+        {
+            "name": "Calculus I",
+            "start_time": "08:00",
+            "end_time": "09:15",
+            "days": "Tue/Thu",
+            "location": "Math Building 204"
+        },
+        {
+            "name": "General Chemistry",
+            "start_time": "09:30",
+            "end_time": "10:45",
+            "days": "Mon/Wed/Fri",
+            "location": "Science Hall 110"
+        },
+        {
+            "name": "World History",
+            "start_time": "11:00",
+            "end_time": "12:15",
+            "days": "Tue/Thu",
+            "location": "Humanities Center 301"
+        }],
+        fitness_goal='Weight Training',
         location_or_housing='Ellicott Hall, 4052 Stadium Dr, College Park, MD 20742',
         transport='walking',
-        duration_preference=45,
-        time_preference='midday',
-        topK=5,
-        api_key= "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"
+        topK=5
     )
     print(sample)
 

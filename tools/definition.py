@@ -1,6 +1,7 @@
 # TOOL_SPEC is required; JSON description for the LLM to understand the tool
 from tools.tooling import Tool
 from tools.tooling import tool
+import requests
 
 @tool
 def definition(word: str) -> str:

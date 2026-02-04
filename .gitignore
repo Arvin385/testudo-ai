@@ -210,3 +210,8 @@ __marimo__/
 *.env
 .env
 .env
+
+# Stuff to Ignore for Core Tools
+venv
+testudo_data.db
+*.pyc

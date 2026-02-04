@@ -1,0 +1,250 @@
+/**
+ * Converts schedule to a 2D array of start and end times
+ * @param {Array} schedule - Array of class objects with start_time and end_time
+ * @returns {Array} 2D array: [[start1, end1], [start2, end2], ...]
+ */
+// function scheduleTo2DArray(schedule) {
+//   return schedule.map(cls => [cls.start_time, cls.end_time]);
+// }
+
+/**
+ * Calculates the duration in minutes between two military times.
+ * @param {string} startTime - Start time in "HH:MM" format (24-hour)
+ * @param {string} endTime - End time in "HH:MM" format (24-hour)
+ * @returns {number} Duration in minutes
+ */
+// function calculateDurationMinutes(startTime, endTime) {
+//   // Split HH:MM into hours and minutes
+//   const [startHour, startMinute] = startTime.split(":").map(Number);
+//   const [endHour, endMinute] = endTime.split(":").map(Number);
+
+//   // Convert both times to total minutes
+//   const startTotal = startHour * 60 + startMinute;
+//   const endTotal = endHour * 60 + endMinute;
+
+//   // Calculate duration
+//   let duration = endTotal - startTotal;
+
+//   // Handle cases where end time is past midnight
+//   if (duration < 0) {
+//     duration += 24 * 60;
+//   }
+
+//   return duration;
+// }
+
+/** Suggest times to the user(from inputted list) one by one - if they don't like the time, 
+they can toggle to the next avaiable time; returns chosen index from filtered_list */
+// function toggle_suggestions(filtered_suggestion_list) {
+  
+//   let index = 0;
+
+//   const read = readLine.createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+//   })
+
+//   while (index < filtered_suggestion_list.length) {
+//     read.question('Suggested Time: [' + Time.militaryToStandard(filtered_suggestion_list[index].start_time)
+//                           + ' - ' + Time.militaryToStandard(filtered_suggestion_list[index].end_time)
+//                           + '] -> Enter \'n\' to toggle to next suggestion OR \'s\' to select current suggestion'),
+//                           (response) => 
+//                           {
+//                             if (response === 'n') {
+//                               index++;
+//                             } else if (response === 's') {
+//                               return filtered_suggestions_list[index];
+//                             }
+//                           }
+//   }
+  
+//   return -1;
+
+// }
+
+// OPEN_ROUTER
+
+// let selected_time = toggle_suggestions(filtered_suggestions);
+
+// console.log("Selected Time: " + selected_time);
+
+// const apiKey = process.env.OPEN_ROUTER_API_KEY;
+// const endpoint = "https://openrouter.ai/api/v1/chat/completions";
+
+// async function getCompletion() {
+//   const response = await fetch(endpoint, {
+//     method: "POST",
+//     headers: {
+//       "Authorization": `Bearer ${apiKey}`,
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       model: "openai/gpt-4o",
+//       messages: [
+//         { role: "user", content: "What is the meaning of life?" }
+//       ]
+//     })
+//   });
+
+//   const data = await response.json();
+//   console.log(data.choices[0].message.content);
+// }
+
+// getCompletion();
+
+// OLLAMA
+
+// run with: node orca-mini.js
+// const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+
+// async function test() {
+//   console.log("1. Starting test...");
+  
+//   try {
+//     console.log("2. Checking if Ollama is running...");
+//     const healthCheck = await fetch("http://localhost:11434/api/tags");
+//     console.log("3. Ollama responded! Status:", healthCheck.status);
+    
+//     console.log("4. Sending prompt to orca-mini...");
+//     const res = await fetch("http://localhost:11434/api/generate", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({
+//         model: "orca-mini",
+//         prompt: "Say hello",
+//         stream: false
+//       }),
+//     });
+    
+//     console.log("5. Got response! Status:", res.status);
+    
+//     const data = await res.json();
+//     console.log("6. Response data:", data);
+//     console.log("\n=== MODEL OUTPUT ===");
+//     console.log(data.response);
+    
+//   } catch (error) {
+//     console.error("ERROR:", error.message);
+//   }
+// }
+
+// test();
+
+
+// Idea for the future - Update Schedule based on User Prompts
+import subprocess
+import json
+from pathlib import Path
+from tools.tooling import tool
+
+# TOOL_SPEC = {
+#     "name": "update_workout",
+#     "description": "Takes in a dict with fields to update in recwell/input.json and reruns the scheduler(Implementationv1.js). Does not need full schedule or student_profile, only the fields to update.",
+#     "parameters": ["update_data"] # names of required parameters 
+# }
+
+@tool
+def update_workout(update_data):
+    """
+    Tool function for dynamic agent:
+    Updates the existing recwell/input.json file with new data and reruns the scheduler(Implementationv1.js).
+    
+    Parameters
+    - update_data: dict containing any fields to update in the input.json.
+                   Can update schedule, student_profile fields, or both.
+                   If any fields are not mentioned, they remain as they were before the update.
+                   Examples:
+                   - {"time_preference": "early"}
+                   - {"duration_preference": 45}
+                   - {"schedule": [...new schedule...]}
+                   - {"fitness_goal": "Weight Loss", "experience_level": "beginner"}
+    
+    Returns a dict with keys: result, status, and optionally error_message.
+    """
+    
+    # Determine recwell folder relative to this script: ../recwell
+    tools_dir = Path(__file__).resolve().parent
+    project_root = tools_dir.parent
+    recwell_dir = project_root / 'recwell'
+    recwell_dir.mkdir(parents=True, exist_ok=True)
+    input_path = recwell_dir / 'input.json'
+    
+    # Read existing input.json if it exists
+    
+    with open(input_path, 'r', encoding='utf-8') as f:
+        existing_data = json.load(f)
+        
+    # Update the data based on update_data
+    
+    # If updating schedule directly
+    if "schedule" in update_data:
+        existing_data["schedule"] = update_data["schedule"]
+        
+        # If updating student_profile fields
+    student_profile_keys = ["experience_level", "fitness_goal", "duration_preference", "time_preference"]
+    for key in student_profile_keys:
+        if key in update_data:
+            existing_data["student_profile"][key] = update_data[key]
+        
+    # Handle any other top-level keys
+    for key, value in update_data.items():
+        if key not in ["schedule"] and key not in student_profile_keys:
+            # If it's a nested update to student_profile
+            if key == "student_profile" and isinstance(value, dict):
+                existing_data["student_profile"].update(value)
+    
+    # Write the updated file
+    with open(input_path, 'w', encoding='utf-8') as f:
+        json.dump(existing_data, f, indent=2)
+    
+    # Run the node script from the recwell folder
+    try:
+        result = subprocess.run(
+            ['node', 'Implementationv1.js'],
+            cwd=str(recwell_dir),
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=120
+        )
+        
+        return {"result": result.stdout, "status": "success"}
+        
+    except Exception as e:
+        return {"status": "error", "error_message": str(e)}
+
+
+if __name__ == '__main__':
+    
+    # Example 1: Update time preference
+    # result = update_workout({"time_preference": "early"})
+    # print("Example 1 - Update time preference:")
+    # print(result)
+    # print()
+    
+    # Example 2: Update multiple student profile fields
+    result = update_workout({
+        "fitness_goal": "Strength Training",
+        "duration_preference": 90,
+        "experience_level": "advanced"
+    })
+    print("Example 2 - Update multiple fields:")
+    print(result)
+    print()
+    
+    # # Example 3: Update schedule
+    # new_schedule = [
+    #     {
+    #         "name": "Morning Lecture",
+    #         "start_time": "08:00",
+    #         "end_time": "09:30",
+    #         "days": "Mon/Wed/Fri",
+    #         "location": "Building A"
+    #     }
+    # ]
+    # result = update_workout({"schedule": new_schedule})
+    # print("Example 3 - Update schedule:")
+    # print(result)
+
+# Get the tool spec for the Gemini LLM
+TOOL_SPEC = update_workout.tool_spec()

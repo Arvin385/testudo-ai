@@ -1,0 +1,80 @@
+Simulated recommender output for `recwell/input.json`
+
+Context: the recommender would extract the user's "purpose" from the student profile.
+In the provided `recwell/input.json` the student_profile contains:
+
+  "fitness_goal": "Muscle gain"
+
+Therefore the recommender is run with the purpose string: "Muscle gain"
+
+---
+
+Simulated JSON output (what `recwell/recommend_runner.js` would print to stdout):
+
+[
+  {
+    "facility": {
+      "facility_id": 1,
+      "name": "Eppley Recreation Center",
+      "type": "Indoor Multipurpose",
+      "location": "North Campus, UMD",
+      "address": "5251 Chesapeake St, College Park, MD 20742",
+      "hours": "Mon-Fri 6 am - 12 am, Sat 8 am - 10 pm, Sun 10 am - 12 am"
+    },
+    "score": 0.9401
+  },
+  {
+    "facility": {
+      "facility_id": 6,
+      "name": "Severn Building",
+      "type": "Fitness Center",
+      "location": "North Campus, UMD",
+      "address": "3250 Campus Dr, College Park, MD 20742",
+      "hours": "Mon-Fri 6 am - 12 am, Sat 8 am - 10 pm, Sun 10 am - 12 am"
+    },
+    "score": 0.9134
+  },
+  {
+    "facility": {
+      "facility_id": 5,
+      "name": "Ritchie Colosseum",
+      "type": "Indoor Multipurpose",
+      "location": "South Campus, UMD",
+      "address": "2220 Cole Field House Dr, College Park, MD 20742",
+      "hours": "Mon-Fri 6 am - 12 am, Sat 8 am - 10 pm, Sun 10 am - 12 am"
+    },
+    "score": 0.7872
+  },
+  {
+    "facility": {
+      "facility_id": 3,
+      "name": "Reckord Armory",
+      "type": "Club/Intramural Sports",
+      "location": "North Campus, UMD",
+      "address": "2510 Stadium Dr, College Park, MD 20742",
+      "hours": "Mon-Thu 3 pm - 12 am, Fri 3 pm - 10 pm, Sat-Sun Closed"
+    },
+    "score": 0.6610
+  },
+  {
+    "facility": {
+      "facility_id": 11,
+      "name": "Prince Fredrick Fitness Zone",
+      "type": "Outdoor/Seasonal",
+      "location": "North Campus, UMD",
+      "address": "5001 Campus Dr, College Park, MD 20742",
+      "hours": "Open 24 Hours"
+    },
+    "score": 0.5487
+  }
+]
+
+---
+
+Human-friendly summary (simulated):
+
+Top recommendation: Eppley Recreation Center — strong match for 'Muscle gain' because it is an indoor multipurpose center with weight and resistance-training facilities. Severn Building (Fitness Center) is a close second — a dedicated fitness center with strength equipment. Ritchie Colosseum and Reckord Armory are next-ranked options (indoor multipurpose and club sports spaces), followed by the Prince Fredrick Fitness Zone (outdoor fitness area).
+
+Notes:
+- Scores are simulated cosine-similarity-like numbers (0..1) to illustrate ranking. Actual scores depend on OpenAI embeddings and may differ.
+- The real runner would build or load `facilities_embeddings.json` (embedding cache) and call the OpenAI API to embed the purpose string before scoring.

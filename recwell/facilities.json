@@ -1,0 +1,116 @@
+{
+  "Facilities": [
+    {
+      "facility_id": 1,
+      "name": "Eppley Recreation Center",
+      "type": ["Weight Training", "Cardio", "Badminton", "Boxing Studio", "Swimming Pool", "Bouldering Zone", "Basketball Court", "Table Tennis", "Racquet Ball", "Personal Training", "Tennis Courts"],
+      "location": "North Campus, UMD",
+      "address": "5251 Chesapeake St, College Park, MD 20742",
+      "hours": "Mon-Fri 6 am - 12 am, Sat 8 am - 10 pm, Sun 10 am - 12 am"
+    },
+    {
+      "facility_id": 2,
+      "name": "Outdoor Aquatic Center",
+      "type": "Swimming Pool",
+      "location": "North Campus, UMD",
+      "address": "5235 Paint Branch Dr, College Park, MD 20742",
+      "hours": "Mon-Fri 1 pm - 6 pm, Sat-Sun 11 am - 6 pm, Closed in the Winter"
+    },
+    {
+      "facility_id": 3,
+      "name": "Reckord Armory",
+      "type": "Club/Intramural Sports",
+      "location": "North Campus, UMD",
+      "address": "2510 Stadium Dr, College Park, MD 20742",
+      "hours": "Mon-Thu 3 pm - 12 am, Fri 3 pm - 10 pm, Sat-Sun Closed"
+    },
+    {
+      "facility_id": 4,
+      "name": "La Plata Beach",
+      "type": ["Football", "Beach Volleyball", "Spike Ball", "Soccer"],
+      "location": "North Campus, UMD",
+      "address": "5010 Paint Branch Dr, College Park, MD 20742",
+      "hours": "Open 24 Hours"
+    },
+    {
+      "facility_id": 5,
+      "name": "Ritchie Colosseum",
+      "type": ["Weight Training", "Basketball Court", "Cardio", "Boxing Studio"],
+      "location": "South Campus, UMD",
+      "address": "2220 Cole Field House Dr, College Park, MD 20742",
+      "hours": "Mon-Fri 6 am - 12 am, Sat 8 am - 10 pm, Sun 10 am - 12 am"
+    },
+    {
+      "facility_id": 6,
+      "name": "Severn Building",
+      "type": ["Weight Training", "Cardio"],
+      "location": "North Campus, UMD",
+      "address": "3250 Campus Dr, College Park, MD 20742",
+      "hours": "Mon-Fri 6 am - 12 am, Sat 8 am - 10 pm, Sun 10 am - 12 am"
+    },
+    {
+      "facility_id": 7,
+      "name": "School of Public Health",
+      "type": ["Weight Training", "Cardio", "Volleyball Court", "Club Sports", "Gymnasium"],
+      "location": "North Campus, UMD",
+      "address": "4200 Valley Dr, College Park, MD 20742",
+      "hours": "Mon-Thu 9 am - 2 pm, Fri 9 am - 4:30 pm, Sat-Sun Closed"
+    },
+    {
+      "facility_id": 8,
+      "name": "Regents Drive Studio",
+      "type": "Cardio",
+      "location": "South Campus, UMD",
+      "address": "2225 Regents Dr, College Park, MD 20742",
+      "hours": "Vary Based On Activity"
+    },
+    {
+      "facility_id": 9,
+      "name": "Bike Shop",
+      "type": ["Bike Rentals", "Bike Repairs"],
+      "location": "South Campus, UMD",
+      "address": "2200 Paint Branch Dr, College Park, MD 20742",
+      "hours": "Mon-Fri 12 pm - 6 pm, Sat-Sun Closed, Closed in the Winter"
+    },
+    {
+      "facility_id": 10,
+      "name": "Frat Row Fields",
+      "type": ["Football", "Soccer", "Lacrosse", "Rugby","Ultimate Frisbee","Field Hockey"],
+      "location": "South Campus, UMD",
+      "address": "2100 Fraternity Row, College Park, MD 20742",
+      "hours": "Open 24 Hours"
+    },
+    {
+      "facility_id": 11,
+      "name": "Prince Fredrick Fitness Zone",
+      "type": ["Cardio", "Weight Training"],
+      "location": "North Campus, UMD",
+      "address": "5001 Campus Dr, College Park, MD 20742",
+      "hours": "Open 24 Hours"
+    },
+    {
+      "facility_id": 12,
+      "name": "Adventure Program",
+      "type": ["hiking", "climbing", "outdoor activities"],
+      "location": "North Campus, UMD",
+      "address": "5100 Campus Dr, College Park, MD 20742",
+      "hours": "Vary Based on Activity, Closed in the Winter"
+    },
+    {
+      "facility_id": 13,
+      "name": "Turf Fields",
+      "type": ["Club Sports", "Intramural Sports"],
+      "location": "North Campus, UMD",
+      "address": "5200 Campus Dr, College Park, MD 20742",
+      "hours": "Open 24 Hours"
+    },
+    {
+      "facility_id": 14,
+      "name": "UMD Golf Course",
+      "type": "Golf",
+      "location": "North Campus, UMD",
+      "address": "5201 Golf Course Dr, College Park, MD 20742",
+      "hours": "Open 24 Hours"
+    }
+  ]
+}

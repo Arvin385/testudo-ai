@@ -1,0 +1,9 @@
+{
+  "schedule": "[{\"name\":\"Class\",\"start_time\":\"16:00\",\"end_time\":\"18:00\",\"days\":\"Fri\",\"location\":\"Unknown\"}]",
+  "student_profile": {
+    "experience_level": "advanced",
+    "fitness_goal": "gain muscle",
+    "duration_preference": "45",
+    "time_preference": "late"
+  }
+}
