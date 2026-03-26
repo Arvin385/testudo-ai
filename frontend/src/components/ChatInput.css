@@ -1,0 +1,28 @@
+.textarea-container {
+  position: fixed;
+  bottom: 0;
+  left: 50%; /* Start after the chat window */
+  right: 0;
+  padding: 20px;
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.fixed-textarea {
+  width: 100%;
+  min-height: 60px;
+  max-height: 200px;
+  padding: 12px;
+  font-size: 16px;
+  font-family: inherit;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.fixed-textarea:focus {
+  outline: none;
+  border-color: #646cff;
+}
