@@ -215,3 +215,5 @@ __marimo__/
 venv
 testudo_data.db
 *.pyc
+/frontend/.vite
+/frontend/node_modules
