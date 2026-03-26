@@ -2,11 +2,12 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #1a1a1a;
 }
 
 .content {
   margin-left: 50%; /* Make room for the chat window */
   flex: 1;
   padding: 20px;
-  padding-bottom: 120px; /* Space for the fixed textarea */
+  color: #e0e0e0;
 }

@@ -6,27 +6,28 @@
   width: 50%;
   display: flex;
   flex-direction: column;
-  background-color: #f9f9f9;
-  border-right: 2px solid #e0e0e0;
+  background-color: #1a1a1a;
+  border-right: 2px solid #333333;
 }
 
 .chat-header {
   padding: 20px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e0e0e0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background-color: #2a2a2a;
+  border-bottom: 1px solid #333333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .chat-header h2 {
   margin: 0;
   font-size: 24px;
-  color: #333;
+  color: #ffffff;
 }
 
 .messages-container {
   flex: 1;
   overflow-y: auto;
   padding: 20px;
+  padding-bottom: 120px; /* Space for the fixed input box */
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -54,7 +55,9 @@
   align-self: flex-end;
 }
 
-.message.agent {
+.message.agent,
+.message.admin,
+.message.system {
   align-self: flex-start;
 }
 
@@ -66,29 +69,31 @@
 }
 
 .message.user .message-content {
-  background-color: #646cff;
+  background-color: #CE1126; /* Maryland Red */
   color: white;
   border-bottom-right-radius: 4px;
 }
 
 .message.agent .message-content {
-  background-color: #ffffff;
-  color: #333;
-  border: 1px solid #e0e0e0;
+  background-color: #007AC2; /* ACM Blue */
+  color: white;
+  border: 1px solid #005a8f;
   border-bottom-left-radius: 4px;
 }
 
-.message-timestamp {
-  font-size: 11px;
-  color: #999;
-  margin-top: 4px;
-  padding: 0 4px;
+.message.admin .message-content {
+  background-color: #2a2a2a;
+  color: #FCD116; /* Maryland Gold */
+  border: 1px solid #444444;
+  border-radius: 8px;
+  font-style: italic;
+  font-size: 14px;
 }
 
-.message.user .message-timestamp {
-  text-align: right;
-}
-
-.message.agent .message-timestamp {
-  text-align: left;
+.message.system .message-content {
+  background-color: #3a2a2a;
+  color: #ff6b6b;
+  border: 1px solid #5a3a3a;
+  border-radius: 8px;
+  font-size: 14px;
 }

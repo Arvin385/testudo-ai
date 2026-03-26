@@ -1,44 +1,30 @@
-import { useState } from 'react'
 import './ChatWindow.css'
+import type { Message } from '../types/message'
 
-interface Message {
-  id: string
-  role: 'user' | 'agent'
-  content: string
-  timestamp: Date
+interface ChatWindowProps {
+  messages: Message[]
 }
 
-function ChatWindow() {
-  const [messages] = useState<Message[]>([
-    // Sample messages for demo - remove later
-    {
-      id: '1',
-      role: 'agent',
-      content: 'Hello! How can I assist you today?',
-      timestamp: new Date()
-    }
-  ])
-
+function ChatWindow({ messages }: ChatWindowProps) {
   return (
     <div className="chat-window">
       <div className="chat-header">
-        <h2>Chat</h2>
+        <h2>Testudo AI</h2>
       </div>
 
       <div className="messages-container">
-        {messages.map((message) => (
-          <div
-            key={message.id}
-            className={`message ${message.role}`}
-          >
-            <div className="message-content">
-              {message.content}
+        {messages
+          .filter((message) => message.role === 'user' || message.role === 'agent')
+          .map((message, index) => (
+            <div
+              key={index}
+              className={`message ${message.role}`}
+            >
+              <div className="message-content">
+                {message.content}
+              </div>
             </div>
-            <div className="message-timestamp">
-              {message.timestamp.toLocaleTimeString()}
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   )
