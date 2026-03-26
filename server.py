@@ -57,7 +57,7 @@ def new_run_agent():
         
         # Write information about the tools used as desired
         settings.messages.append({})
-        settings.messages[-1]["role"] = "tools"
+        settings.messages[-1]["role"] = "tool results"
         settings.messages[-1]["content"] = ""
         
         # Loop through results, fill up the tools message with info about each
@@ -76,7 +76,7 @@ def new_run_agent():
 
 
 if __name__ == "__main__": 
-    # port = int(os.environ.get("PORT", 8080))
+    # port = int(os.environ.get("PORT", 5000))
     # app.run(host="localhost", port=port)
     
     settings.messages = [
