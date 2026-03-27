@@ -92,134 +92,180 @@ def umd_unified_scraper():
         # 1. Academic Calendar
         # Start logging
         logging.info("Scraping academic calendar...")
-        with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True)
-            page = browser.new_page()
-            page.goto(
-                "https://academiccatalog.umd.edu/about-university/academic-calendar/semester-calendar/",
-                wait_until="networkidle"
-            )
-            page.wait_for_selector("table.sc_sctable tbody tr")
+        try:
+            with sync_playwright() as p:
+                browser = p.chromium.launch(headless=True)
+                page = browser.new_page()
+                page.goto(
+                    "https://academiccatalog.umd.edu/about-university/academic-calendar/semester-calendar/",
+                    wait_until="networkidle"
+                )
+                page.wait_for_selector("table.sc_sctable tbody tr", timeout=10000)
 
-            semester_tables = page.query_selector_all("table.sc_sctable")
+                semester_tables = page.query_selector_all("table.sc_sctable")
+                logging.info(f"Found {len(semester_tables)} calendar tables")
 
-            # Continuous update log
-            for table in tqdm(semester_tables, desc="Calendar sections"):
-                term = table.evaluate("table => table.previousElementSibling.textContent.trim()")
-                rows = table.query_selector_all("tbody tr")
+                # Continuous update log
+                for table in tqdm(semester_tables, desc="Calendar sections"):
+                    term = table.evaluate("table => table.previousElementSibling.textContent.trim()")
+                    rows = table.query_selector_all("tbody tr")
 
-                for row in rows:
-                    event = row.query_selector("td.column0").inner_text().strip()
-                    date = row.query_selector("td.column1").inner_text().strip()
-                    session.add(Calendar(term=term, event=event, date=date))
-                    stats["calendar"] += 1
-            
-            browser.close()
-        # Print final log for category
-        logging.info(f"Calendar events scraped: {stats['calendar']}")
+                    for row in rows:
+                        event = row.query_selector("td.column0").inner_text().strip()
+                        date = row.query_selector("td.column1").inner_text().strip()
+                        session.add(Calendar(term=term, event=event, date=date))
+                        stats["calendar"] += 1
+
+                browser.close()
+            # Print final log for category
+            logging.info(f"Calendar events scraped: {stats['calendar']}")
+        except Exception as e:
+            logging.error(f"Calendar scraping error: {e}")
+            stats["calendar_error"] = str(e)
 
         # 2. Faculty Directory
         logging.info("Scraping faculty directory...")
-        with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True)
-            page = browser.new_page()
-            page.goto(
-                "https://academiccatalog.umd.edu/undergraduate/administrators-officials-faculty/", 
-                wait_until="networkidle"
+        try:
+            with sync_playwright() as p:
+                browser = p.chromium.launch(headless=True)
+                page = browser.new_page()
+                logging.info("Navigating to faculty page...")
+                page.goto(
+                    "https://academiccatalog.umd.edu/undergraduate/administrators-officials-faculty/",
+                    wait_until="networkidle"
                 )
+                logging.info("Page loaded, waiting for faculty elements...")
 
-            faculty_elements = page.query_selector_all("p.keeptogether.faculty-item")
+                # Wait for the selector to appear
+                try:
+                    page.wait_for_selector("p.keeptogether.faculty-item", timeout=10000)
+                except Exception as wait_error:
+                    logging.error(f"Timeout waiting for faculty elements: {wait_error}")
+                    # Take a screenshot for debugging
+                    page.screenshot(path="faculty_page_debug.png")
+                    logging.info("Screenshot saved to faculty_page_debug.png")
 
-            for el in tqdm(faculty_elements, desc="Faculty entries"):
-                name = el.query_selector("strong").inner_text().strip()
-                full_text = el.inner_text().strip()
-                rest = full_text.replace(name, "").strip(" ;\n")
+                faculty_elements = page.query_selector_all("p.keeptogether.faculty-item")
+                logging.info(f"Found {len(faculty_elements)} faculty elements")
 
-                # Degree parsing
-                if any(x in rest for x in ["Ph.D.", "B.A.", "M.A.", "M.S."]):
-                    parts = rest.split(";")
-                    title_dept = parts[0].strip()
-                    degrees = ";".join(parts[1:]).strip()
-                else:
-                    title_dept, degrees = rest, ""
-                
-                session.add(Faculty(name=name, title_department=title_dept, degrees=degrees))
-                stats["faculty"] += 1
+                if len(faculty_elements) == 0:
+                    logging.warning("No faculty elements found! Checking page content...")
+                    page.screenshot(path="faculty_page_empty.png")
+                    logging.info("Screenshot saved to faculty_page_empty.png")
 
-            browser.close()
-        logging.info(f"Faculty scraped: {stats['faculty']}")
+                for el in tqdm(faculty_elements, desc="Faculty entries"):
+                    try:
+                        strong_tag = el.query_selector("strong")
+                        if not strong_tag:
+                            logging.warning("Faculty element missing <strong> tag, skipping")
+                            continue
+
+                        name = strong_tag.inner_text().strip()
+                        full_text = el.inner_text().strip()
+                        rest = full_text.replace(name, "").strip(" ;\n")
+
+                        # Degree parsing
+                        if any(x in rest for x in ["Ph.D.", "B.A.", "M.A.", "M.S."]):
+                            parts = rest.split(";")
+                            title_dept = parts[0].strip()
+                            degrees = ";".join(parts[1:]).strip()
+                        else:
+                            title_dept, degrees = rest, ""
+
+                        session.add(Faculty(name=name, title_department=title_dept, degrees=degrees))
+                        stats["faculty"] += 1
+                    except Exception as inner_e:
+                        logging.error(f"Error processing faculty element: {inner_e}")
+                        continue
+
+                browser.close()
+            logging.info(f"Faculty scraped: {stats['faculty']}")
+        except Exception as e:
+            logging.error(f"Faculty scraping error: {e}")
+            stats["faculty_error"] = str(e)
 
         # 3. Departments (with upsert and no autoflush)
         logging.info("Scraping departments...")
-        with session.no_autoflush:
+        try:
+            with session.no_autoflush:
 
-            # prevents SQLAlchemy from flushing mid-loop, avoiding IntegrityError
-            with sync_playwright() as p:
-                browser = p.chromium.launch(headless=True)
-                page = browser.new_page()
+                # prevents SQLAlchemy from flushing mid-loop, avoiding IntegrityError
+                with sync_playwright() as p:
+                    browser = p.chromium.launch(headless=True)
+                    page = browser.new_page()
 
-                page.goto("https://umd.edu/academic-departments-and-programs")
-                page.wait_for_selector("div.umd-text-rich-advanced ul li a")
+                    page.goto("https://umd.edu/academic-departments-and-programs")
+                    page.wait_for_selector("div.umd-text-rich-advanced ul li a", timeout=10000)
 
-                department_links = page.query_selector_all("div.umd-text-rich-advanced ul li a")
-                
-                for link in department_links:
-                    name = link.inner_text().strip()
-                    url = link.get_attribute("href").strip()
+                    department_links = page.query_selector_all("div.umd-text-rich-advanced ul li a")
+                    logging.info(f"Found {len(department_links)} department links")
 
-                    # upsert logic (upsert = update and insert)
-                    existing = session.query(Department).filter_by(name=name).first()
+                    for link in department_links:
+                        name = link.inner_text().strip()
+                        url = link.get_attribute("href").strip()
 
-                    if existing:
-                        existing.url = url   # update instead of insert
-                    else:
-                        session.add(Department(name=name, url=url))
-                        stats["departments"] += 1
-                
-                browser.close()
-        logging.info(f"Departments scraped/updated: {stats['departments']}")
+                        # upsert logic (upsert = update and insert)
+                        existing = session.query(Department).filter_by(name=name).first()
+
+                        if existing:
+                            existing.url = url   # update instead of insert
+                        else:
+                            session.add(Department(name=name, url=url))
+                            stats["departments"] += 1
+
+                    browser.close()
+            logging.info(f"Departments scraped/updated: {stats['departments']}")
+        except Exception as e:
+            logging.error(f"Departments scraping error: {e}")
+            stats["departments_error"] = str(e)
 
         # 4. Majors & Minors (also upsert)
         logging.info("Scraping majors & minors...")
-        with session.no_autoflush:
+        try:
+            with session.no_autoflush:
 
-            with sync_playwright() as p:
-                browser = p.chromium.launch(headless=True)
-                page = browser.new_page()
-                
-                page.goto("https://admissions.umd.edu/programs")
-                page.wait_for_selector("div.entry-list div.list div")
+                with sync_playwright() as p:
+                    browser = p.chromium.launch(headless=True)
+                    page = browser.new_page()
 
-                program_divs = page.query_selector_all("div.entry-list div.list div")
-                for div in tqdm(program_divs, desc="Programs"):
-                    a_tag = div.query_selector("h3 a")
-                    
-                    name = a_tag.inner_text().strip() if a_tag else ""
-                    url = a_tag.get_attribute("href") if a_tag else ""
-                    
-                    type_tags = div.query_selector_all("div.types span")
-                    types = ", ".join([t.inner_text().strip() for t in type_tags])
-                    
-                    desc_tag = div.query_selector("div.rich-text p")
-                    description = desc_tag.inner_text().strip() if desc_tag else ""
-                    
-                    # upsert program
-                    existing = session.query(Program).filter_by(name=name).first()
-                    if existing:
-                        existing.url = url
-                        existing.type = types
-                        existing.description = description
-                    else:
-                        session.add(Program(
-                            name=name,
-                            url=url,
-                            type=types,
-                            description=description
-                        ))
-                        stats["programs"] += 1
+                    page.goto("https://admissions.umd.edu/programs")
+                    page.wait_for_selector("div.entry-list div.list div", timeout=10000)
 
-                browser.close()
-        logging.info(f"Programs scraped: {stats['programs']}")
+                    program_divs = page.query_selector_all("div.entry-list div.list div")
+                    logging.info(f"Found {len(program_divs)} programs")
+
+                    for div in tqdm(program_divs, desc="Programs"):
+                        a_tag = div.query_selector("h3 a")
+
+                        name = a_tag.inner_text().strip() if a_tag else ""
+                        url = a_tag.get_attribute("href") if a_tag else ""
+
+                        type_tags = div.query_selector_all("div.types span")
+                        types = ", ".join([t.inner_text().strip() for t in type_tags])
+
+                        desc_tag = div.query_selector("div.rich-text p")
+                        description = desc_tag.inner_text().strip() if desc_tag else ""
+
+                        # upsert program
+                        existing = session.query(Program).filter_by(name=name).first()
+                        if existing:
+                            existing.url = url
+                            existing.type = types
+                            existing.description = description
+                        else:
+                            session.add(Program(
+                                name=name,
+                                url=url,
+                                type=types,
+                                description=description
+                            ))
+                            stats["programs"] += 1
+
+                    browser.close()
+            logging.info(f"Programs scraped: {stats['programs']}")
+        except Exception as e:
+            logging.error(f"Programs scraping error: {e}")
+            stats["programs_error"] = str(e)
 
         # 5. UMD Alerts (RSS)
         logging.info("Scraping UMD alert RSS feed...")

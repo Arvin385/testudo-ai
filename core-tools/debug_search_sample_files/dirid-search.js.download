@@ -1,0 +1,22 @@
+function phoneValidation(e){
+	var regex = /^[\d\s()+-.]*/;
+	var element = $(e).val();
+	var validation = regex.test(element);
+	
+	if(element != null && element != "" && !validation){
+		$(e).addClass('badValue');
+	}else{
+		$(e).removeClass('badValue');
+	}
+}
+
+/*This will handle changing the More and Less Details message on toggle*/
+function toggleMoreDetails(e){
+	toggleChevron(e);
+	var span = $(e).find('span');
+	if(span.text() == 'More Details'){
+		span.text('Less Details');
+	}else{
+		span.text('More Details');
+	}
+}

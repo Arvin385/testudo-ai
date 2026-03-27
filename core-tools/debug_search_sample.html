@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)https://identity.umd.edu/search -->
+<html lang="en" data-darkreader-proxy-injected="true"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	
+	<title>Directory Search</title>
+	<link rel="stylesheet" type="text/css" href="./debug_search_sample_files/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./debug_search_sample_files/directory-tools.css">
+	<link rel="stylesheet" type="text/css" href="./debug_search_sample_files/dynamic.css">
+	<link rel="stylesheet" type="text/css" href="./debug_search_sample_files/dirid-search.css">
+
+	<script type="text/javascript" src="./debug_search_sample_files/jquery.js.download"></script>
+	<script type="text/javascript" src="./debug_search_sample_files/bootstrap.js.download"></script>
+	<script type="text/javascript" src="./debug_search_sample_files/dirid-search.js.download"></script>
+	<script type="text/javascript" src="./debug_search_sample_files/global-scripts.js.download"></script>
+<style>.village-iframe{width:100%;height:100%;border:none;display:block;position:fixed;top:0;left:0;z-index:2147483647;background:#0000003d;color-scheme:light}.village-iframe.village-loading{display:flex;justify-content:center;align-items:center}.village-iframe>.village-spinner{width:1.5rem;height:1.5rem;border:2px solid #000;border-left-color:transparent;border-bottom-color:transparent;border-radius:50%;animation:spin .45s linear infinite}.village-iframe.village-hidden{display:none}@keyframes spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}.village-hidden{display:none}[village-paths-data=facepiles]{display:flex;align-items:center;padding-right:.5rem}[village-paths-data=facepiles] img{width:1.5rem;height:1.5rem;border-radius:50%;margin-right:-.5rem}[village-paths-data=facepiles] img.village-facepiler-avatar-not-found{filter:blur(7px)}[village-paths-data=facepiles] img:last-child{margin-right:0}[village-paths-data=count]{padding-right:.25rem}[village-paths-availability=error],[village-paths-availability=found],[village-paths-availability=not-found],[village-paths-availability=not-activated]{display:none!important}[village-paths-availability=loading]{display:inline-flex!important}</style><script id="simplify-jobs-page-script" src="chrome-extension://905b907c-f975-4b1d-ad56-a785d1ab3a95/js/pageScript.bundle.js"></script></head>
+
+	
+		
+	
+	
+
+
+<body style="">
+	<div id="umd-frame">
+		
+
+
+
+
+
+
+	
+		
+			<button class="btn-panel-big logout" onclick="remoteLogout();">Log Out</button>
+		
+		
+	
+
+
+
+<div class="DisplayVersion">2.6.8</div>
+<div class="UMDHeader"></div>
+		<div id="content-wrapper">
+			<div class="DisplayElement">
+				
+				<div id="blocker" class="hidden"></div>
+				<div id="searchSpinner" class="hidden"></div>
+				<h1>Directory Search</h1>
+				<form id="basicsearch" action="https://identity.umd.edu/search" method="post" onsubmit="preventDoubleSubmissionSpinner(event);">
+					<div class="SubDisplayElementContainer">
+						<label for="basicSearchInput" class="SubDisplayElement"><strong>Search:</strong></label>
+						<div class="SubDisplayElement">
+							<input id="basicSearchInput" name="basicSearchInput" title="Search in the directory." placeholder="Enter text here" type="search" autofocus="true" required="true" value="Farhan Kittur">
+						</div>
+						<div class="SubDisplayElement">
+							<input type="submit" value="Search" name="basicSearch" class="btn-panel-big">
+						</div>
+					</div>
+					<div class="SubDisplayElementContainer">
+						<input id="soundsListCB" name="lastNameSL" type="checkbox" value="true"><input type="hidden" name="_lastNameSL" value="on">
+						<label for="soundsListCB" class="lastNameSLCB">Last Name Sounds Like...</label>
+					</div>
+				</form>
+			</div>
+			<div class="DisplayElement" id="advancedSearchParent">
+				<h2 class="pointer" href="#advancedSearch" aria-expanded="false" data-toggle="collapse" aria-controls="advancedSearch" onclick="toggleChevron(this);">
+					<a href="https://identity.umd.edu/search#advancedSearch" aria-expanded="false" data-toggle="collapse" data-parent="#advancedSearchParent" aria-controls="advancedSearch">
+						Advanced Search <i class="glyphicon glyphicon-chevron-down pull-right"></i> 
+					</a>
+				</h2>
+				<div id="advancedSearch" class="collapse advancedPanel">
+					<form id="advancedsearch" action="https://identity.umd.edu/search" method="post" onsubmit="preventDoubleSubmissionSpinner(event);">
+						<div class="advancedSearchContainer">
+							<div class="flexContainer">
+								<div class="searchItem">
+									<label for="advancedSearchInputs.firstName" class="searchItemLabel">First Name</label>
+									<input id="advancedSearchInputs.firstName" name="advancedSearchInputs.firstName" title="First Name" placeholder="First" type="text" class="searchInput" value="">
+								</div>
+								<div class="searchItem">
+									<label for="advancedSearchInputs.middleName" class="searchItemLabel">Middle Name</label>
+									<input id="advancedSearchInputs.middleName" name="advancedSearchInputs.middleName" title="Middle Name" placeholder="Middle" type="text" class="searchInput" value="">
+								</div>
+								<div class="searchItem">
+									<label for="advancedSearchInputs.lastName" class="searchItemLabel">Last Name</label>
+									<input id="advancedSearchInputs.lastName" name="advancedSearchInputs.lastName" title="Last Name" placeholder="Last" type="text" class="searchInput" value="">
+								</div>
+								<div class="searchItem">
+									<label for="advancedSearchInputs.email" class="searchItemLabel">Email</label>
+									<input id="advancedSearchInputs.email" name="advancedSearchInputs.email" title="Email Address" placeholder="Email Address" type="text" class="searchInput" value="">
+								</div>
+								<div class="searchItem">
+									<label for="advancedSearchInputs.workPhone" class="searchItemLabel">Work Phone</label>
+									<input id="advancedSearchInputs.workPhone" name="advancedSearchInputs.workPhone" title="Work Phone" placeholder="+1 301-305-1000" type="text" class="searchInput" onblur="phoneValidation(this)" value="" maxlength="32">
+								</div>
+								
+									<div class="searchItem">
+										<label for="advancedSearchInputs.department" class="searchItemLabel">Department</label>
+										<input id="advancedSearchInputs.department" name="advancedSearchInputs.department" title="Department" placeholder="Department" type="text" class="searchInput" value="">
+									</div>
+									
+								
+							</div>
+							<div class="checkBoxRowContainer">
+								<div class="searchItem">
+									<div class="searchItemTitle">Affiliation:</div>
+									<div class="searchItemCheckboxContainer">
+										<div class="checkBoxItemContainer">
+											
+												
+												
+													<input id="facultyCB" name="advancedSearchInputs.affiliation[&#39;umFaculty&#39;]" type="checkbox" value="true" checked="checked"><input type="hidden" name="_advancedSearchInputs.affiliation[&#39;umFaculty&#39;]" value="on">
+												
+											
+											<label for="facultyCB">Faculty</label>
+										</div>
+										
+										<div class="checkBoxItemContainer">
+											
+												
+												
+													<input id="staffCB" name="advancedSearchInputs.affiliation[&#39;umStaff&#39;]" type="checkbox" value="true" checked="checked"><input type="hidden" name="_advancedSearchInputs.affiliation[&#39;umStaff&#39;]" value="on">
+												
+											
+											<label for="staffCB">Staff</label>
+										</div>
+										<div class="checkBoxItemContainer">
+											
+												
+												
+													<input id="affiliateCB" name="advancedSearchInputs.affiliation[&#39;umAffiliate&#39;]" type="checkbox" value="true" checked="checked"><input type="hidden" name="_advancedSearchInputs.affiliation[&#39;umAffiliate&#39;]" value="on">
+												
+											
+											<label for="affiliateCB">Affiliate</label>
+										</div>
+										
+											
+												<div class="checkBoxItemContainer">
+													
+														
+														
+															<input id="studentCB" name="advancedSearchInputs.affiliation[&#39;umStudent&#39;]" type="checkbox" value="true" checked="checked"><input type="hidden" name="_advancedSearchInputs.affiliation[&#39;umStudent&#39;]" value="on">
+														
+													
+													<label for="studentCB">Student</label>
+												</div>
+											
+										
+									</div>
+								</div>
+								<div class="searchItem">
+									<div class="searchItemTitle">Institution:</div>
+									<div class="searchItemCheckboxContainer">
+										<div class="checkBoxItemContainer">
+											
+												
+												
+													<input id="umcpCB" name="advancedSearchInputs.institution[&#39;UMCP&#39;]" type="checkbox" value="true" checked="checked"><input type="hidden" name="_advancedSearchInputs.institution[&#39;UMCP&#39;]" value="on">
+												
+											
+											<label for="umcpCB">UMD</label>
+										</div>
+										<div class="checkBoxItemContainer">
+											
+												
+												
+													<input id="umsoCB" name="advancedSearchInputs.institution[&#39;USMO&#39;]" type="checkbox" value="true"><input type="hidden" name="_advancedSearchInputs.institution[&#39;USMO&#39;]" value="on">
+												
+											
+											<label for="umsoCB">USMO</label>
+										</div>
+										
+											
+												<div class="checkBoxItemContainer">
+													
+														
+														
+															<input id="umesCB" name="advancedSearchInputs.institution[&#39;UMES&#39;]" type="checkbox" value="true"><input type="hidden" name="_advancedSearchInputs.institution[&#39;UMES&#39;]" value="on">
+														
+													
+													<label for="umesCB">UMES</label>
+												</div>
+												<div class="checkBoxItemContainer">
+													
+														
+														
+															<input id="umcesCB" name="advancedSearchInputs.institution[&#39;UMCES&#39;]" type="checkbox" value="true"><input type="hidden" name="_advancedSearchInputs.institution[&#39;UMCES&#39;]" value="on">
+														
+													
+													<label for="umcesCB">UMCES</label>
+												</div>
+											
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="SubDisplayElement">
+							<input type="submit" value="Advanced Search" name="advancedSearch" class="btn-panel-big advancedSearchButton">
+							<button type="button" class="btn-panel-big advancedSearchButton" onclick="window.location.reload()">Clear Search</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+				<div class="DisplayElement">
+					
+
+
+
+
+<h2>Directory Search Results</h2>
+
+
+
+	
+	
+		<div class="ResultNumber"><strong>Number of Results:</strong> 1</div>
+	
+
+
+<div class="SearchResultsContainer">
+	<div class="SearchResults">
+		
+			
+				
+				
+				
+					
+				
+			
+			<div class="DisplaySearchItem publishBackground">
+				<div class="DetailSection">
+					<div class="DetailBlock">
+						
+							
+							
+								
+									
+									
+										<div class="name"><strong>Farhan Kittur</strong></div>
+									
+								
+							
+						
+						
+						
+							
+							
+								<div class="email"><a href="mailto:fkittur@terpmail.umd.edu">fkittur@terpmail.umd.edu</a></div>
+								
+							
+						
+						
+					</div>
+					<div class="DetailBlock">
+						<div class="institution">University of Maryland, College Park</div>
+						<div class="displayTitle"></div>
+						<div class="deptName"></div>
+						
+							<div class="containAffiliations">
+								
+							</div>
+						
+					</div>
+					<div class="DetailBlock">
+						<div class="address">Not Published</div>
+						
+						
+						<div class="phoneNumbers"><strong>Phone:</strong> Not Published</div>
+						
+						
+						
+					</div>
+				</div>
+				
+			</div>
+		
+		<p id="date">Thu Mar 26 2026 23:37:16 GMT-0400 (Eastern Daylight Time)</p>
+		<script>document.getElementById("date").innerHTML = Date();</script>
+	</div>
+</div>
+				</div>
+			
+			<div class="DisplayElement">
+				<div class="DisplayElementModule">
+					<h3>Looking for a student?</h3>
+					<div class="SubDisplayElementContainer">
+						Student searches are limited to members of the University of Maryland, College Park community. 
+						To search for students, please log in.
+					</div>
+					<h3>How do I find more information about a particular person?</h3>
+					<div class="SubDisplayElementContainer">
+						You can get additional information on individuals (depending on their privacy settings) if you log in.
+					</div>
+					<h3>Campus Information: 301.405.1000</h3>
+				</div>
+			</div>
+			<div class="pageFooter">
+	<div class="footerContentContainer">
+		<div class="pageFooterText">
+			<p>If you have problems with this page, please contact the <a href="http://itsupport.umd.edu/" target="_blank">IT Service Desk</a> at 301.405.1500.</p>
+			<p><a href="https://umd.edu/web-accessibility">Web Accessibility</a></p>
+		</div>
+		<div class="pageFooterImg"></div>
+	</div>
+	<hr>
+	<div class="footerDisclaimer">
+		<p class="footerDisclaimerText">
+			NOTICE: Unauthorized access to this computer is in violation of Maryland Annotated Code, 
+			Criminal Law Article §§ 8-606 and 7-302 and the Computer Fraud and Abuse Act, 18 U.S.C. §§ 1030 et seq. 
+			The University may monitor use of its computing resources as permitted by state and federal law, including the 
+			Electronic Communications Privacy Act, 18 U.S.C. §§ 2510-2521 and the Maryland Annotated Code, Courts and Judicial 
+			Proceedings Article, Section 10, Subtitle 4.  Anyone using this system acknowledges that all use is subject to the 
+			<a href="http://www.umd.edu/aup" target="_blank">University of Maryland Policy on the Acceptable Use of Information Technology Resources</a>.
+		</p>
+		<p class="footerDisclaimerText footerWarning">
+			By logging in to this/these application(s) I acknowledge and agree to all terms and  conditions regarding my access and the information contained therein.
+		</p>
+	</div>
+</div>
+		</div>
+	</div>
+
+</body></html>

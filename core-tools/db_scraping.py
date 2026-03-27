@@ -11,6 +11,8 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker
 from enum import Enum as PyEnum
+import time
+import re
 
 # Progress & Log bar imports and initial configuration:
 import logging
@@ -37,6 +39,9 @@ class Faculty(Base):
     department_id = Column(Integer, ForeignKey("departments.id"), index=True)
     title_department = Column(String(255))
     degrees = Column(Text)
+    email = Column(String(255))
+    phone = Column(String(50))
+    bio = Column(Text)
     department = relationship("Department", back_populates="faculty")
 
 class Calendar(Base):
@@ -67,6 +72,157 @@ class Alert(Base):
 Index("ix_faculty_dept_name", Faculty.department_id, Faculty.name)
 
 
+def lookup_faculty_contact(page, name):
+    """
+    Look up a faculty member's email and phone via UMD directory search.
+    Uses the identity.umd.edu/search page with Playwright to submit a search
+    and parse the results.
+
+    Returns a dict with 'email' and 'phone' keys (empty strings if not found).
+    """
+    email = ""
+    phone = ""
+
+    try:
+        # Parse the name - try to handle "Last, First" format
+        name_parts = name.split(",")
+        if len(name_parts) >= 2:
+            last_name = name_parts[0].strip()
+            first_name = name_parts[1].strip().split()[0]  # first word only
+            search_name = f"{first_name} {last_name}"
+        else:
+            search_name = name.strip()
+
+        page.goto("https://identity.umd.edu/search", wait_until="networkidle")
+        page.wait_for_timeout(1000)
+
+        # Use basic search - it's simpler and more reliable
+        basic_input = page.query_selector("input[name='basicSearchInput']")
+        if basic_input:
+            basic_input.fill(search_name)
+
+            # Submit the search
+            submit_btn = page.query_selector("input[name='basicSearch']")
+            if submit_btn:
+                submit_btn.click()
+            else:
+                page.keyboard.press("Enter")
+        else:
+            logging.debug(f"Could not find basic search input for {name}")
+            return {"email": email, "phone": phone}
+
+        # Wait for results to load
+        page.wait_for_timeout(2000)
+
+        # Look for result items with the new structure
+        result_items = page.query_selector_all("div.DisplaySearchItem")
+
+        if not result_items:
+            logging.debug(f"No results found for {name}")
+            return {"email": email, "phone": phone}
+
+        # Take the first result (assuming it's the most relevant)
+        for item in result_items[:1]:
+            # Extract email from div.email a[href^='mailto:']
+            email_div = item.query_selector("div.email a")
+            if email_div:
+                email_href = email_div.get_attribute("href")
+                if email_href:
+                    email = email_href.replace("mailto:", "").strip()
+                else:
+                    email = email_div.inner_text().strip()
+
+            # Extract phone from div.phoneNumbers
+            phone_div = item.query_selector("div.phoneNumbers")
+            if phone_div:
+                phone_text = phone_div.inner_text().strip()
+                # Remove "Phone:" prefix and check for "Not Published"
+                phone_text = phone_text.replace("Phone:", "").strip()
+                if "Not Published" not in phone_text and phone_text:
+                    phone = phone_text
+
+    except Exception as e:
+        logging.debug(f"Directory lookup failed for {name}: {e}")
+
+    return {"email": email, "phone": phone}
+
+
+def lookup_faculty_bio(page, name, department_hint=""):
+    """
+    Attempt to find a short bio for a faculty member by searching
+    their name on Google Scholar or the UMD website.
+
+    Tries department-specific faculty pages first, then falls back
+    to a general UMD search.
+
+    Returns a bio string (empty if not found).
+    """
+    bio = ""
+
+    try:
+        # Try searching the UMD site for the faculty member's profile
+        search_query = f"{name} site:umd.edu faculty"
+        page.goto(
+            f"https://www.google.com/search?q={requests.utils.quote(search_query)}",
+            wait_until="networkidle"
+        )
+        page.wait_for_timeout(1500)
+
+        # Get the first result link that looks like a faculty profile
+        result_links = page.query_selector_all("div.g a[href]")
+        profile_url = ""
+        for link in result_links[:5]:
+            href = link.get_attribute("href") or ""
+            # Look for faculty profile URLs (common patterns)
+            if any(pattern in href for pattern in [
+                "/faculty/", "/people/", "/directory/", "/profile/",
+                "/about/faculty", "/our-faculty"
+            ]) and "umd.edu" in href:
+                profile_url = href
+                break
+
+        if profile_url:
+            page.goto(profile_url, wait_until="networkidle")
+            page.wait_for_timeout(1500)
+
+            # Try to extract bio from common selectors on faculty profile pages
+            bio_selectors = [
+                "div.field-name-body",           # Drupal body field
+                "div.biography",                  # Common bio class
+                "div.bio",
+                "section.biography",
+                "div#biography",
+                "div.faculty-bio",
+                "div.profile-bio",
+                "div.about-text",
+                "div.field--name-body",           # Drupal 8+
+                "article .content p",             # Generic article content
+                "div.profile-content p",
+                "div.entry-content p",
+                "main p",                         # Broad fallback
+            ]
+
+            for selector in bio_selectors:
+                elements = page.query_selector_all(selector)
+                if elements:
+                    paragraphs = []
+                    for el in elements[:3]:  # Limit to first 3 paragraphs
+                        text = el.inner_text().strip()
+                        if len(text) > 50:  # Skip very short fragments
+                            paragraphs.append(text)
+                    if paragraphs:
+                        bio = " ".join(paragraphs)
+                        # Truncate to a reasonable length for a "short bio"
+                        if len(bio) > 1000:
+                            bio = bio[:997] + "..."
+                        break
+
+    except Exception as e:
+        logging.debug(f"Bio lookup failed for {name}: {e}")
+
+    return bio
+
+
 def umd_unified_scraper():
     """
     Unified scraper for all UMD data categories.
@@ -84,6 +240,8 @@ def umd_unified_scraper():
         stats = {
             "calendar": 0,
             "faculty": 0,
+            "faculty_with_email": 0,
+            "faculty_with_bio": 0,
             "departments": 0,
             "programs": 0,
             "alerts": 0
@@ -118,19 +276,37 @@ def umd_unified_scraper():
         # Print final log for category
         logging.info(f"Calendar events scraped: {stats['calendar']}")
 
-        # 2. Faculty Directory
+        # 2. Faculty Directory (with contact info and bio)
         logging.info("Scraping faculty directory...")
         with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True)
-            page = browser.new_page()
-            page.goto(
+            # Check if auth state exists
+            auth_file = "umd_auth_state.json"
+            import os
+
+            if os.path.exists(auth_file):
+                logging.info(f"Using saved authentication from {auth_file}")
+                browser = p.chromium.launch(headless=True)
+                # Create context with saved auth state
+                context = browser.new_context(storage_state=auth_file)
+            else:
+                logging.warning(f"No auth file found at {auth_file}")
+                logging.warning("Contact/bio lookup may fail. Run login_umd.py first!")
+                browser = p.chromium.launch(headless=True)
+                context = browser.new_context()
+
+            # Page for catalog scraping
+            catalog_page = context.new_page()
+            catalog_page.goto(
                 "https://academiccatalog.umd.edu/undergraduate/administrators-officials-faculty/", 
                 wait_until="networkidle"
-                )
+            )
 
-            faculty_elements = page.query_selector_all("p.keeptogether.faculty-item")
+            faculty_elements = catalog_page.query_selector_all("p.keeptogether.faculty-item")
 
-            for el in tqdm(faculty_elements, desc="Faculty entries"):
+            # Collect basic faculty data first
+            # LIMIT TO FIRST 10 FOR TESTING
+            faculty_data = []
+            for idx, el in enumerate(tqdm(faculty_elements[:10], desc="Faculty entries (basic)")):
                 name = el.query_selector("strong").inner_text().strip()
                 full_text = el.inner_text().strip()
                 rest = full_text.replace(name, "").strip(" ;\n")
@@ -142,12 +318,68 @@ def umd_unified_scraper():
                     degrees = ";".join(parts[1:]).strip()
                 else:
                     title_dept, degrees = rest, ""
-                
-                session.add(Faculty(name=name, title_department=title_dept, degrees=degrees))
+
+                faculty_data.append({
+                    "name": name,
+                    "title_department": title_dept,
+                    "degrees": degrees
+                })
+
+            logging.info(f"LIMITED TEST MODE: Processing only {len(faculty_data)} faculty members")
+
+            catalog_page.close()
+
+            # Now enrich each faculty member with contact info from UMD directory
+            logging.info("Enriching faculty with contact info from UMD directory...")
+            directory_page = context.new_page()
+
+            for entry in tqdm(faculty_data, desc="Faculty contact lookup"):
+                contact = lookup_faculty_contact(directory_page, entry["name"])
+                logging.debug(f"CONTACT FOUND for {entry['name']}: {contact}")
+                entry["email"] = contact["email"]
+                entry["phone"] = contact["phone"]
+
+                if contact["email"]:
+                    stats["faculty_with_email"] += 1
+
+                # Be polite to the server (reduced for testing)
+                time.sleep(0.2)
+
+            directory_page.close()
+
+            # Look up bios (this is slower, so we log separately)
+            logging.info("Looking up faculty bios...")
+            bio_page = context.new_page()
+
+            for entry in tqdm(faculty_data, desc="Faculty bio lookup"):
+                bio = lookup_faculty_bio(bio_page, entry["name"], entry.get("title_department", ""))
+                entry["bio"] = bio
+
+                if bio:
+                    stats["faculty_with_bio"] += 1
+
+                # Be polite to Google and UMD servers (reduced for testing)
+                time.sleep(0.3)
+
+            bio_page.close()
+
+            # Save all faculty to DB
+            for entry in faculty_data:
+                session.add(Faculty(
+                    name=entry["name"],
+                    title_department=entry["title_department"],
+                    degrees=entry["degrees"],
+                    email=entry["email"],
+                    phone=entry["phone"],
+                    bio=entry["bio"]
+                ))
                 stats["faculty"] += 1
 
+            context.close()
             browser.close()
-        logging.info(f"Faculty scraped: {stats['faculty']}")
+        logging.info(f"Faculty scraped: {stats['faculty']} "
+                     f"(with email: {stats['faculty_with_email']}, "
+                     f"with bio: {stats['faculty_with_bio']})")
 
         # 3. Departments (with upsert and no autoflush)
         logging.info("Scraping departments...")

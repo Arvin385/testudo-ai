@@ -1,0 +1,28 @@
+@media(max-width: 1370px){
+	.popupButton{
+		font-size: 12px;
+		padding: 4px 8px;
+	}
+	
+	#tokenFormSelectType{
+		width:136px;
+	}
+	
+	#tokenFormSelectResync{
+		width:98px;
+	}
+}
+
+@media(max-width: 1475px){
+	.DisplayElementModuleContainer.right{
+		float:none;
+	}
+	
+	.DisplayElementModuleContainer.left{
+		float:none;
+	}
+	
+	.DisplayElementModuleContainer{
+		width: 100%;
+	}
+}

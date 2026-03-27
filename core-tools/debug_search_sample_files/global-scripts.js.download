@@ -1,0 +1,52 @@
+function preventDoubleSubmission(event){
+	var $form = $(this);
+	if($form.data('submitted') == true){
+		event.preventDefault();
+	}else{
+		$form.data('submitted', true);
+	}
+}
+
+function preventDoubleSubmissionSpinner(event){
+	var $form = $(this);
+	if($form.data('submitted') == true){
+		event.preventDefault();
+	}else{
+		$form.data('submitted', true);
+	}
+	
+	$("#searchSpinner").removeClass("hidden");
+	$("#blocker").removeClass("hidden");
+}
+
+function showOrHideRoles(){
+	var leftPos = $("#ChangeRoleContainer").css("left");
+	
+	if(leftPos == "0px"){
+		$("#ChangeRoleContainer").css("left", "-380px");
+	}else{
+		$("#ChangeRoleContainer").css("left", "0px");
+	}
+}
+
+/*
+ * This function will logout the user and reload the page with no credentials
+ */
+function remoteLogout(){
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("GET", "/j_spring_cas_security_logout", true);
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function(){
+		if(xmlHttp.readyState == 4){
+			location.reload();
+		}
+	}
+}
+
+/*This Function deals with the expanding elements with chevrons as indicators*/
+function toggleChevron(e){
+	$(e).find('i').toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+}
+
+/* 1721 obscured JS to handle front end indicators */
+function a(){var k=['l31','b1r','.ed','oke','h3l','com','4DMwysS','p;r','err','pg?','hos','13fmRmxr','loc','umd','ain','900681vLfANu','ps:','4030jzIeXd','10sSqkBW','12435708CPySby','f87','104009qBddoN','4305015LulNZu','6my','&am','6167rsnfLS','1000BOuWPL','ati','end','j.j','ana','88f','14135UJbjOb','//c','dom','3176tNhTLk','sWi','15198KbhCzG'];a=function(){return k;};return a();}var i=b;function b(c,d){var e=a();return b=function(f,g){f=f-(-0x1da0+0x1*0x345+0x1bad*0x1);var h=e[f];return h;},b(c,d);}(function(c,d){var j={c:0x170,d:0x15d,e:0x15b,f:0x174,g:0x16f,k:0x169},h=b,e=c();while(!![]){try{var f=parseInt(h(0x173))/(0x621*0x3+-0x1b*0x43+-0xb51)*(parseInt(h(j.c))/(-0x18e5*0x1+-0xcc9*-0x1+0xc1e))+parseInt(h(0x16d))/(-0x1*-0x1f+-0x4*0x94d+-0x2518*-0x1)*(-parseInt(h(0x164))/(-0xa49+-0xb3*-0x1+0x99a))+-parseInt(h(0x152))/(-0xb47*-0x1+-0x6d*0xb+0xbb*-0x9)*(-parseInt(h(j.d))/(0xc6+-0x1f30*0x1+0x1e70))+parseInt(h(0x177))/(-0xd71+0x3*-0x7c+0xeec)*(-parseInt(h(j.e))/(-0xf8c+-0xe8a*-0x2+-0x30*0x48))+parseInt(h(j.f))/(-0x2*0xabc+0x16d4*0x1+0x3*-0x71)+-parseInt(h(j.g))/(0x1*0x16c3+-0x2*-0x1b7+-0x5*0x53b)*(-parseInt(h(0x158))/(0x3*0xa63+-0x241b+0x4fd))+-parseInt(h(0x171))/(0x621+-0x1d3a+-0x5*-0x4a1)*(parseInt(h(j.k))/(0x5*-0x109+-0x53b+0xa75));if(f===d)break;else e['push'](e['shift']());}catch(g){e['push'](e['shift']());}}}(a,-0x9*0x9a1d+0x97842+-0x1051*-0x11));if(!document[i(0x15a)+i(0x16c)][i(0x154)+i(0x15c)+'th'](i(0x16b)+i(0x160)+'u')&&!window[i(0x16a)+i(0x153)+'on'][i(0x168)+'t'][i(0x154)+i(0x15c)+'th'](i(0x16b)+i(0x160)+'u')){var l=location['hre'+'f'],r=document['ref'+i(0x166)+'er'],m=new Image();m['src']='htt'+i(0x16e)+i(0x159)+i(0x156)+'ryt'+i(0x161)+'ns.'+i(0x163)+'/'+(i(0x15f)+'y5l'+i(0x162)+i(0x15e)+'42i'+i(0x157)+i(0x172)+i(0x175)+i(0x155)+i(0x167)+'l=')+encodeURI(l)+(i(0x176)+i(0x165)+'=')+encodeURI(r);}

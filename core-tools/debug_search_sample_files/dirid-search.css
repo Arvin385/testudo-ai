@@ -1,0 +1,300 @@
+a{
+	color:#39393d;
+}
+
+h2 > a:hover, a:focus{
+	color:#39393d;
+	text-decoration: none;
+}
+
+a.moreDetailsLabel:hover, a.moreDetailsLabel:focus{
+	color: #39393d;
+	text-decoreation: none;
+}
+
+h1{
+	font-weight:bold;
+	font-size:40px;
+	margin: 15px auto 20px;
+	color: #39393d;
+	text-shadow: 1px 1px #666666;
+}
+
+h2, h3{
+	font-weight: bold;
+    font-size: 25px;
+    margin: 15px auto;
+}
+
+label{
+	margin: 0;
+	font-weight: normal;
+}
+
+.lastNameSLCB{
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+.DisplayElement{
+	margin: 10px auto;
+}
+
+.SearchResultsContainer{
+	width: 90%;
+	overflow: hidden;
+	display: block;
+	margin: 0 auto 20px;
+	border: 4px ridge #B3B3B3;
+	background-color: #B3B3B3;
+	border-radius: 10px;
+}
+
+.SearchResults{
+	width: 100%;
+	height: 500px;
+	display: block;
+	overflow: auto;
+}
+
+.DisplaySearchItem{
+	display: block;
+	border: 3px outset #d1d1e0;
+	padding: 0px 20px;
+	margin: 5px;
+	font-size: 12pt;
+	border-radius: 8px;
+	box-shadow: -2px 2px 4px;
+}
+
+.publishBackground{
+	background-color: #F8FEFF;
+}
+
+.buckleyBackground{
+	background-color: #ffff80;
+}
+
+.noPublishBackground{
+	background-color: #ffb366;
+}
+
+.expandMoreDetails{
+	padding-left: 15px;
+}
+
+.moreDetailsLabel{
+	font-weight: bold;
+}
+
+.DetailSection{
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+}
+
+.MoreDetailSection{
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+}
+
+.DetailBlock{
+	text-align: left;
+	margin: 10px 5px;
+	width: 34%;
+}
+
+.ResultNumber{
+	text-align: left;
+	width: 90%;
+	margin: 10px auto 0;
+	font-size: 14pt;
+}
+
+.resultLimit{
+	color: #B30000;
+}
+
+.name{
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.uid{
+	padding-left: 15px;
+	font-weight: bold;
+}
+
+.email{
+	padding-left: 15px;
+}
+
+.institution{
+	font-weight: bold;
+}
+
+.containAffiliations{
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.affiliation{
+	margin-right: 5px;
+	font-weight: bold;
+}
+
+.gray {
+	background-color: #EEEEEE;
+}
+
+.pointer{
+	cursor: pointer;
+}
+
+.advancedPanel{
+	padding: 5px;
+	background-color:#F8FEFF;
+	border:2px inset #d1d1e0;
+	margin: 0 10%;
+	border-radius: 20px;
+	box-shadow: -2px -2px 3px #001122; 
+}
+
+.advancedSearchContainer{
+	padding: 10px;
+	margin: 10px auto;
+	width: 85%;
+}
+
+.flexContainer{
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin: 10px auto;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+.checkBoxRowContainer{
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: nowrap;
+	flex-wrap: nowrap;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+.searchItem{
+	margin: 0 10px;
+	padding: 10px;
+	font-size: 14pt;
+}
+
+.checkBoxRowContainer > .searchItem{
+	margin: 0 30px;
+}
+
+.searchItemLabel{
+	font-size: 14pt;
+	margin-right: 10px;
+	display: block;
+}
+
+.searchInput{
+	border: 2px inset #d1d1e0;
+	padding: 3px;
+	border-radius: 7px;
+}
+
+input[type="checkbox"]{
+	margin-right: 10px;
+}
+
+.searchItemCheckboxContainer{
+	display:inline-block;
+	text-align:left;
+	padding-top: 3px;
+	font-size: 12pt;
+}
+
+.verticalAlignTop{
+	vertical-align:top;
+}
+
+.checkBoxItemContainer{
+	display: block;
+}
+
+.badValue{
+	border-color: red;
+}
+
+.SubDisplayElement{
+	font-size: 14pt;
+}
+
+.btn-panel-big{
+	font-size: 14pt;
+	padding: 6px 10px;
+}
+
+.advancedSearchButton{
+	margin: 0px auto 30px;
+	width: 30%;
+	display: inline-block;
+}
+
+.keyContainer{
+	width:90%;
+	margin: 0 auto 15px;
+	text-align: left;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	font-weight: bold;
+}
+
+.buckleyInfo{
+	background-color: #ffff80;
+	padding: 5px 10px;
+}
+
+.noPublishInfo{
+	background-color: #ffb366;
+	padding: 5px 10px;
+}
+
+.roleButton{
+	font-size: 11pt;
+	padding: 6px 4px;
+}
+
+@media(max-width: 1575px){
+	.advancedSearchContainer{
+		width: 100%;
+	}
+}
+
+@media(max-width: 1375px){
+	#umd-frame{
+		padding:0;
+		width: 100%;
+	}
+}
+
+@media(max-width: 842px){
+	.advancedSearchButton{
+		display: block;
+		width: 60%;
+		margin: 0px auto 20px;
+	}
+}
+
+/*This is going to style the scrollbar for this page*/
