@@ -1,0 +1,648 @@
+[
+  {
+    "name": "Adams, Jeffrey D.",
+    "email": "jda@umd.edu",
+    "title": "Professor Emeritus",
+    "office": "Kirwan Hall",
+    "website": "http://www.math.umd.edu/~jda/"
+  },
+  {
+    "name": "Adhikari, Arka",
+    "email": "arkaa@umd.edu",
+    "title": "Assistant Professor",
+    "office": "4414 Kirwan Hall"
+  },
+  {
+    "name": "Antman, Stuart S.",
+    "email": "ssa@umd.edu",
+    "title": "Distinguished University Research Professor",
+    "office": "4103 Atlantic Building",
+    "phone": "301 405 7886",
+    "website": "http://www.math.umd.edu/~ssa/"
+  },
+  {
+    "name": "Bader, Uri",
+    "email": "uribader@umd.edu",
+    "title": "Brin Professor",
+    "office": "3104 Kirwan Hall"
+  },
+  {
+    "name": "Balan, Radu Victor",
+    "email": "rvbalan@umd.edu",
+    "title": "Professor Norbert Wiener Center co-Director, AMSC Program Director",
+    "office": "3101 Kirwan Hall",
+    "phone": "301 405 5492",
+    "website": "http://www.math.umd.edu/~rvbalan"
+  },
+  {
+    "name": "Bejleri, Dori",
+    "email": "dbejleri@umd.edu",
+    "title": "Assistant Professor",
+    "office": "2111 Kirwan Hall",
+    "website": "https://math.umd.edu/~dbejleri/"
+  },
+  {
+    "name": "Benedetto, John J.",
+    "email": "jjb@math.umd.edu",
+    "title": "Professor Emeritus & Research",
+    "office": "2213 Kirwan Hall",
+    "phone": "301 405 5175",
+    "website": "http://www.math.umd.edu/~jjb"
+  },
+  {
+    "name": "Berestycki, Henri",
+    "email": "hberes@umd.edu",
+    "title": "Professor",
+    "office": "2102 Kirwan Hall"
+  },
+  {
+    "name": "Berhanu, Shiferaw",
+    "email": "sberhanu@umd.edu",
+    "title": "Professor",
+    "office": "4304 Kirwan Hall",
+    "website": "https://www.math.umd.edu/~sberhanu/"
+  },
+  {
+    "name": "Boyle, Mike",
+    "email": "mmb@math.umd.edu",
+    "title": "Prof Emeritus",
+    "website": "https://www.math.umd.edu/~mboyle/"
+  },
+  {
+    "name": "Brin, Michael",
+    "email": "mib@math.umd.edu",
+    "title": "Prof Emeritus",
+    "website": "http://www.math.umd.edu/~mib/"
+  },
+  {
+    "name": "Brosnan, Patrick",
+    "email": "pbrosnan@umd.edu",
+    "title": "Professor",
+    "office": "3108 Kirwan Hall",
+    "phone": "301 405 5129",
+    "website": "http://www2.math.umd.edu/~pbrosnan/"
+  },
+  {
+    "name": "Cameron, Maria K.",
+    "email": "mariakc@umd.edu",
+    "title": "Professor, Associate Chair for Faculty Affairs",
+    "office": "2209 Kirwan Hall",
+    "phone": "301 405 5068",
+    "website": "http://www.math.umd.edu/~cameron"
+  },
+  {
+    "name": "Cerrai, Sandra",
+    "email": "cerrai@umd.edu",
+    "title": "Professor",
+    "office": "2309 Kirwan Hall",
+    "phone": "301 405 5460",
+    "website": "http://www.math.umd.edu/~cerrai"
+  },
+  {
+    "name": "Chernikov, Artem",
+    "email": "artem@umd.edu",
+    "title": "Professor, Brin Chair",
+    "office": "3115 Kirwan Hall",
+    "website": "https://chernikov.umd.edu/"
+  },
+  {
+    "name": "Cohen, Joel M.",
+    "email": "jcohen@umd.edu",
+    "title": "Professor Emeritus",
+    "website": "http://www.math.umd.edu/~jmc"
+  },
+  {
+    "name": "Cristofaro-Gardiner, Dan",
+    "email": "dcristof@umd.edu",
+    "title": "Professor",
+    "office": "2113 Kirwan Hall",
+    "website": "https://www.dancristofarogardiner.com/"
+  },
+  {
+    "name": "Czaja, Wojciech",
+    "email": "Czaja@umd.edu",
+    "title": "Professor, Norbert Wiener Center co-Director",
+    "office": "2105 Kirwan Hall",
+    "phone": "301 405 5106",
+    "website": "http://www.math.umd.edu/~wojtek"
+  },
+  {
+    "name": "Dancis, Jerome",
+    "email": "jdancis@math.umd.edu",
+    "title": "Assoc Prof Emeritus",
+    "office": "3306 Kirwan Hall"
+  },
+  {
+    "name": "Darvas, Tam\u00e1s",
+    "email": "tdarvas@umd.edu",
+    "title": "Professor",
+    "office": "4416 Kirwan Hall",
+    "phone": "301 405 5162",
+    "website": "http://www2.math.umd.edu/~tdarvas/"
+  },
+  {
+    "name": "Dolgopyat, Dmitry",
+    "email": "dolgop@umd.edu",
+    "title": "Distinguished University Professor",
+    "office": "4417 Kirwan Hall",
+    "phone": "301 405 5118",
+    "website": "http://www.math.umd.edu/~dmitry"
+  },
+  {
+    "name": "Fayad, Bassam",
+    "email": "bassam@umd.edu",
+    "title": "Professor, Brin Chair",
+    "office": "2307 Kirwan Hall",
+    "website": "http://bassam.math.umd.edu/"
+  },
+  {
+    "name": "Forni, Giovanni",
+    "email": "gforni@umd.edu",
+    "title": "Professor",
+    "office": "2115 Kirwan Hall",
+    "phone": "301 405 5167"
+  },
+  {
+    "name": "Freidlin, Mark I.",
+    "email": "mif@umd.edu",
+    "title": "Distinguished University Professor Emeritus",
+    "office": "3308 Kirwan Hall",
+    "phone": "301 405 5143",
+    "website": "http://www.math.umd.edu/~mif"
+  },
+  {
+    "name": "Gashi, Qendrim",
+    "email": "qgashi@umd.edu",
+    "title": "Visiting Professor",
+    "office": "4404 Kirwan Hall",
+    "website": "https://qendrimgashi.com/"
+  },
+  {
+    "name": "Gholampour, Amin",
+    "email": "amingh@umd.edu",
+    "title": "Professor",
+    "office": "4407 Kirwan Hall",
+    "phone": "301 405 0889",
+    "website": "http://www2.math.umd.edu/~amingh/"
+  },
+  {
+    "name": "Goldman, William M.",
+    "email": "wmg@umd.edu",
+    "title": "Professor",
+    "office": "3106 Kirwan Hall",
+    "phone": "301 405 5124",
+    "website": "http://www.math.umd.edu/~wmg"
+  },
+  {
+    "name": "Grillakis, Manoussos",
+    "email": "mggrlk@umd.edu",
+    "title": "Professor",
+    "office": "2311 Kirwan Hall",
+    "phone": "301 405 5107",
+    "website": "http://www.math.umd.edu/~mng"
+  },
+  {
+    "name": "Gu, Yu",
+    "email": "ygu7@umd.edu",
+    "title": "Professor",
+    "office": "2313 Kirwan Hall",
+    "phone": "301 405 5109",
+    "website": "http://www.math.umd.edu/~ygu7"
+  },
+  {
+    "name": "Gulick, Denny",
+    "email": "dgulick@umd.edu",
+    "title": "Professor Emeritus",
+    "office": "2103 Kirwan Hall",
+    "phone": "301 405 5157",
+    "website": "http://www.math.umd.edu/~dng"
+  },
+  {
+    "name": "Gumel, Abba",
+    "email": "agumel@umd.edu",
+    "title": "Distinguished University Professor & The Michael and Eugenia Brin Endowed E-Nnovate Chair in Mathematics",
+    "office": "3111 Kirwan Hall",
+    "website": "https://math.umd.edu/~agumel/"
+  },
+  {
+    "name": "Haines, Thomas",
+    "email": "tjh@umd.edu",
+    "title": "Professor",
+    "office": "2104 Kirwan Hall",
+    "phone": "301 405 5013",
+    "website": "http://www.math.umd.edu/~tjh"
+  },
+  {
+    "name": "Halperin, Stephen",
+    "email": "shalper@umd.edu",
+    "title": "Professor",
+    "office": "2107 Kirwan Hall",
+    "phone": "301 405 8175",
+    "website": "http://www.math.umd.edu/~shalper"
+  },
+  {
+    "name": "Hamilton, David H.",
+    "email": "dhh@umd.edu",
+    "title": "Professor",
+    "office": "3212 Kirwan Hall",
+    "phone": "301 405 5136"
+  },
+  {
+    "name": "Henderson, Christopher",
+    "email": "ckhend@umd.edu",
+    "title": "Associate Professor",
+    "office": "3317 Kirwan Hall",
+    "website": "https://sites.google.com/view/ckhenderson"
+  },
+  {
+    "name": "Hershkovits, Or",
+    "email": "orher@umd.edu",
+    "title": "Associate Professor",
+    "office": "2312 Kirwan Hall"
+  },
+  {
+    "name": "Hunt, Brian R.",
+    "email": "bhunt@umd.edu",
+    "title": "Prof Emeritus",
+    "office": "4408 Kirwan Hall",
+    "phone": "301 405 5108",
+    "website": "http://www.math.umd.edu/~bhunt"
+  },
+  {
+    "name": "Ide, Kayo",
+    "email": "ide@umd.edu",
+    "title": "Associate Professor",
+    "phone": "301 405 0591",
+    "website": "https://www2.atmos.umd.edu/~ide/"
+  },
+  {
+    "name": "Jakobson, Michael",
+    "email": "jakobson@umd.edu",
+    "title": "Professor Emeritus",
+    "website": "http://www.math.umd.edu/~mvy"
+  },
+  {
+    "name": "Johnson, Raymond L.",
+    "email": "rlj@rice.edu",
+    "title": "Prof Emeritus",
+    "website": "https://mathweb.rice.edu/faculty/raymond-johnson"
+  },
+  {
+    "name": "Kagan, Abram",
+    "email": "amk@umd.edu",
+    "title": "Professor Emeritus",
+    "website": "http://www2.math.umd.edu/~akagan"
+  },
+  {
+    "name": "Kanigowski, Adam M.",
+    "email": "akanigow@umd.edu",
+    "title": "Professor",
+    "office": "2304 Kirwan Hall",
+    "phone": "301 405 5065",
+    "website": "https://akanigow.math.umd.edu/"
+  },
+  {
+    "name": "Kedem, Benjamin",
+    "email": "bnk@umd.edu",
+    "title": "Professor Emeritus",
+    "website": "http://www.math.umd.edu/~bnk"
+  },
+  {
+    "name": "Kirwan, William E.",
+    "email": "wkirwan@umd.edu",
+    "title": "Regents Prof and Chancellor Emeritus",
+    "office": "2C Elkins Building",
+    "phone": "301 445 1901"
+  },
+  {
+    "name": "Koralov, Leonid",
+    "email": "koralov@umd.edu",
+    "title": "Professor, Associate Chair for Graduate Studies",
+    "office": "1104 Kirwan Hall",
+    "phone": "301 405 5144",
+    "website": "http://www.math.umd.edu/~koralov/"
+  },
+  {
+    "name": "Kueker, David W.",
+    "email": "dwk@math.umd.edu",
+    "title": "Prof Emeritus",
+    "office": "2110 Kirwan Hall",
+    "phone": "301 405 5159",
+    "website": "http://www.math.umd.edu/~dwk"
+  },
+  {
+    "name": "Kunnawalkam Elayavalli, Srivatsav",
+    "email": "sriva@umd.edu",
+    "title": "Assistant Professor",
+    "office": "4408 Kirwan Hall",
+    "website": "https://sites.google.com/view/srivatsavke/home?authuser=0"
+  },
+  {
+    "name": "Lahiri, Partha",
+    "email": "plahiri@umd.edu",
+    "title": "Professor, JPSM Director",
+    "phone": "301 314 5903",
+    "website": "https://math.umd.edu/~plahiri/"
+  },
+  {
+    "name": "Laskowski, Michael C.",
+    "email": "laskow@umd.edu",
+    "title": "Professor, Distinguished Scholar-Teacher",
+    "office": "3312 Kirwan Hall",
+    "phone": "301 405 5336",
+    "website": "http://www.math.umd.edu/~mcl"
+  },
+  {
+    "name": "Lawrie, Andrew",
+    "email": "alawrie@umd.edu",
+    "title": "Professor",
+    "office": "4413  kirwan Hall",
+    "website": "http://alawrie.math.umd.edu/"
+  },
+  {
+    "name": "Levermore, Charles D.",
+    "email": "lvrmr@umd.edu",
+    "title": "Professor Emeritus",
+    "office": "4309 Atlantic Building",
+    "phone": "301 405 5127",
+    "website": "http://www.math.umd.edu/~lvrmr/"
+  },
+  {
+    "name": "Levy, Doron",
+    "email": "dlevy@umd.edu",
+    "title": "Department Chair and Professor",
+    "office": "1101 Kirwan Hall",
+    "phone": "301 405 5051",
+    "website": "http://www.math.umd.edu/~dlevy"
+  },
+  {
+    "name": "Lin, Lizhen",
+    "email": "lizhen01@umd.edu",
+    "title": "Professor, STAT Program Director",
+    "office": "1107 Kirwan Hall",
+    "phone": "301 405 5061",
+    "website": "http://math.umd.edu/~lizhen01"
+  },
+  {
+    "name": "Lipsman, Ronald L.",
+    "email": "rlipsman@math.umd.edu",
+    "title": "Prof Emeritus",
+    "office": "4301 Kirwan Hall",
+    "phone": "301 405 7061",
+    "website": "http://www.math.umd.edu/~rlipsman"
+  },
+  {
+    "name": "Lyzinski, Vince",
+    "email": "vlyzinsk@umd.edu",
+    "title": "Professor",
+    "office": "2306 William E. Kirwan Hall",
+    "phone": "301 405 5047",
+    "website": "https://www.math.umd.edu/~vlyzinsk"
+  },
+  {
+    "name": "Machedon, Matei",
+    "email": "matei@umd.edu",
+    "title": "Professor",
+    "office": "3311 Kirwan Hall",
+    "phone": "301 405 5146",
+    "website": "http://www.math.umd.edu/~mxm/"
+  },
+  {
+    "name": "Margetis, Dionisios",
+    "email": "diom@umd.edu",
+    "title": "Professor",
+    "office": "2106 Kirwan Hall",
+    "phone": "301 405 5455",
+    "website": "http://www.math.umd.edu/~dio"
+  },
+  {
+    "name": "Mellet, Antoine",
+    "email": "mellet@umd.edu",
+    "title": "Professor",
+    "office": "3314 Kirwan Hall",
+    "phone": "301 405 5070",
+    "website": "http://www.math.umd.edu/~mellet"
+  },
+  {
+    "name": "Millson, John J.",
+    "email": "millson@umd.edu",
+    "title": "Professor Emeritus",
+    "website": "http://www.math.umd.edu/~jjm"
+  },
+  {
+    "name": "Nguyen, Huy Quang",
+    "email": "hnguye90@umd.edu",
+    "title": "Assistant Professor",
+    "office": "4403 Kirwan Hall",
+    "website": "https://www.math.umd.edu/~hnguye90/"
+  },
+  {
+    "name": "Nochetto, Ricardo H.",
+    "email": "rhn@umd.edu",
+    "title": "Professor",
+    "office": "3310 Kirwan Hall",
+    "phone": "301 405 5145",
+    "website": "http://www.math.umd.edu/~rhn"
+  },
+  {
+    "name": "Peled, Ron",
+    "email": "peledron@umd.edu",
+    "title": "Brin Professor",
+    "office": "3306 Kirwan Hall",
+    "phone": "301 405 5141",
+    "website": "https://sites.google.com/umd.edu/peledron/"
+  },
+  {
+    "name": "Ramachandran, Niranjan",
+    "email": "atma@umd.edu",
+    "title": "Professor",
+    "office": "3113 Kirwan Hall",
+    "phone": "301 405 5080",
+    "website": "http://www.math.umd.edu/~atma"
+  },
+  {
+    "name": "Ray, Deep",
+    "email": "deepray@umd.edu",
+    "title": "Assistant Professor",
+    "office": "4410 Kirwan Hall",
+    "website": "https://deepray.github.io"
+  },
+  {
+    "name": "Ren, Joan JianJian",
+    "email": "jjren@umd.edu",
+    "title": "Professor",
+    "office": "2305 Kirwan Hall",
+    "phone": "301 405 5473",
+    "website": "http://www2.math.umd.edu/~jjren"
+  },
+  {
+    "name": "Rosenberg, Jonathan M.",
+    "email": "jmr@umd.edu",
+    "title": "Ruth M. Davis Professor",
+    "office": "2114 Kirwan Hall",
+    "phone": "301 405 5166",
+    "website": "http://www.math.umd.edu/~jmr"
+  },
+  {
+    "name": "Rosendal, Christian",
+    "email": "rosendal@umd.edu",
+    "title": "Professor",
+    "office": "3112 Kirwan Hall",
+    "website": "http://sites.google.com/view/christian-rosendal"
+  },
+  {
+    "name": "Saegusa, Takumi",
+    "email": "tsaegusa@umd.edu",
+    "title": "Associate Professor",
+    "office": "3313 Kirwan Hall",
+    "phone": "301 405 4137",
+    "website": "https://sites.google.com/umd.edu/tsaegusa/"
+  },
+  {
+    "name": "Schafer, James A.",
+    "email": "jas@umd.edu",
+    "title": "Professor Emeritus, Course Staffing",
+    "office": "2112 Kirwan Hall",
+    "phone": "301 405 5164"
+  },
+  {
+    "name": "Senger, Andrew",
+    "email": "senger@umd.edu",
+    "title": "Assistant Professor",
+    "office": "4404 Kirwan Hall"
+  },
+  {
+    "name": "Slud, Eric",
+    "email": "slud@umd.edu",
+    "title": "Professor",
+    "office": "2314 Kirwan Hall",
+    "phone": "301 405 5469",
+    "website": "http://www.math.umd.edu/~evs"
+  },
+  {
+    "name": "Smith, Paul J.",
+    "email": "pjs@umd.edu",
+    "title": "Associate Professor Emeritus",
+    "website": "http://www.math.umd.edu/~pjs"
+  },
+  {
+    "name": "Tadmor, Eitan",
+    "email": "tadmor@umd.edu",
+    "title": "Distinguished University Professor",
+    "phone": "301 405 0648",
+    "website": "http://www.math.umd.edu/~tadmor"
+  },
+  {
+    "name": "Tamvakis, Harry",
+    "email": "harryt@umd.edu",
+    "title": "Professor",
+    "office": "4419 Kirwan Hall",
+    "phone": "301 405 5120",
+    "website": "http://www.math.umd.edu/~harryt/"
+  },
+  {
+    "name": "Trevino, Rodrigo",
+    "email": "rodrigo@umd.edu",
+    "title": "Assistant Professor",
+    "office": "4412 Kirwan Hall",
+    "website": "http://trevino.cat"
+  },
+  {
+    "name": "Trivisa, Konstantina",
+    "email": "trivisa@umd.edu",
+    "title": "Professor",
+    "office": "3307 Kirwan Hall",
+    "phone": "301 405 6865",
+    "website": "http://www.math.umd.edu/~trivisa"
+  },
+  {
+    "name": "Von Petersdorff, Tobias",
+    "email": "petersd@umd.edu",
+    "title": "Associate Professor",
+    "office": "4409 Kirwan Hall",
+    "phone": "301 405 5117",
+    "website": "http://www.math.umd.edu/~tvp"
+  },
+  {
+    "name": "Washington, Larry",
+    "email": "lcw@umd.edu",
+    "title": "Professor, Associate Chair for Undergraduate Studies",
+    "office": "1105 Kirwan Hall",
+    "phone": "301 405 5056",
+    "website": "http://www.math.umd.edu/~lcw"
+  },
+  {
+    "name": "Wentworth, Richard",
+    "email": "raw@umd.edu",
+    "title": "Professor, Associate Chair for APT",
+    "office": "3109 Kirwan Hall",
+    "phone": "301 405 5130",
+    "website": "http://www.math.umd.edu/~raw"
+  },
+  {
+    "name": "Wolfe, Peter",
+    "email": "pnw@math.umd.edu",
+    "title": "Prof Emeritus",
+    "office": "3306 Kirwan Hall",
+    "phone": "301 405 5141",
+    "website": "http://www.math.umd.edu/~pnw"
+  },
+  {
+    "name": "Wolpert, Scott A.",
+    "email": "swolpert@umd.edu",
+    "title": "Prof Emeritus & Research",
+    "website": "http://www.math.umd.edu/~saw"
+  },
+  {
+    "name": "Yang, Grace L.",
+    "email": "gly@math.umd.edu",
+    "title": "Prof Emerita",
+    "office": "4408 Kirwan Hall",
+    "phone": "301 405 5480",
+    "website": "http://www.math.umd.edu/~gly"
+  },
+  {
+    "name": "Yang, Haizhao",
+    "email": "hzyang@umd.edu",
+    "title": "Associate Professor",
+    "office": "2211 Kirwan Hall",
+    "website": "https://haizhaoyang.github.io/"
+  },
+  {
+    "name": "Yang, Yun",
+    "email": "yy84@umd.edu",
+    "title": "Associate Professor",
+    "office": "2310 Kirwan Hall",
+    "phone": "301 405 5493",
+    "website": "https://sites.google.com/site/yunyangstat/"
+  },
+  {
+    "name": "Yorke, James A.",
+    "email": "yorke@umd.edu",
+    "title": "Distinguished University Research Professor",
+    "office": "4311 Atlantic Building",
+    "phone": "301 405 4875",
+    "website": "http://yorke.umd.edu/"
+  },
+  {
+    "name": "Zavyalov, Bogdan",
+    "email": "zavyalov@umd.edu",
+    "title": "Assistant Professor",
+    "office": "4415 Kirwan Hall"
+  },
+  {
+    "name": "Zhang, Boyu",
+    "email": "bzh@umd.edu",
+    "title": "Assistant Professor",
+    "office": "4418 Kirwan Hall",
+    "website": "https://www.math.umd.edu/~bzh/"
+  },
+  {
+    "name": "Zickert, Christian Krogager",
+    "email": "zickert@umd.edu",
+    "title": "Professor",
+    "office": "4406 Kirwan Hall",
+    "phone": "301 405 5072",
+    "website": "http://www.math.umd.edu/~zickert"
+  }
+]

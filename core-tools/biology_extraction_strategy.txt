@@ -1,0 +1,8 @@
+BIOLOGY PROFILE EXTRACTION STRATEGY
+================================================================================
+
+Field Locations:
+1. Bio: div.field--name-body > div.field__item
+2. Lab Website: div.field--name-field-team-website > a[href]
+3. Additional Titles: div.field--name-field-team-additional-titles
+4. Contact Info: div.field--name-field-team-contact

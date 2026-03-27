@@ -1,0 +1,30 @@
+================================================================================
+SAMPLE 1:
+Header: Wu, XiaodiAssistant Professor Computer Science
+
+Details: Email: xiaodiwu@umd.eduWebpage: https://www.cs.umd.edu/~xwu/Research: End-to-end quantum applications by investigating both the theoretical study of quantum information and computation and the software tool-chain and system of quantum computers.
+
+================================================================================
+SAMPLE 2:
+Header: Cameron, Maria Professor Mathematics
+
+Details: Email: mariakc@umd.eduWebpage: http://www2.math.umd.edu/~mariakc/Research: Scientific computing, development of numerical and graph algorithms, methods for the study of rare events and transition paths in stochastic systems, and applications to natural sciences, in particular to chemical physics.
+
+================================================================================
+SAMPLE 3:
+Header: Alt, Francis B.  Associate Professor, Emeritus Decision, Operations & Information Technologies
+
+Details: Email: falt@umd.eduResearch: Statistical quality control, applied multivariate analysis, and forecasting with a particular interest and expertise in multivariate process control.
+
+================================================================================
+SAMPLE 4:
+Header: Gumel, AbbaProfessor, Michael and Eugenia Brin Endowed E-Nnovate Chair Mathematics
+
+Details: Email: agumel@umd.edu Webpage: https://math.umd.edu/~agumel/ Research: Mathematical Biology; Applied Dynamical Systems and Computational Mathematics. Dr. Gumel uses mathematical modeling approaches and analysis, backed by data analytics and computation, to gain insight into the transmission dynamics and control of emerging and re-emerging infectious diseases of major public health significance. The main theme of his work is using mathematics to contribute to the One Health approach to public health (at the human-environment-animal nexus).
+
+================================================================================
+SAMPLE 5:
+Header: Girvan, Michelle Professor Physics
+
+Details: Email: girvan@umd.edu Webpage: http://networks.umd.edu/ Research: My research focuses the theory of complex networks as well as applications to biological systems. Much of the theoretical portion of my work involves studies of community structure (e.g. modularity) in complex networks – how it arises, different ways to quantify it, algorithms to detect it, etc. In terms of applying abstract concepts from network theory to experimental systems, I am broadly interested in high-throughput biological networks, and have recently been focused on gene interaction networks. In particular, my collaborators and I have been studying structural and dynamical features of cancer in experimentally-derived gene interaction networks. In an effort to connect empirical results back to theory, we are investiga
+

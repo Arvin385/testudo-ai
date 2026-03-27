@@ -1,0 +1,42 @@
+================================================================================
+PROPOSED EXTRACTION STRATEGY FOR PHYSICS PROFILES
+================================================================================
+
+1. CURRICULUM VITAE LINK:
+   Found: /images/CV/sau_cv_2016.pdf
+   Strategy: Look for <a> with href containing "/images/CV/"
+
+2. PERSONAL WEBSITE:
+   Found: http://www2.physics.umd.edu/~jaydsau/
+   Strategy: Look for <a> with text="Personal Website"
+
+3. BIOGRAPHY (Tab ID: biography):
+   Found: Jay Sau received his Ph.D. from UC Berkeley in 2008. He is a theoretical condensed matter physicist with a broad interest in many particle physics rel...
+   Strategy: Find div with id="biography", extract text
+
+4. RESEARCH (Tab ID: research):
+   Research Areas: ['Condensed Matter Theory', 'Quantum Science and Technology']
+   Publications: 5 found
+   Strategy: Find div with id="research", extract research areas and publications
+
+5. TEACHING (Tab ID: teaching):
+   Courses: ['', 'Physics 420: Principles of Mod', 'Physics 622: Introduction to Q']
+   Strategy: Find div with id="teaching", extract course links
+
+6. NEWS (Tab ID: news):
+   News Items: 7 found
+   Strategy: Find div with id="news", extract news links
+
+================================================================================
+EXTRACTION STRATEGY SUMMARY
+================================================================================
+
+For each Physics faculty member with a profile URL:
+1. Visit their profile page
+2. Extract CV link (href contains /images/CV/)
+3. Extract Personal Website link (text=Personal Website)
+4. Extract Biography: div#biography -> bio field
+5. Extract Research: div#research -> extra_info
+6. Extract Teaching: div#teaching -> extra_info
+7. Extract News: div#news -> extra_info
+8. Combine all with clear section headers

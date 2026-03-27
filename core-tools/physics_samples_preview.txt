@@ -1,0 +1,50 @@
+================================================================================
+SAMPLE 1:
+Name: Tiwary, Pratyush
+Title: Affiliate Professor
+Email: ptiwary@umd.edu
+Office: IPST 1113
+Phone: 301.405.2148
+Personal Website: http://sites.google.com/site/pratyushtiwary/
+Profile URL: /people/faculty/affiliate-faculty/item/2290-ptiwary.html
+
+================================================================================
+SAMPLE 2:
+Name: Childs, Andrew
+Title: Affiliate Professor
+Email: amchilds@umd.edu
+Office: 3359 Atlantic Building
+Phone: 301.405.2329
+Personal Website: N/A
+Profile URL: /people/faculty/affiliate-faculty/item/89-amchilds.html
+
+================================================================================
+SAMPLE 3:
+Name: Aranda-Espinoza, Jose
+Title: Affiliate Associate Professor
+Email: helim@umd.edu
+Office: 3138 Jeong H. Kim Engineering Building
+Phone: 301.405.8250
+Personal Website: N/A
+Profile URL: /people/faculty/affiliate-faculty/item/21-helim.html
+
+================================================================================
+SAMPLE 4:
+Name: Hassam, Adil
+Title: Professor Emeritus
+Email: hassam@umd.edu
+Office: 3307 A.V. Williams Building
+Phone: 301.405.1417
+Personal Website: http://terpconnect.umd.edu/~hassam/
+Profile URL: /people/faculty/emeritus/item/215-hassam.html
+
+================================================================================
+SAMPLE 5:
+Name: Guchhait, Samaresh
+Title: Adjunct Assistant Research Professor
+Email: samaresh@umd.edu
+Office: 4296 STADIUM DRIVE College Park MD 20742
+Phone: N/A
+Personal Website: N/A
+Profile URL: /people/faculty/adjunct-faculty/item/2352-samaresh.html
+

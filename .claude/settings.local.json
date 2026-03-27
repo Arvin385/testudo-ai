@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(../.venv/Scripts/python.exe:*)",
+      "WebFetch(domain:umdphysics.umd.edu)",
+      "WebFetch(domain:www.astro.umd.edu)",
+      "WebFetch(domain:www.geol.umd.edu)",
+      "WebFetch(domain:aosc.umd.edu)"
+    ]
+  }
+}

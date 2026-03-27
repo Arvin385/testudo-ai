@@ -1,0 +1,45 @@
+================================================================================
+SAMPLE 1:
+Name: Yang, Grace L.
+Title: Prof Emerita
+Email: gly@math.umd.edu
+Office: 4408 Kirwan Hall
+Phone: 301 405 5480
+Website: http://www.math.umd.edu/~gly
+
+================================================================================
+SAMPLE 2:
+Name: Chernikov, Artem
+Title: Professor, Brin Chair
+Email: artem@umd.edu
+Office: 3115 Kirwan Hall
+Phone: N/A
+Website: https://chernikov.umd.edu/
+
+================================================================================
+SAMPLE 3:
+Name: Bader, Uri
+Title: Brin Professor
+Email: uribader@umd.edu
+Office: 3104 Kirwan Hall
+Phone: N/A
+Website: N/A
+
+================================================================================
+SAMPLE 4:
+Name: Hershkovits, Or
+Title: Associate Professor
+Email: orher@umd.edu
+Office: 2312 Kirwan Hall
+Phone: N/A
+Website: N/A
+
+================================================================================
+SAMPLE 5:
+Name: Haines, Thomas
+Title: Professor
+Email: tjh@umd.edu
+Office: 2104 Kirwan Hall
+Phone: 301 405 5013
+Website: http://www.math.umd.edu/~tjh
+

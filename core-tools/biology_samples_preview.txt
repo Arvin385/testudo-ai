@@ -1,0 +1,35 @@
+================================================================================
+SAMPLE 1:
+Name: Karen Carleton
+Title: Professor
+Email: kcarleto@umd.edu
+Profile URL: /people/karen-carleton
+
+================================================================================
+SAMPLE 2:
+Name: Ricardo C. Araneda
+Title: Professor
+Email: raraneda@umd.edu
+Profile URL: /people/ricardo-c-araneda
+
+================================================================================
+SAMPLE 3:
+Name: Robert Infantino
+Title: Associate Dean, Undergraduate Education
+Email: rinfanti@umd.edu
+Profile URL: /people/robert-infantino
+
+================================================================================
+SAMPLE 4:
+Name: Maira Goytia
+Title: Senior Lecturer
+Email: mgoytia@umd.edu
+Profile URL: /people/maira-goytia
+
+================================================================================
+SAMPLE 5:
+Name: Nikolas Francis
+Title: Assistant Professor
+Email: cortex@umd.edu
+Profile URL: /people/nikolas-francis
+

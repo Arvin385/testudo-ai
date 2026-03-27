@@ -1,0 +1,16 @@
+================================================================================
+EXTRACTION STRATEGY FOR CHEMISTRY PROFILES
+================================================================================
+
+STRUCTURE:
+- Main content: div.field--name-body
+- Contains all sections in one div with headings
+
+SECTIONS TO EXTRACT:
+1. Research Interests -> bio field
+2. Education -> extra_info
+3. Professional Experience -> extra_info
+4. Professional Societies -> extra_info
+5. Major Recognitions and Honors -> extra_info
+6. Significant Professional Service -> extra_info
+7. Research Students Mentored -> extra_info
