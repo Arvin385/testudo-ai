@@ -1,0 +1,22 @@
+[
+  {
+    "url": "https://www.cs.umd.edu/people/faculty",
+    "name": "Faculty"
+  },
+  {
+    "url": "https://www.cs.umd.edu/people/staff",
+    "name": "Staff"
+  },
+  {
+    "url": "https://www.cs.umd.edu/people/phonebook",
+    "name": "Dept. Phonebook"
+  },
+  {
+    "url": "https://www.cs.umd.edu/people/faculty/awards",
+    "name": "Faculty Awards"
+  },
+  {
+    "url": "https://www.cs.umd.edu/people/in-memoriam",
+    "name": "In Memoriam"
+  }
+]
