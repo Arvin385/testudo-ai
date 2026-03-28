@@ -5,7 +5,10 @@
       "WebFetch(domain:umdphysics.umd.edu)",
       "WebFetch(domain:www.astro.umd.edu)",
       "WebFetch(domain:www.geol.umd.edu)",
-      "WebFetch(domain:aosc.umd.edu)"
+      "WebFetch(domain:aosc.umd.edu)",
+      "Bash(\"C:\\\\Users\\\\farha\\\\GITHUB\\\\testudo-ai\\\\.venv\\\\Scripts\\\\python.exe\" \"C:\\\\Users\\\\farha\\\\GITHUB\\\\testudo-ai\\\\core-tools\\\\test_smith_scraper.py\")",
+      "Bash(\"C:\\\\Users\\\\farha\\\\GITHUB\\\\testudo-ai\\\\.venv\\\\Scripts\\\\python.exe\" \"C:\\\\Users\\\\farha\\\\GITHUB\\\\testudo-ai\\\\core-tools\\\\scrape_smith_enriched.py\")",
+      "Bash(/c/Users/farha/GITHUB/testudo-ai/.venv/Scripts/python.exe:*)"
     ]
   }
 }
