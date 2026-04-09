@@ -53,6 +53,108 @@ CSV_COLUMNS = [
     'key_expertise', 'publications', 'department', 'bio', 'extra_info',
 ]
 
+# Map long department names in course listings to standard UMD prefixes
+DEPT_NAME_TO_PREFIX = {
+    'physics': 'PHYS',
+    'mathematics': 'MATH',
+    'chemistry': 'CHEM',
+    'biology': 'BIOL',
+    'astronomy': 'ASTR',
+    'geology': 'GEOL',
+}
+
+
+def normalize_courses(raw_text):
+    """Normalize courses_taught into 'COURSEID: Name' format, one per line.
+
+    Handles formats:
+      - "- Physics 272: Introductory Physics: Fields"
+      - "ENCH 250: Computer Methods..."
+      - "BIOE331 - Biofluids"
+      - "2016, Spring, BIOE420, Bioimaging"
+      - Preamble prose, semester headers, tab indentation
+    """
+    if not raw_text or not raw_text.strip():
+        return ''
+
+    # Clean up whitespace and dash artifacts
+    text = raw_text.replace('\xa0', ' ').replace('\t', ' ')
+    # Normalize en-dash/em-dash to regular dash
+    for ch in [chr(0x2013), chr(0x2014), chr(0x2010), chr(0x2012)]:
+        text = text.replace(ch, '-')
+
+    lines = text.split('\n')
+    courses = []  # list of "CODE: Name" strings
+    seen = set()  # track CODE to deduplicate
+
+    for line in lines:
+        line = line.strip().lstrip('-').lstrip('•').strip()
+        if not line:
+            continue
+
+        extracted = _extract_course(line)
+        if extracted:
+            for code, name in extracted:
+                if code not in seen:
+                    seen.add(code)
+                    courses.append(f"{code}: {name}" if name else code)
+
+    return '\n'.join(courses)
+
+
+def _extract_course(line):
+    """Try to extract (CODE, Name) pairs from a single line.
+
+    Returns list of (code, name) tuples, or empty list if no course found.
+    """
+    # Skip pure prose / semester headers / URLs
+    if re.match(r'^(please see|professor |dr\. |courses? \d{4}|fall \d|spring \d|summer \d|winter \d|university of|current courses|previously taught|course description|courses taught|graduate courses)',
+                line, re.IGNORECASE):
+        return []
+    if line.startswith('http'):
+        return []
+
+    # Pattern A: "YEAR, Semester, CODE, Name" (e.g. "2016, Spring, BIOE420, Bioimaging")
+    m = re.match(r'^\d{4},\s*\w+,\s*([A-Z]{2,6}\d{3}[A-Z]?)\s*,\s*(.+)', line)
+    if m:
+        return [(m.group(1), m.group(2).strip())]
+
+    # Pattern B: "DeptName NNN: Course Title" (e.g. "Physics 272: Intro...")
+    # Also handles "Physics 272 & 272H: Title" -> two entries
+    m = re.match(r'^(Physics|Mathematics|Chemistry|Biology|Astronomy|Geology)\s+(\d{3}[A-Z]?)(?:\s*&\s*(\d{3}[A-Z]?))?\s*:\s*(.+)',
+                 line, re.IGNORECASE)
+    if m:
+        prefix = DEPT_NAME_TO_PREFIX.get(m.group(1).lower(), m.group(1).upper()[:4])
+        name = m.group(4).strip()
+        results = [(f"{prefix}{m.group(2)}", name)]
+        if m.group(3):
+            results.append((f"{prefix}{m.group(3)}", name))
+        return results
+
+    # Pattern C: Standard "CODE NNN: Name" or "CODE NNN - Name" (including en-dash/em-dash)
+    # Matches ENME 610, BIOE331, ENCE 688, PHYS401, HACS 200, PLCY699B, etc.
+    m = re.match(r'^([A-Z]{2,6})\s*(\d{3}[A-Z]{0,2}(?:/[A-Z]{2,6}\s*\d{3}[A-Z]{0,2})?)\s*[-:]\s*(.+)', line)
+    if m:
+        code = f"{m.group(1)}{m.group(2)}".replace(' ', '')
+        name = m.group(3).strip().rstrip('.')
+        return [(code, name)]
+
+    # Pattern D: Just a course code with no separator but has a name after
+    # e.g. "ENME462   Vibration, Controls..."
+    m = re.match(r'^([A-Z]{2,6})\s*(\d{3}[A-Z]{0,2})\s{2,}(.+)', line)
+    if m:
+        code = f"{m.group(1)}{m.group(2)}"
+        name = m.group(3).strip()
+        return [(code, name)]
+
+    # Pattern E: Bare code "BIOE689M" or "ENCE 688" with no name on this line
+    m = re.match(r'^([A-Z]{2,6})\s*(\d{3}[A-Z]{0,2})\.?\s*$', line)
+    if m:
+        code = f"{m.group(1)}{m.group(2)}"
+        return [(code, '')]
+
+    return []
+
 
 def parse_extra_info(text):
     """Parse extra_info text into structured fields.
@@ -155,8 +257,8 @@ def build_csv_row(entry):
     # Office: prefer DB column, fall back to parsed extra_info
     office = entry['office_col'] or parsed['office']
 
-    # Courses taught: from TEACHING section
-    courses_taught = parsed['courses_taught']
+    # Courses taught: from TEACHING section, normalized
+    courses_taught = normalize_courses(parsed['courses_taught'])
 
     # Key expertise: combine bio + research sections
     expertise_parts = []
