@@ -6,49 +6,19 @@ This document tracks data quality issues in `tools/umd_faculty_master.csv` and t
 
 ---
 
-## Priority 1: Department Name Normalization
+## ~~Priority 1: Department Name Normalization~~ ✅ DONE
 
-The `department` column has inconsistent naming from different source databases. The same department appears under multiple strings.
+**Completed 2026-04-09.** A `normalize_department()` function was added to `consolidate_to_csv.py`.
 
-### Electrical & Computer Engineering (48+ faculty)
-```
-Electrical and Computer Engineering                          ← cmsc/amsc
-Electrical & Computer Engineering                            ← clark
-ECE and ISR                                                  ← amsc
-Electrical and Computer Engineering, UMIACS                  ← amsc
-Electrical and Computer Engineering, The Institute for Systems Research
-Electrical and Computer Engineering, Maryland Cybersecurity Center, UMIACS
-```
-**Target:** Primary department = `Electrical & Computer Engineering`
+**Approach taken:**
+1. Full-string lookup against `CANONICAL_DEPARTMENTS` dict (handles names with commas, like `Decision, Operations & Information Technologies`).
+2. Split on comma/semicolon to extract the primary department (first item).
+3. Strip school-level prefixes (e.g. `A. James Clark School of Engineering`).
+4. Map the primary department to a canonical name via the same dict.
 
-### Civil & Environmental Engineering (23+ faculty)
-```
-Civil and Environmental Engineering                          ← cmsc
-Civil & Environmental Engineering                            ← clark
-Civil and Environmental Engineering, Center for Risk and Reliability
-```
-**Target:** Primary department = `Civil & Environmental Engineering`
+**Result:** Reduced from ~100 distinct department strings to ~31 canonical departments. All center/institute affiliations in the comma tail are now stripped, leaving only the primary department.
 
-### Chemical & Biomolecular Engineering (17+ faculty)
-```
-Chemical and Biomolecular Engineering, Maryland Energy Innovation Institute
-Chemical & Biomolecular Engineering                          ← clark
-Chemical and Biomolecular Engineering                        ← cmsc
-```
-**Target:** Primary department = `Chemical & Biomolecular Engineering`
-
-### Similar issues exist for:
-- `Atmospheric & Oceanic Science` vs `Atmospheric and Oceanic Science` vs `Atmosphere and Oceanic Science`
-- `Decision, Operations & Information Technologies` vs `Department of Decision, Operations, & Information Technologies` vs `DO&IT`
-- `Bioengineering` vs `Fischell Department of Bioengineering` vs `Biocomputational Engineering, Fischell Department of Bioengineering`
-- `Chemistry` vs `Chemistry & Biochemistry`
-- `Epidemiology and Biostatistics` vs `Epidemiology & Biostatistics`
-
-### Suggested approach
-- Add a `normalize_department()` function to `consolidate_to_csv.py`
-- Map variants to canonical names
-- Consider splitting into `primary_department` and `affiliations` columns
-- Alternatively, keep the first comma-separated value as primary and the rest as affiliations
+**To add new mappings:** Add entries to the `CANONICAL_DEPARTMENTS` dict in `consolidate_to_csv.py`.
 
 ---
 

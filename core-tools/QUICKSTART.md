@@ -83,7 +83,7 @@ Check `DATA_CLEANING.md` for the prioritized backlog. After any changes, re-run 
 - publications: 11.1% (only Clark Engineering)
 
 **Top cleaning priorities:**
-1. Department name normalization (many variants for the same department)
+1. ~~Department name normalization~~ ✅ Done — `normalize_department()` in `consolidate_to_csv.py`
 2. Enriching low-coverage columns (courses, publications)
 3. Name format standardization (`Last, First` vs `First Last`)
 

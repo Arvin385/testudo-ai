@@ -53,6 +53,65 @@ CSV_COLUMNS = [
     'key_expertise', 'publications', 'department', 'bio', 'extra_info',
 ]
 
+# Canonical department names: map raw variants to a single standard form.
+# Applied to the *primary* department (first item in comma/semicolon-separated lists).
+CANONICAL_DEPARTMENTS = {
+    # Engineering
+    'electrical and computer engineering':       'Electrical & Computer Engineering',
+    'electrical & computer engineering':         'Electrical & Computer Engineering',
+    'ece and isr':                               'Electrical & Computer Engineering',
+    'civil and environmental engineering':       'Civil & Environmental Engineering',
+    'civil & environmental engineering':         'Civil & Environmental Engineering',
+    'chemical and biomolecular engineering':      'Chemical & Biomolecular Engineering',
+    'chemical & biomolecular engineering':        'Chemical & Biomolecular Engineering',
+    'fischell department of bioengineering':      'Bioengineering',
+    'bioengineering':                             'Bioengineering',
+    'biocomputational engineering':               'Bioengineering',
+    'materials science and engineering':          'Materials Science & Engineering',
+    'materials science & engineering':            'Materials Science & Engineering',
+    # Sciences
+    'atmospheric and oceanic science':            'Atmospheric & Oceanic Science',
+    'atmospheric & oceanic science':              'Atmospheric & Oceanic Science',
+    'atmosphere and oceanic science':             'Atmospheric & Oceanic Science',
+    'chemistry & biochemistry':                   'Chemistry & Biochemistry',
+    'chemistry':                                  'Chemistry & Biochemistry',
+    'chemistry and biochemistry':                 'Chemistry & Biochemistry',
+    'cell biology and molecular genetics':        'Cell Biology & Molecular Genetics',
+    'cell biology & molecular genetics':          'Cell Biology & Molecular Genetics',
+    # Health
+    'epidemiology and biostatistics':             'Epidemiology & Biostatistics',
+    'epidemiology & biostatistics':               'Epidemiology & Biostatistics',
+    'division of biostatistics and bioinformatics': 'Epidemiology & Biostatistics',
+    # Business (Smith School)
+    'robert h. smith school of business':         'Robert H. Smith School of Business',
+    'decision, operations & information technologies': 'Decision, Operations & Information Technologies',
+    'department of decision, operations, & information technologies': 'Decision, Operations & Information Technologies',
+    'department of decisions, operations, & information technologies': 'Decision, Operations & Information Technologies',
+    'do&it':                                      'Decision, Operations & Information Technologies',
+    # Full-string matches for department names that themselves contain commas
+    'decision, operations & information technologies': 'Decision, Operations & Information Technologies',
+    'decision, operations, and information technologies': 'Decision, Operations & Information Technologies',
+    'department of decision, operations, & information technologies': 'Decision, Operations & Information Technologies',
+    'department of decisions, operations, & information technologies': 'Decision, Operations & Information Technologies',
+    'measurement, statistics, and evaluation':     'Measurement, Statistics & Evaluation',
+    'measurement, statistics & evaluation':        'Measurement, Statistics & Evaluation',
+    'division of biostatistics and bioinformatics, department of epidemiology and public health, umd, school of medicine': 'Epidemiology & Biostatistics',
+    # Math / Applied Math
+    'mathematics & statistics':                   'Mathematics',
+    # Research institutes (when listed as sole department)
+    'institute for research in electronics & applied physics': 'Institute for Research in Electronics & Applied Physics',
+    'institute for research in electronics and applied physics': 'Institute for Research in Electronics & Applied Physics',
+    'quantum technology center':                  'Quantum Technology Center',
+    'institute for physical science & technology': 'Institute for Physical Science & Technology',
+    'institute for physical science and technology': 'Institute for Physical Science & Technology',
+}
+
+# Affiliations / centers to strip when they appear as the first item in
+# a comma-separated department list (they are not primary departments).
+STRIP_PREFIXES = [
+    'a. james clark school of engineering',
+]
+
 # Map long department names in course listings to standard UMD prefixes
 DEPT_NAME_TO_PREFIX = {
     'physics': 'PHYS',
@@ -62,6 +121,43 @@ DEPT_NAME_TO_PREFIX = {
     'astronomy': 'ASTR',
     'geology': 'GEOL',
 }
+
+
+def normalize_department(raw_dept):
+    """Normalize a department string to a canonical name.
+
+    Strategy:
+    1. Check if the full string matches a known canonical mapping first
+       (handles names that contain commas, like "Decision, Operations & IT").
+    2. Split on comma or semicolon to get the first (primary) department.
+    3. Strip known non-department prefixes (e.g. 'A. James Clark School of Engineering').
+    4. Look up the primary department in CANONICAL_DEPARTMENTS.
+    5. Return the canonical name if found, otherwise return the primary as-is.
+    """
+    if not raw_dept or not raw_dept.strip():
+        return raw_dept
+
+    stripped = raw_dept.strip()
+
+    # First: try matching the full string (handles department names with commas)
+    canonical = CANONICAL_DEPARTMENTS.get(stripped.lower())
+    if canonical:
+        return canonical
+
+    # Split on comma or semicolon — first item is the primary department
+    parts = re.split(r'[,;]', stripped)
+    primary = parts[0].strip()
+
+    # If the first part is a school-level prefix, use the second part instead
+    if len(parts) > 1 and primary.lower() in STRIP_PREFIXES:
+        primary = parts[1].strip()
+
+    # Look up canonical name (case-insensitive)
+    canonical = CANONICAL_DEPARTMENTS.get(primary.lower())
+    if canonical:
+        return canonical
+
+    return primary
 
 
 def normalize_courses(raw_text):
@@ -282,7 +378,7 @@ def build_csv_row(entry):
         'courses_taught': courses_taught,
         'key_expertise': key_expertise,
         'publications': publications,
-        'department': entry['department'],
+        'department': normalize_department(entry['department']),
         'bio': entry['bio'],
         'extra_info': extra_info,
     }
