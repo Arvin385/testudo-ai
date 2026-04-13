@@ -8,11 +8,19 @@ Batch-update umd_faculty.csv with courses from Testudo.
 """
 
 import csv
+import io
+import os
 import time
 import random
 import requests
 import sys
 from pathlib import Path
+
+# Fix Windows console encoding for Unicode names (e.g., Romanian ș, accented chars)
+if sys.platform == "win32":
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
+    os.environ.setdefault("PYTHONIOENCODING", "utf-8")
 
 # Import from our scraper module
 sys.path.insert(0, str(Path(__file__).parent))
