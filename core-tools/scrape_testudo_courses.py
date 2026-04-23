@@ -30,8 +30,17 @@ from pathlib import Path
 BASE_URL = "https://app.testudo.umd.edu/soc/search"
 CSV_PATH = Path(__file__).parent.parent / "tools" / "umd_faculty.csv"
 
-# Default semesters to search (most recent academic year)
-DEFAULT_TERMS = ["202601", "202508"]  # Spring 2026, Fall 2025
+# Default semesters to search
+DEFAULT_TERMS = ["202608"]  # Fall 2026
+
+# Human-readable labels for term IDs
+TERM_LABELS = {
+    "202608": "Fall 2026",
+    "202601": "Spring 2026",
+    "202508": "Fall 2025",
+    "202505": "Summer 2025",
+    "202412": "Winter 2025",
+}
 
 # Polite delay range (seconds) between requests
 DELAY_MIN = 1.0

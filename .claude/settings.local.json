@@ -32,7 +32,9 @@
       "Bash(\"C:\\\\Users\\\\farha\\\\GITHUB\\\\testudo-ai\\\\.venv\\\\Scripts\\\\python.exe\" -c \"\nimport ollama, time\nprint\\(''Pulling gemma3:4b...''\\)\nstart = time.time\\(\\)\nlast_pct = -1\nfor progress in ollama.pull\\(''gemma3:4b'', stream=True\\):\n    total = getattr\\(progress, ''total'', 0\\) or 0\n    completed_bytes = getattr\\(progress, ''completed'', 0\\) or 0\n    status = getattr\\(progress, ''status'', ''''\\) or ''''\n    if total > 0:\n        pct = int\\(completed_bytes / total * 100\\)\n        if pct != last_pct and pct % 10 == 0:\n            print\\(f''  {pct}% \\({completed_bytes/\\(1024**3\\):.1f}/{total/\\(1024**3\\):.1f} GB\\)''\\)\n            last_pct = pct\n    elif ''success'' in status.lower\\(\\) or ''verifying'' in status.lower\\(\\) or ''writing'' in status.lower\\(\\):\n        print\\(f''  {status}''\\)\nprint\\(f''Done in {time.time\\(\\)-start:.0f}s''\\)\n\")",
       "WebFetch(domain:app.testudo.umd.edu)",
       "Bash(timeout:*)",
-      "Bash(ping:*)"
+      "Bash(ping:*)",
+      "Bash(wc:*)",
+      "Bash(sqlite3:*)"
     ]
   }
 }
