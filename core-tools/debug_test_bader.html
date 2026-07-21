@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="en"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Directory Search</title>
+	<link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="resources/css/directory-tools.css">
+	<link rel="stylesheet" type="text/css" href="resources/css/dynamic.css">
+	<link rel="stylesheet" type="text/css" href="resources/css/dirid-search.css">
+
+	<script type="text/javascript" src="resources/bootstrap/scripts/jquery.js"></script>
+	<script type="text/javascript" src="resources/bootstrap/scripts/bootstrap.js"></script>
+	<script type="text/javascript" src="resources/scripts/dirid-search.js"></script>
+	<script type="text/javascript" src="resources/scripts/global-scripts.js"></script>
+</head>
+
+	
+		
+	
+	
+
+
+<body style="">
+	<div id="umd-frame">
+		
+
+
+
+
+
+
+
+	<form id="login" action="search" method="POST" onsubmit="preventDoubleSubmissionSpinner(event);">
+		<input class="btn-panel-big logout" type="submit" value="Log in" name="login">
+	</form>
+
+
+<div class="DisplayVersion">2.6.9</div>
+<div class="UMDHeader"></div>
+		<div id="content-wrapper">
+			<div class="DisplayElement">
+				
+				<div id="blocker" class="hidden"></div>
+				<div id="searchSpinner" class="hidden"></div>
+				<h1>Directory Search</h1>
+				<form id="basicsearch" action="search" method="post" onsubmit="preventDoubleSubmissionSpinner(event);">
+					<div class="SubDisplayElementContainer">
+						<label for="basicSearchInput" class="SubDisplayElement"><strong>Search:</strong></label>
+						<div class="SubDisplayElement">
+							<input id="basicSearchInput" name="basicSearchInput" title="Search in the directory." placeholder="Enter text here" type="search" autofocus="true" required="true" value="Uri Bader">
+						</div>
+						<div class="SubDisplayElement">
+							<input type="submit" value="Search" name="basicSearch" class="btn-panel-big">
+						</div>
+					</div>
+					<div class="SubDisplayElementContainer">
+						<input id="soundsListCB" name="lastNameSL" type="checkbox" value="true"><input type="hidden" name="_lastNameSL" value="on">
+						<label for="soundsListCB" class="lastNameSLCB">Last Name Sounds Like...</label>
+					</div>
+				</form>
+			</div>
+			<div class="DisplayElement" id="advancedSearchParent">
+				<h2 class="pointer" href="#advancedSearch" aria-expanded="false" data-toggle="collapse" aria-controls="advancedSearch" onclick="toggleChevron(this);">
+					<a href="#advancedSearch" aria-expanded="false" data-toggle="collapse" data-parent="#advancedSearchParent" aria-controls="advancedSearch">
+						Advanced Search <i class="glyphicon glyphicon-chevron-down pull-right"></i> 
+					</a>
+				</h2>
+				<div id="advancedSearch" class="collapse advancedPanel">
+					<form id="advancedsearch" action="search" method="post" onsubmit="preventDoubleSubmissionSpinner(event);">
+						<div class="advancedSearchContainer">
+							<div class="flexContainer">
+								<div class="searchItem">
+									<label for="advancedSearchInputs.firstName" class="searchItemLabel">First Name</label>
+									<input id="advancedSearchInputs.firstName" name="advancedSearchInputs.firstName" title="First Name" placeholder="First" type="text" class="searchInput" value="">
+								</div>
+								<div class="searchItem">
+									<label for="advancedSearchInputs.middleName" class="searchItemLabel">Middle Name</label>
+									<input id="advancedSearchInputs.middleName" name="advancedSearchInputs.middleName" title="Middle Name" placeholder="Middle" type="text" class="searchInput" value="">
+								</div>
+								<div class="searchItem">
+									<label for="advancedSearchInputs.lastName" class="searchItemLabel">Last Name</label>
+									<input id="advancedSearchInputs.lastName" name="advancedSearchInputs.lastName" title="Last Name" placeholder="Last" type="text" class="searchInput" value="">
+								</div>
+								<div class="searchItem">
+									<label for="advancedSearchInputs.email" class="searchItemLabel">Email</label>
+									<input id="advancedSearchInputs.email" name="advancedSearchInputs.email" title="Email Address" placeholder="Email Address" type="text" class="searchInput" value="">
+								</div>
+								<div class="searchItem">
+									<label for="advancedSearchInputs.workPhone" class="searchItemLabel">Work Phone</label>
+									<input id="advancedSearchInputs.workPhone" name="advancedSearchInputs.workPhone" title="Work Phone" placeholder="+1 301-305-1000" type="text" class="searchInput" onblur="phoneValidation(this)" value="" maxlength="32">
+								</div>
+								
+							</div>
+							<div class="checkBoxRowContainer">
+								<div class="searchItem">
+									<div class="searchItemTitle">Affiliation:</div>
+									<div class="searchItemCheckboxContainer">
+										<div class="checkBoxItemContainer">
+											
+												
+												
+													<input id="facultyCB" name="advancedSearchInputs.affiliation['umFaculty']" type="checkbox" value="true" checked="checked"><input type="hidden" name="_advancedSearchInputs.affiliation['umFaculty']" value="on">
+												
+											
+											<label for="facultyCB">Faculty</label>
+										</div>
+										
+										<div class="checkBoxItemContainer">
+											
+												
+												
+													<input id="staffCB" name="advancedSearchInputs.affiliation['umStaff']" type="checkbox" value="true" checked="checked"><input type="hidden" name="_advancedSearchInputs.affiliation['umStaff']" value="on">
+												
+											
+											<label for="staffCB">Staff</label>
+										</div>
+										<div class="checkBoxItemContainer">
+											
+												
+												
+													<input id="affiliateCB" name="advancedSearchInputs.affiliation['umAffiliate']" type="checkbox" value="true" checked="checked"><input type="hidden" name="_advancedSearchInputs.affiliation['umAffiliate']" value="on">
+												
+											
+											<label for="affiliateCB">Affiliate</label>
+										</div>
+										
+									</div>
+								</div>
+								<div class="searchItem">
+									<div class="searchItemTitle">Institution:</div>
+									<div class="searchItemCheckboxContainer">
+										<div class="checkBoxItemContainer">
+											
+												
+												
+													<input id="umcpCB" name="advancedSearchInputs.institution['UMCP']" type="checkbox" value="true" checked="checked"><input type="hidden" name="_advancedSearchInputs.institution['UMCP']" value="on">
+												
+											
+											<label for="umcpCB">UMD</label>
+										</div>
+										<div class="checkBoxItemContainer">
+											
+												
+												
+													<input id="umsoCB" name="advancedSearchInputs.institution['USMO']" type="checkbox" value="true"><input type="hidden" name="_advancedSearchInputs.institution['USMO']" value="on">
+												
+											
+											<label for="umsoCB">USMO</label>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="SubDisplayElement">
+							<input type="submit" value="Advanced Search" name="advancedSearch" class="btn-panel-big advancedSearchButton">
+							<button type="button" class="btn-panel-big advancedSearchButton" onclick="window.location.reload()">Clear Search</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+				<div class="DisplayElement">
+					
+
+
+
+
+<h2>Directory Search Results</h2>
+
+
+
+	
+	
+		<div class="ResultNumber"><strong>Number of Results:</strong> 1</div>
+	
+
+
+<div class="SearchResultsContainer">
+	<div class="SearchResults">
+		
+			
+				
+				
+				
+					
+				
+			
+			<div class="DisplaySearchItem publishBackground">
+				<div class="DetailSection">
+					<div class="DetailBlock">
+						
+							
+							
+								
+									
+									
+										<div class="name"><strong>Uri Bader</strong></div>
+									
+								
+							
+						
+						
+						
+							
+							
+								<div class="email"><a href="mailto:uribader@umd.edu">uribader@umd.edu</a></div>
+								
+							
+						
+						
+					</div>
+					<div class="DetailBlock">
+						<div class="institution">University of Maryland, College Park</div>
+						<div class="displayTitle">Professor</div>
+						<div class="deptName">CMNS-Mathematics</div>
+						
+							<div class="containAffiliations">
+								
+							</div>
+						
+					</div>
+					<div class="DetailBlock">
+						<div class="address">4176 CAMPUS DR<br>COLLEGE PARK, MD 20742</div>
+						
+						
+						<div class="phoneNumbers"><strong>Phone:</strong> +1 301 405 5065</div>
+						
+						
+						
+					</div>
+				</div>
+				
+			</div>
+		
+		<p id="date">Mon Jul 20 2026 03:21:41 GMT-0700 (Pacific Daylight Time)</p>
+		<script>document.getElementById("date").innerHTML = Date();</script>
+	</div>
+</div>
+				</div>
+			
+			<div class="DisplayElement">
+				<div class="DisplayElementModule">
+					<h3>Looking for a student?</h3>
+					<div class="SubDisplayElementContainer">
+						Student searches are limited to members of the University of Maryland, College Park community. 
+						To search for students, please log in.
+					</div>
+					<h3>How do I find more information about a particular person?</h3>
+					<div class="SubDisplayElementContainer">
+						You can get additional information on individuals (depending on their privacy settings) if you log in.
+					</div>
+					<h3>Campus Information: 301.405.1000</h3>
+				</div>
+			</div>
+			<div class="pageFooter">
+	<div class="footerContentContainer">
+		<div class="pageFooterText">
+			<p>If you have problems with this page, please contact the <a href="http://itsupport.umd.edu" target="_blank">IT Service Desk</a> at 301.405.1500.</p>
+			<p><a href="https://umd.edu/web-accessibility">Web Accessibility</a></p>
+		</div>
+		<div class="pageFooterImg"></div>
+	</div>
+	<hr>
+	<div class="footerDisclaimer">
+		<p class="footerDisclaimerText">
+			NOTICE: Unauthorized access to this computer is in violation of Maryland Annotated Code, 
+			Criminal Law Article §§ 8-606 and 7-302 and the Computer Fraud and Abuse Act, 18 U.S.C. §§ 1030 et seq. 
+			The University may monitor use of its computing resources as permitted by state and federal law, including the 
+			Electronic Communications Privacy Act, 18 U.S.C. §§ 2510-2521 and the Maryland Annotated Code, Courts and Judicial 
+			Proceedings Article, Section 10, Subtitle 4.  Anyone using this system acknowledges that all use is subject to the 
+			<a href="http://www.umd.edu/aup" target="_blank">University of Maryland Policy on the Acceptable Use of Information Technology Resources</a>.
+		</p>
+		<p class="footerDisclaimerText footerWarning">
+			By logging in to this/these application(s) I acknowledge and agree to all terms and  conditions regarding my access and the information contained therein.
+		</p>
+	</div>
+</div>
+		</div>
+	</div>
+
+</body></html>

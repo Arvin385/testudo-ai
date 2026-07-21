@@ -34,7 +34,7 @@ from scrape_testudo_courses import (
 )
 
 CSV_PATH = Path(__file__).parent.parent / "tools" / "umd_faculty.csv"
-TERMS = DEFAULT_TERMS  # ["202608"] = Fall 2026
+TERMS = ["202601"]  # Spring 2026
 WORKERS = 5            # concurrent HTTP workers; tune to taste
 
 # ---------------------------------------------------------------------------
@@ -117,10 +117,9 @@ def main():
     total = len(rows)
 
     print(f"Loaded {total} faculty from CSV")
-    print(f"  Overwriting all courses_taught data")
+    print(f"  Merging {TERM_LABELS.get(TERMS[0], TERMS[0])} into existing courses_taught JSON")
     print(f"  Terms: {TERMS}")
     print(f"  Workers: {WORKERS}")
-    print(f"  Output format: {{\"Fall 2026\": [\"CODE: Title\", ...]}}")
     print()
 
     # First pass: standardize ALL names
@@ -154,10 +153,18 @@ def main():
         dept = row.get("department", "?")
         session = get_session()
 
+        # Parse existing courses_taught JSON (e.g. from Fall 2026 pass)
+        existing = {}
+        existing_data = row.get("courses_taught", "").strip()
+        if existing_data:
+            try:
+                existing = json.loads(existing_data)
+            except json.JSONDecodeError:
+                existing = {}
+
         try:
             courses = scrape_one(name, TERMS, session)
         except Exception as e:
-            row["courses_taught"] = ""
             with lock:
                 errors += 1
                 scraped += 1
@@ -166,7 +173,11 @@ def main():
                     save_csv(rows, fieldnames)
             return
 
-        row["courses_taught"] = format_courses(courses, TERMS) if courses else ""
+        label = TERM_LABELS.get(TERMS[0], TERMS[0]) if TERMS else "Unknown"
+        if courses:
+            existing[label] = courses
+        if existing:
+            row["courses_taught"] = json.dumps(existing)
 
         with lock:
             if courses:
